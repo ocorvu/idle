@@ -54,7 +54,7 @@
             <h2><img src="icons/icons8-comprar-atualização-30 (1).png" alt="upgrade">Upgrades</h2>
 
             <ul>
-                <li>1. Upgrade</li>
+                <li id = "upgrade1" onclick="powerUp(1)">Power UP</li>
                 <li>2. Upgrade</li>
                 <li>3. Upgrade</li>
                 <li>4. Upgrade</li>
@@ -67,8 +67,8 @@
             </ul>
         </aside>
         <section id="game" class="w-50 inline-block">
-            <button class="click-button" id="first" onclick="plus(1, 'box')">1</button>
-            <button class="click-button" id="second" onclick="plus(2, 'box')">2</button>
+            <button class="click-button" id="first" onclick="plus(1*power, 'box', 'clicks')">1</button>
+            <button class="click-button" id="second" onclick="plus(2*power, 'box', 'clicks')">2</button>
             <div id="box">0</div>
         </section>
         <script src="main.js"></script>

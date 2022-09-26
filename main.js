@@ -1,19 +1,30 @@
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
-const clicks = document.getElementById('clicks');
 const menuItems = document.querySelectorAll('[data-button]')
 const volume = document.getElementById('volumeID');
-var count = 1;
+var power = 1;
+var count = 0;
 var time = 1;
 var timestamp = 1000;
+let cost = 1
 
+console.log(firstButton)
 function plus(value, ...params) {
     count += value;
     params.forEach (el => {
         let element = document.getElementById(el);
         element.innerText = count;
-        clicks.innerText = ' ' + count;
     })
+}
+
+function powerUp(value) {
+    if (count >= 10*cost){
+        power +=value;
+        count -= 10*cost 
+        cost += 1  
+        upgrade1=document.getElementById('upgrade1')
+        upgrade1.innerText = 'Power UP cost: ' + cost*10     
+    }
 }
 
 function hideItem(e) {
@@ -74,7 +85,7 @@ musicButtons.forEach(button => {
 function resolveAfter2Seconds() {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(plus(1, 'box'));
+        resolve(plus(power, 'box','clicks'));
       }, timestamp);
     });
   }
