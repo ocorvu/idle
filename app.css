@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+    list-style-type: none;
+    vertical-align: top;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav > a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    padding: 3em 0;
+}
+
+.click-button {
+    margin-right: 1em;
+    padding: 2em 1em;
+    background-color: #000;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+    
+}
+
+.click-button:hover {
+    transform: scale(1.2);
+}
+
+.hide {
+    display: none;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.inline-block {
+    display: inline-block
+}

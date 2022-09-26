@@ -1,0 +1,53 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    width: 30em;
+    background-color: #ccc;
+    padding: 2em 1em;
+    border-radius: 0 0 1em 1em;
+}
+
+.menu h2 {
+    margin: 0;
+}
+
+.menu p {
+    display: flex;
+}
+
+#volumeID {
+    margin: 0 1em 0;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-close-button {
+    padding: 0 1em;
+    background-color: red;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-close-button:hover {
+    transform: scale(1.1);
+}
+
+.menu-music-button {
+    background-color: #000;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.active {
+    background-color: #FFF;
+    color: #000;
+    font-weight: bold;
+    border-color: #000;
+}

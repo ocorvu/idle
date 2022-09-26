@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle</title>
+    <!-- Bootstrap5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- Menu CSS -->
+    <link rel="stylesheet" href="menu.css">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="app.css">
+    <!-- Upgrades CSS -->
+    <link rel="stylesheet" href="upgrades.css">
+    <!-- Game CSS -->
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <header>
+        <h1>IDLE</h1>
+        <nav>
+            <a href="#" data-button="config">
+                <img src="icons/icons8-gear-30.png" alt="Config">
+            </a>
+            <a href="#" data-button="information">
+                <img src="icons/icons8-info-30.png" alt="Info">
+            </a>
+
+        </nav>
+    </header>
+    <aside id="hiddenMenu">
+        <section data-content="information" class="hide menu">
+            <div class="menu-header">
+                <h2>Info</h2>
+                <button class="menu-close-button" onclick="hideItem('information')">X</button>
+            </div>
+            <p>Points by clicking: <span id="clicks">0</span></p>
+        </section>
+        <div data-content="config" class="hide menu">
+            <div class="menu-header">
+                <h2>Settings</h2>
+                <button class="menu-close-button" onclick="hideItem('config')">X</button>
+            </div>
+            <p>Music <span>
+                <button class="menu-music-button" data-music="off">OFF</button>
+                <button class="menu-music-button" data-music="on">ON</button>
+            </span></p>
+            <p>Volume <input type="range" name="volume" id="volumeID"></p>
+        </div>
+    </aside>
+    <main>
+        <aside id="upgrades" class="d-inline-block w-25">
+            <h2><img src="icons/icons8-comprar-atualização-30 (1).png" alt="upgrade">Upgrades</h2>
+
+            <ul>
+                <li>1. Upgrade</li>
+                <li>2. Upgrade</li>
+                <li>3. Upgrade</li>
+                <li>4. Upgrade</li>
+                <li>5. Upgrade</li>
+                <li>6. Upgrade</li>
+                <li>7. Upgrade</li>
+                <li>8. Upgrade</li>
+                <li>9. Upgrade</li>
+                <li>10. Upgrade</li>
+            </ul>
+        </aside>
+        <section id="game" class="w-50 inline-block">
+            <button class="click-button" id="first" onclick="plus(1, 'box')">1</button>
+            <button class="click-button" id="second" onclick="plus(2, 'box')">2</button>
+            <div id="box">0</div>
+        </section>
+        <script src="main.js"></script>
+    </main>
+</body>
+</html>
