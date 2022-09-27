@@ -2,28 +2,37 @@ const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]')
 const volume = document.getElementById('volumeID');
-var power = 1;
-var count = 0;
-var time = 1;
-var timestamp = 1000;
-let cost = 1
+let power = 1;
+let count = 0;
+let points = 0;
+let time = 1;
+let timestamp = 1000;
+let cost = 10
 
 console.log(firstButton)
 function plus(value, ...params) {
-    count += value;
+    points += value;
     params.forEach (el => {
         let element = document.getElementById(el);
-        element.innerText = count;
+        element.innerText = points;
     })
 }
 
+const upgrade1 = document.querySelector(`[data-upgrade="upgrade1"]`)
+let upgrade1Amount = document.querySelector(`[data-upgrade-amount="upgrade1"]`)
+let upgrade1Increase = document.querySelector(`[data-upgrade-increase="upgrade1"]`)
+let upgrade1Cost = document.querySelector(`[data-upgrade-cost="upgrade1"]`)
+
+console.log(upgrade1Increase)
 function powerUp(value) {
-    if (count >= 10*cost){
+    if (points >= cost){
         power +=value;
-        count -= 10*cost 
-        cost += 1  
-        upgrade1=document.getElementById('upgrade1')
-        upgrade1.innerText = 'Power UP cost: ' + cost*10     
+        count += 1
+        points -= cost 
+        cost *= 10  
+        upgrade1Amount.innerText = count
+        upgrade1Increase.innerText = power
+        upgrade1Cost.innerText = cost
     }
 }
 
