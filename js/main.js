@@ -4,6 +4,7 @@ const menuItems = document.querySelectorAll('[data-button]')
 const notEnoughCash = new Audio('../sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
 const heroesList = document.querySelectorAll('[data-heroes]')
+
 const heroes = {
     "hero1":
     {
@@ -13,6 +14,7 @@ const heroes = {
         "level": 0,
         "base_cost": 10,
         "cost_increase": 3,
+        "achievements" : 0,
     },
     "hero2":
     {
@@ -22,6 +24,7 @@ const heroes = {
         "level": 0,
         "base_cost": 200,
         "cost_increase": 5,
+        "achievements" : 0,
     },
     "hero3":
     {
@@ -31,7 +34,26 @@ const heroes = {
         "level": 0,
         "base_cost": 200,
         "cost_increase": 5,
+        "achievements" : 0,
     }
+};
+
+const achievements = {
+    '10': {
+        'name': 'Reachs lvl10',
+        'message': 'reachs level 10!',
+        'achieved': [],
+    },
+    '20': {
+        'name': 'Reachs lvl20',
+        'message': 'reachs level 20!',
+        'achieved': [],
+    },
+    '30': {
+        'name': 'Reachs lvl30',
+        'message': 'reachs level 30!',
+        'achieved': [],
+    },
 };
 
 let volume = document.getElementById('volume');
@@ -162,4 +184,52 @@ const tooltipDestroy = () => {
     [...tooltipTriggerList].map(tooltipTriggerEl => {
         const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose()
     })
+}
+
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+
+function achievementsLoop() {
+    for (const hero in heroes) {
+        for (const achievement in achievements){
+    
+            if (heroes[hero].level == achievement && !achievements[achievement].achieved.includes(heroes[hero].name)) {
+                achievements[achievement].achieved.push(heroes[hero].name)
+                heroes[hero].achievements += 1;
+                alert(achievements[achievement].name, heroes[hero].name, achievements[achievement].message, 'success')
+
+        }
+        }
+
+    }
+    return new Promise(resolve => {
+        setTimeout(() => {
+          resolve();
+        }, timestamp);
+      });
+}
+async function asyncAchievement() {
+    const result = await achievementsLoop()
+    window.requestAnimationFrame(asyncAchievement)
+}
+window.requestAnimationFrame(asyncAchievement)
+
+const alert = (title, hero, message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `   <div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <h4>${title}</h4>`,
+    `   <div>${hero} ${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
+const alertTrigger = document.getElementById('liveAlertBtn')
+
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    alert('Nice, you triggered this alert message!', 'success')
+  })
 }
