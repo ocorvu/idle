@@ -71,6 +71,7 @@
                 aria-label="Close"></button>
             </header>
             <ul class="p-0">
+                <!-- hero1 -->
                 <li 
                 id="powerup" 
                 class="d-flex flex-column btn btn-primary mb-2" 
@@ -87,12 +88,13 @@
                             <h3 class="text-start" data-heroes-name="hero1"></h3>
                             <small class="d-flex align-items-center justify-content-between text-nowrap fs-4">
                                 Cost:
-                                <span class="badge bg-secondary" data-heroes-cost="hero1">10</span>
+                                <span class="badge bg-secondary" data-heroes-cost="hero1"></span>
                             </small>
                         </div>
-                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-amount="hero1">0</span>
+                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-level="hero1"></span>
                     </div>
                 </li>
+                <!-- hero2 -->
                 <li 
                 id="powerup" 
                 class="d-flex flex-column btn btn-primary mb-2" 
@@ -109,10 +111,56 @@
                             <h3 class="text-start" data-heroes-name="hero2"></h3>
                             <small class="d-flex align-items-center justify-content-between text-nowrap fs-4">
                                 Cost:
-                                <span class="badge bg-secondary" data-heroes-cost="hero2">200</span>
+                                <span class="badge bg-secondary" data-heroes-cost="hero2"></span>
                             </small>
                         </div>
-                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-amount="hero2">0</span>
+                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-level="hero2"></span>
+                    </div>
+                </li>
+                <!-- hero3 -->
+                <li 
+                id="powerup" 
+                class="d-flex flex-column btn btn-primary mb-2" 
+                data-heroes="hero3" 
+                data-bs-container="body" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                data-bs-html="true"
+                onclick="powerUp('hero3')" 
+                onmouseenter="tooltipList()" 
+                onmouseleave="tooltipDestroy()">
+                    <div class="d-flex justify-content-between fs-2">
+                        <div>
+                            <h3 class="text-start" data-heroes-name="hero3"></h3>
+                            <small class="d-flex align-items-center justify-content-between text-nowrap fs-4">
+                                Cost:
+                                <span class="badge bg-secondary" data-heroes-cost="hero3"></span>
+                            </small>
+                        </div>
+                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-level="hero3"></span>
+                    </div>
+                </li>
+                <!-- hero4 -->
+                <li 
+                id="powerup" 
+                class="d-flex flex-column btn btn-primary mb-2" 
+                data-heroes="hero4" 
+                data-bs-container="body" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                data-bs-html="true"
+                onclick="powerUp('hero4')" 
+                onmouseenter="tooltipList()" 
+                onmouseleave="tooltipDestroy()">
+                    <div class="d-flex justify-content-between fs-2">
+                        <div>
+                            <h3 class="text-start" data-heroes-name="hero4"></h3>
+                            <small class="d-flex align-items-center justify-content-between text-nowrap fs-4">
+                                Cost:
+                                <span class="badge bg-secondary" data-heroes-cost="hero4"></span>
+                            </small>
+                        </div>
+                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-level="hero4"></span>
                     </div>
                 </li>
             </ul>

@@ -13,7 +13,7 @@ const heroes = {
         "given_power": 0,
         "level": 0,
         "base_cost": 10,
-        "cost_increase": 3,
+        "cost_increase": 1.2,
         "achievements" : 0,
     },
     "hero2":
@@ -28,12 +28,22 @@ const heroes = {
     },
     "hero3":
     {
-        "name": 'Rebento',
-        "power": 10,
+        "name": 'Kaom',
+        "power": 7,
         "given_power": 0,
         "level": 0,
-        "base_cost": 200,
-        "cost_increase": 5,
+        "base_cost": 150,
+        "cost_increase": 2,
+        "achievements" : 0,
+    },
+    "hero4":
+    {
+        "name": 'Brine King',
+        "power": 6,
+        "given_power": 0,
+        "level": 0,
+        "base_cost": 100,
+        "cost_increase": 2,
         "achievements" : 0,
     }
 };
@@ -68,8 +78,12 @@ for (const hero in heroesList) {
     if (Object.hasOwnProperty.call(heroesList, hero)) {
         const heroId = heroesList[hero].dataset.heroes;
         const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`)
+        const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`)
+        const heroLevel = document.querySelector(`[data-heroes-level="${heroId}"]`)
 
         heroName.innerText = heroes[heroId].name
+        heroCost.innerText = heroes[heroId].base_cost
+        heroLevel.innerText = heroes[heroId].level
     }
 }
 
@@ -84,14 +98,14 @@ function plus(value, ...params) {
 function powerUp(e) {
     const hero = heroes[e]
     if (points >= hero.base_cost){
-        const heroLevel = document.querySelector(`[data-heroes-amount="${e}"]`);
+        const heroLevel = document.querySelector(`[data-heroes-level="${e}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${e}"]`);
 
         hero.level += 1;
         power += hero.power;
         points -= hero.base_cost;
         hero.given_power += hero.power;
-        hero.base_cost *= hero.cost_increase ;
+        hero.base_cost = Math.floor(hero.base_cost * hero.cost_increase);
         heroLevel.innerText = hero.level;
         heroCost.innerText = hero.base_cost;
 
@@ -135,7 +149,6 @@ menuItems.forEach(item => {
         showItem(value)
     })
 })
-
 
 musicButtons.forEach(button => {
     button.addEventListener('click', ()=> {
@@ -190,23 +203,22 @@ const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
 function achievementsLoop() {
     for (const hero in heroes) {
-        for (const achievement in achievements){
+        for (const achievement in achievements) {
     
             if (heroes[hero].level == achievement && !achievements[achievement].achieved.includes(heroes[hero].name)) {
                 achievements[achievement].achieved.push(heroes[hero].name)
                 heroes[hero].achievements += 1;
                 alert(achievements[achievement].name, heroes[hero].name, achievements[achievement].message, 'success')
-
+            }
         }
-        }
-
     }
     return new Promise(resolve => {
         setTimeout(() => {
           resolve();
-        }, timestamp);
+        }, 200);
       });
 }
+
 async function asyncAchievement() {
     const result = await achievementsLoop()
     window.requestAnimationFrame(asyncAchievement)
