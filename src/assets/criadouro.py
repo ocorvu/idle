@@ -9,7 +9,7 @@ from os import close
 
 root = Tk()
 
-def salvar_monstro(dados, arquivo = 'idle\hero\\assets\herois.json'): #apeans 'data.json' não estava funcionando aqui.
+def salvar_monstro(dados, arquivo = 'herois.json'): #apeans 'data.json' não estava funcionando aqui.
     with open(arquivo, 'r+', encoding='utf8') as file:
         dados_arquivo = json.load(file)
         chave = dados['nome_minusculo']
