@@ -1,5 +1,11 @@
 {
     "monstros": {
-        
+        "vampeta": {
+            "nome": "vampeta",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "poder": 0,
+            "defesa": 0,
+            "hp": 0
+        }
     }
 }

@@ -33,7 +33,7 @@ Conteudo:
     * vida
     * mana
 
-* classes / subclasses
+* role / subrole
     * mago
         * arcano 
     * guerreiro
@@ -45,7 +45,7 @@ Conteudo:
     * chance de item dropado ser permanente
     * mais xp quando volta
     * reviver com penalidade de lvl / ou revives limitados
-    * 
+    * poder usar role independente da raça
 
 * reset
     * 

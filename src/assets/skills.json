@@ -1,0 +1,20 @@
+{
+    "warrior": {
+        "porretada": {
+            "nome": "porretada",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "power": 10,
+            "tipo": "fogo",
+            "lvl": 0
+
+        },
+        "paulada": {
+            "nome": "paulada",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "power": 20,
+            "tipo": "fogo",
+            "lvl": 0
+        }
+
+    }
+}
