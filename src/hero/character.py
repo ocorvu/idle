@@ -15,24 +15,36 @@ class Character:
 
     def atack(self, critChance = 0, critMult = 1):#crit chance e mult serao buildados junto a classe, sendo dispensado a parametrização.
         power = self.power
-        isCrit = critChance - randint(0,100)
+        isCrit = critChance - randint(0, 100)
         if isCrit >= 0:
             isCrit = 1
         else:
             isCrit = 0
-        damage = power + power*isCrit*critMult
+        damage = power + power * isCrit * critMult
         return damage
 
 
-class Hero(Character):
+class Role:
+    def __init__(self, name) -> None:
+        self.critMult = 1
+        self.name = name
+
+    def fireball(self):
+        print('solto fogo')
+
+    def __str__(self) -> str:
+        return f'{self.name}'
+class Hero(Character, Role):
     """Um Personagem com Classe e Raça"""
-    def __init__(self, name: str, race: str, classe: str, hp: int, armour: int, lvl: int = 1, power: int = 1):
+    def __init__(self, name: str, race: str, classe: Role, hp: int, armour: int, lvl: int = 1, power: int = 1):
         super().__init__(name, hp, armour, lvl, power)
         self.race = race
         self.classe = classe
     
     def __str__(self) -> str:
         return f'{self.name} - LVL {self.level} - {self.race} - {self.classe} -  {self.hp} HP - {self.power} Power - {self.armour} Armor'
+
+
 
 def fight(hero: Character, target: Character):
     """
@@ -60,5 +72,9 @@ def fight(hero: Character, target: Character):
         print(target.name,'died')
 
 vayne = Character('Shauna', 100, 2)
-shauna = Hero('Vayne', 'Humana', 'Atirador', 100, 2)
+mage = Role('Mage')
+shauna = Hero('Vayne', 'Humana', mage, 100, 2)
+
+print(shauna)
+
 
