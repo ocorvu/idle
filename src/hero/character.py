@@ -32,6 +32,7 @@ class Race:
     }
 }
 
+
     def __str__(self) -> str:
         return f'{self.race} -  {self.hp} HP - {self.power} Power'
     
@@ -55,13 +56,21 @@ class Race:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
-    def learn(self, new_skill):
-        self.skills.append(new_skill)
+    def learn(self, skill: str):
+        #puxa da arvore de skill para ser uma skill ativa ou upa, caso ja tenha
+        if self.skills[skill]['lvl'] < 5: # 5 seria lvl max aqui
+            self.skills[skill]['lvl'] += 1
+
+
     
     def cast(self, skill: str):
-        skill = self.skills[skill]
-        damage = skill["power"]
-        return damage  
+        if self.skills[skill]['lvl'] > 0:
+            skill = self.skills[f'{skill}']
+            damage = skill["power"]
+            return damage  
+        else:
+            return (f'{skill} não foi aprendida ainda')
+
 
     def atack(self, critChance = 0, critMult = 1):#crit chance e mult serao buildados junto a classe, sendo dispensado a parametrização.
         power = self.power
@@ -88,12 +97,21 @@ class Warrior(Humano):
     def __init__(self, name, hp: int, power: int = 1, size: int = 1, race: str = 'Humano'):
         super().__init__(name, hp, power, size, race)
         self.skills = self.skills['warrior']
-    
+
     def __str__(self) -> str:
         return f'{self.skills}'
 
-    def regen(self, flat: int = 0, percent=0.3):
+    def regen(self, flat: int = 0, percent = 0.3):
         return super().regen(flat, percent)
+    
+    
 
 ganseta = Warrior('ceta',10)
+print(ganseta.cast('paulada'))
+ganseta.learn('paulada')
+print(ganseta)
+ganseta.learn('paulada')
+print(ganseta)
+ganseta.learn('paulada')
+print(ganseta)
 print(ganseta.cast('paulada'))
