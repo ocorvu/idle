@@ -61,11 +61,7 @@ class Race:
     def cast(self, skill: str):
         skill = self.skills[skill]
         damage = skill["power"]
-        return damage
-
-    
-
-
+        return damage  
 
     def atack(self, critChance = 0, critMult = 1):#crit chance e mult serao buildados junto a classe, sendo dispensado a parametrização.
         power = self.power
