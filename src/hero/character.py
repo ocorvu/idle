@@ -1,17 +1,71 @@
 from random import randint
-class Character:
+
+
+class Race:
     """
     Um Personagem com: Nome, HP, Armour, Level e Power.
     """
-    def __init__(self, name: str, hp: int, armour: int, lvl: int = 1, power: int = 1):#alguns atributos como hp e power serão predefinidos de acordo com a classe, raça e lvl.
-        self.name = name
-        self.level = lvl
+
+    def __init__(self, race: str, hp: int, power: int = 1):#alguns atributos como hp e power serão predefinidos de acordo com a classe, raça e lvl.
+        self.race = race
         self.power = power
+        self.max_hp = hp
         self.hp = hp
-        self.armour = armour
+        self.skills = {
+    "warrior": {
+        "porretada": {
+            "nome": "porretada",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "power": 10,
+            "tipo": "fogo",
+            "lvl": 0
+
+        },
+        "paulada": {
+            "nome": "paulada",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "power": 20,
+            "tipo": "fogo",
+            "lvl": 0
+        }
+
+    }
+}
 
     def __str__(self) -> str:
-        return f'{self.name} - LVL {self.level} -  {self.hp} HP - {self.power} Power - {self.armour} Armor'
+        return f'{self.race} -  {self.hp} HP - {self.power} Power'
+    
+    def set_size(self,size):
+        match size:
+            case 0:
+                return 'tiny'
+            case 1:
+                return 'small'
+            case 2:
+                return 'normal'
+            case 3:
+                return 'large'
+            case 4:
+                return 'huge'
+            case _:
+                return 'marcelo'
+    
+    def regen (self, flat: int = 0, percent = 0.1):
+        self.hp = self.hp + flat + self.hp*percent
+        if self.hp > self.max_hp:
+            self.hp = self.max_hp
+
+    def learn(self, new_skill):
+        self.skills.append(new_skill)
+    
+    def cast(self, skill: str):
+        skill = self.skills[skill]
+        damage = skill["power"]
+        return damage
+
+    
+
+
 
     def atack(self, critChance = 0, critMult = 1):#crit chance e mult serao buildados junto a classe, sendo dispensado a parametrização.
         power = self.power
@@ -23,42 +77,27 @@ class Character:
         damage = power + power*isCrit*critMult
         return damage
 
+class Humano(Race):
+    def __init__(self, name, hp: int, power: int = 1, size: int = 1, race: str = 'Humano'):
+        super().__init__(race, hp, power)
+        self.size = self.set_size(size)
+        self.name = name
+    def __str__(self) -> str:
+        return f'{self.name} -  {self.hp} HP - {self.power} Power - {self.size} Size - Race: {self.race}'
+    
 
-class Hero(Character):
-    """Um Personagem com Classe e Raça"""
-    def __init__(self, name: str, race: str, classe: str, hp: int, armour: int, lvl: int = 1, power: int = 1):
-        super().__init__(name, hp, armour, lvl, power)
-        self.race = race
-        self.classe = classe
+
+class Warrior(Humano):
+    
+    def __init__(self, name, hp: int, power: int = 1, size: int = 1, race: str = 'Humano'):
+        super().__init__(name, hp, power, size, race)
+        self.skills = self.skills['warrior']
     
     def __str__(self) -> str:
-        return f'{self.name} - LVL {self.level} - {self.race} - {self.classe} -  {self.hp} HP - {self.power} Power - {self.armour} Armor'
+        return f'{self.skills}'
 
-def fight(hero: Character, target: Character):
-    """
-    O combate ocorre sempre entre dois personagens.
-    Será encerrado quando o número máximo de rodadas
-    for atingido ou algum personagem morrer. 
-    Ao final, se o personagem for um herói, o vencedor
-    receberá experiência, podem assim subir de nível
-    e terá uma chance de encontrar items.
-    """
-    while hero.hp > 0 and target.hp > 0:
-        damage = hero.atack() - target.armour
-        if damage <= 0:
-            damage = 1
-        target.hp -= damage
-        print (hero.name,'dealt ',damage,'to ',target.name,)
-        damage = target.atack() - hero.armour
-        if damage <= 0:
-            damage = 1
-        hero.hp -= damage
-        print (target.name,'dealt ',damage,'to ',hero.name,)
-    if hero.hp <= 0:
-        print(hero.name,'died')
-    if target.hp <= 0:
-        print(target.name,'died')
+    def regen(self, flat: int = 0, percent=0.3):
+        return super().regen(flat, percent)
 
-vayne = Character('Shauna', 100, 2)
-shauna = Hero('Vayne', 'Humana', 'Atirador', 100, 2)
-
+ganseta = Warrior('ceta',10)
+print(ganseta.cast('paulada'))
