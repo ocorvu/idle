@@ -17,7 +17,7 @@ class Race:
         self.int = inteligence
         self.cha = charisma
         self.luck = luck
-        self.size = size
+        self.size_int = size
         self.skills = {
     "warrior": {
         "porretada": {
@@ -106,7 +106,7 @@ class Race:
                     print(self.skills[skill]['req'], 'deve ser aprendido antes')
                 else:
                     self.skills[skill]['lvl'] += 1
-                    print ('skill upada para o lvl', self.skills[skill]['lvl'])
+                    print (self.skills[skill]['lvl'])
             else:
                 print(f'{skill} esta no lvl maximo')
         else:
@@ -119,7 +119,7 @@ class Race:
         if self.skills[skill]['lvl'] > 0:
             skill = self.skills[f'{skill}']
 
-            damage = skill["power"] + skill["lvl"] * skill["scale lvl"] + self.str * skill["scale str"] + self.dex * skill["scale dex"] + self.con * skill["scale con"] + self.int * skill["scale int"] + self.cha * skill["scale cha"] + self.luck * skill ["scale luck"] + self.size * skill["scale size"]
+            damage = skill["power"] + skill["lvl"] * skill["scale lvl"] + self.str * skill["scale str"] + self.dex * skill["scale dex"] + self.con * skill["scale con"] + self.int * skill["scale int"] + self.cha * skill["scale cha"] + self.luck * skill ["scale luck"] + self.size_int * skill["scale size": 5]
 
             return damage  
         else:
@@ -162,25 +162,16 @@ class Warrior(Humano):
     
 
 
-'''A DEFINIR: CURVA DE NIVEL, ESCALONAMENTO DAS HABILIDADES (COM O LVL DA SKILL E COM OS ATRIBUTOS ETC)'''
+'''A DEFINIR: CURVA DE NIVEL, ESCALONAMENTO DAS HABILIDADES (COM O LVL DA SKILL E COM OS ATRIBUTOS)'''
 
 ganseta = Warrior('ceta')
 ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
+ganseta.cast('porretada')
 ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
+ganseta.cast('porretada')
 ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
+ganseta.cast('porretada')
 ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
+ganseta.cast('porretada')
 ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.size += 1
-print(ganseta.cast('porretada'))
-ganseta.str += 20
-print(ganseta.cast('porretada'))
-
+ganseta.cast('porretada')
