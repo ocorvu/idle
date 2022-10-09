@@ -6,27 +6,69 @@ class Race:
     Um Personagem com: Nome, HP, Armour, Level e Power.
     """
 
-    def __init__(self, race: str, hp: int, power: int = 1):#alguns atributos como hp e power serão predefinidos de acordo com a classe, raça e lvl.
+    def __init__(self, race: str, hp: int, power: int = 1, strenght: int = 10, dexterity: int = 10, constitution: int = 10, inteligence: int = 10, charisma: int = 10, luck: int = 10, size: int = 1):#alguns atributos como hp e power serão predefinidos de acordo com a classe, raça e lvl.
         self.race = race
         self.power = power
         self.max_hp = hp
         self.hp = hp
+        self.str = strenght
+        self.dex = dexterity
+        self.con = constitution
+        self.int = inteligence
+        self.cha = charisma
+        self.luck = luck
+        self.size = size
         self.skills = {
     "warrior": {
         "porretada": {
+            "descricao": "uma espadada no inimigo que causa um dano de 10 + 5*lvl da skill + 1*str",
             "nome": "porretada",
             "imagem": "assets\\imagens\\vampiro.png",
-            "power": 10,
+            "power": 20,
             "tipo": "fogo",
-            "lvl": 0
+            "lvl": 0,
+            "scale lvl": 5,
+            "scale str": 1,
+            "scale dex": 0.5,
+            "scale con": 0,
+            "scale int": 0,
+            "scale cha": 0,
+            "scale luck": 0,
+            "scale size": 5,
+            "req": ""
 
         },
         "paulada": {
             "nome": "paulada",
             "imagem": "assets\\imagens\\vampiro.png",
-            "power": 20,
+            "power": 40,
             "tipo": "fogo",
-            "lvl": 0
+            "lvl": 0,
+            "scale lvl": 5,
+            "scale str": 1,
+            "scale dex": 0.5,
+            "scale con": 0,
+            "scale int": 0,
+            "scale cha": 0,
+            "scale luck": 0,
+            "scale size": 5,
+            "req": "porretada"
+        },
+        "escudo": {
+            "nome": "paulada",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "power": 30,
+            "tipo": "fogo",
+            "lvl": 0,
+            "scale lvl": 5,
+            "scale str": 1,
+            "scale dex": 0.5,
+            "scale con": 0,
+            "scale int": 0,
+            "scale cha": 0,
+            "scale luck": 0,
+            "scale size": 5,
+            "req": ""
         }
 
     }
@@ -58,15 +100,27 @@ class Race:
 
     def learn(self, skill: str):
         #puxa da arvore de skill para ser uma skill ativa ou upa, caso ja tenha
-        if self.skills[skill]['lvl'] < 5: # 5 seria lvl max aqui
-            self.skills[skill]['lvl'] += 1
+        if skill in self.skills:
+            if self.skills[skill]['lvl'] < 5: # 5 seria lvl max aqui
+                if self.skills[skill]['req'] in self.skills and self.skills[self.skills[skill]['req']]['lvl'] <= 0:
+                    print(self.skills[skill]['req'], 'deve ser aprendido antes')
+                else:
+                    self.skills[skill]['lvl'] += 1
+                    print ('skill upada para o lvl', self.skills[skill]['lvl'])
+            else:
+                print(f'{skill} esta no lvl maximo')
+        else:
+            print(f'você não pode aprender {skill}')
 
 
     
     def cast(self, skill: str):
+
         if self.skills[skill]['lvl'] > 0:
             skill = self.skills[f'{skill}']
-            damage = skill["power"]
+
+            damage = skill["power"] + skill["lvl"] * skill["scale lvl"] + self.str * skill["scale str"] + self.dex * skill["scale dex"] + self.con * skill["scale con"] + self.int * skill["scale int"] + self.cha * skill["scale cha"] + self.luck * skill ["scale luck"] + self.size * skill["scale size"]
+
             return damage  
         else:
             return (f'{skill} não foi aprendida ainda')
@@ -83,19 +137,20 @@ class Race:
         return damage
 
 class Humano(Race):
-    def __init__(self, name, hp: int, power: int = 1, size: int = 1, race: str = 'Humano'):
-        super().__init__(race, hp, power)
-        self.size = self.set_size(size)
+
+    def __init__(self, name, hp: int, power: int = 1, size: int = 1, race: str = 'Humano', strenght: int = 10, dexterity: int = 10, constitution: int = 10, inteligence: int = 10, charisma: int = 10, luck: int = 10):
+        super().__init__(race, hp, power, strenght, dexterity, constitution, inteligence, charisma, luck, size)
+        self.size_str = self.set_size(size)
         self.name = name
+
     def __str__(self) -> str:
-        return f'{self.name} -  {self.hp} HP - {self.power} Power - {self.size} Size - Race: {self.race}'
-    
+        return f'{self.name} -  {self.hp} HP - {self.power} Power - {self.size} Size - Race: {self.race}'    
 
 
 class Warrior(Humano):
     
-    def __init__(self, name, hp: int, power: int = 1, size: int = 1, race: str = 'Humano'):
-        super().__init__(name, hp, power, size, race)
+    def __init__(self, name, hp: int = 100, power: int = 1, size: int = 1, race: str = 'Humano', strenght: int = 10, dexterity: int = 10, constitution: int = 10, inteligence: int = 10, charisma: int = 10, luck: int = 10):
+        super().__init__(name, hp, power, size, race, strenght, dexterity, constitution, inteligence, charisma, luck)
         self.skills = self.skills['warrior']
 
     def __str__(self) -> str:
@@ -106,12 +161,26 @@ class Warrior(Humano):
     
     
 
-ganseta = Warrior('ceta',10)
-print(ganseta.cast('paulada'))
-ganseta.learn('paulada')
-print(ganseta)
-ganseta.learn('paulada')
-print(ganseta)
-ganseta.learn('paulada')
-print(ganseta)
-print(ganseta.cast('paulada'))
+
+'''A DEFINIR: CURVA DE NIVEL, ESCALONAMENTO DAS HABILIDADES (COM O LVL DA SKILL E COM OS ATRIBUTOS ETC)'''
+
+ganseta = Warrior('ceta')
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.learn('porretada')
+print(ganseta.cast('porretada'))
+ganseta.size += 1
+print(ganseta.cast('porretada'))
+ganseta.str += 20
+print(ganseta.cast('porretada'))
+

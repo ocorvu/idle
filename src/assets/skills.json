@@ -1,11 +1,21 @@
 {
     "warrior": {
         "porretada": {
+            "descricao": "uma espadada no inimigo que causa um dano de 10 + 5*lvl da skill + 1*str",
             "nome": "porretada",
             "imagem": "assets\\imagens\\vampiro.png",
             "power": 10,
             "tipo": "fogo",
-            "lvl": 0
+            "lvl": 0,
+            "scale lvl": 5,
+            "scale str": 1,
+            "scale dex": 0.5,
+            "scale con": 0,
+            "scale int": 0,
+            "scale cha": 0,
+            "scale luck": 0,
+            "scale size": 5,
+            "req": ""
 
         },
         "paulada": {
@@ -13,7 +23,32 @@
             "imagem": "assets\\imagens\\vampiro.png",
             "power": 20,
             "tipo": "fogo",
-            "lvl": 0
+            "lvl": 0,
+            "scale lvl": 5,
+            "scale str": 1,
+            "scale dex": 0.5,
+            "scale con": 0,
+            "scale int": 0,
+            "scale cha": 0,
+            "scale luck": 0,
+            "scale size": 5,
+            "req": "porretada"
+        },
+        "escudo": {
+            "nome": "paulada",
+            "imagem": "assets\\imagens\\vampiro.png",
+            "power": 20,
+            "tipo": "fogo",
+            "lvl": 0,
+            "scale lvl": 5,
+            "scale str": 1,
+            "scale dex": 0.5,
+            "scale con": 0,
+            "scale int": 0,
+            "scale cha": 0,
+            "scale luck": 0,
+            "scale size": 5,
+            "req": ""
         }
 
     }

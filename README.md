@@ -47,6 +47,7 @@ Conteudo:
     * reviver com penalidade de lvl / ou revives limitados
     * poder usar role independente da raça
     * aumenta o lvl max das skills
+    * pode usar skill de qualquer role
 
 * reset
     * 
