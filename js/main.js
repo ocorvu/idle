@@ -1,7 +1,7 @@
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]')
-const notEnoughCash = new Audio('../sounds/not-enough-cash.mp3');
+const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
 const heroesList = document.querySelectorAll('[data-heroes]')
 
@@ -50,17 +50,17 @@ const heroes = {
 
 const achievements = {
     '10': {
-        'name': 'Reachs lvl10',
+        'name': 'Reachs 10',
         'message': 'reachs level 10!',
         'achieved': [],
     },
     '20': {
-        'name': 'Reachs lvl20',
+        'name': 'Reachs 20',
         'message': 'reachs level 20!',
         'achieved': [],
     },
     '30': {
-        'name': 'Reachs lvl30',
+        'name': 'Reachs 30',
         'message': 'reachs level 30!',
         'achieved': [],
     },
