@@ -1,55 +1,61 @@
 {
     "warrior": {
         "porretada": {
-            "descricao": "uma espadada no inimigo que causa um dano de 10 + 5*lvl da skill + 1*str",
-            "nome": "porretada",
-            "imagem": "assets\\imagens\\vampiro.png",
+            "name": "Porretada",
+            "description": "uma espadada no inimigo que causa um dano de 10 + 5*lvl da skill + 1*str",
+            "image": "assets\\imagens\\vampiro.png",
             "power": 10,
-            "tipo": "fogo",
-            "lvl": 0,
-            "scale lvl": 5,
-            "scale str": 1,
-            "scale dex": 0.5,
-            "scale con": 0,
-            "scale int": 0,
-            "scale cha": 0,
-            "scale luck": 0,
-            "scale size": 5,
-            "req": ""
-
+            "element": "fogo",
+            "level": 0,
+            "scale": {
+                "level": 5,
+                "strength": 1,
+                "dexterity": 0.5,
+                "constitution": 0,
+                "intelligence": 0,
+                "charisma": 0,
+                "luck": 0,
+                "size": 5
+            },
+            "requirements": ""
         },
         "paulada": {
-            "nome": "paulada",
-            "imagem": "assets\\imagens\\vampiro.png",
-            "power": 20,
-            "tipo": "fogo",
-            "lvl": 0,
-            "scale lvl": 5,
-            "scale str": 1,
-            "scale dex": 0.5,
-            "scale con": 0,
-            "scale int": 0,
-            "scale cha": 0,
-            "scale luck": 0,
-            "scale size": 5,
-            "req": "porretada"
+            "name": "Paulada",
+            "description": "",
+            "image": "assets\\imagens\\vampiro.png",
+            "power": 10,
+            "element": "fogo",
+            "level": 0,
+            "scale": {
+                "level": 5,
+                "strength": 1,
+                "dexterity": 0.5,
+                "constitution": 0,
+                "intelligence": 0,
+                "charisma": 0,
+                "luck": 0,
+                "size": 5
+            },
+            "requirements": "porretada"
         },
         "escudo": {
-            "nome": "paulada",
-            "imagem": "assets\\imagens\\vampiro.png",
-            "power": 20,
-            "tipo": "fogo",
-            "lvl": 0,
-            "scale lvl": 5,
-            "scale str": 1,
-            "scale dex": 0.5,
-            "scale con": 0,
-            "scale int": 0,
-            "scale cha": 0,
-            "scale luck": 0,
-            "scale size": 5,
-            "req": ""
+            "name": "Escudo",
+            "description": "",
+            "image": "assets\\imagens\\vampiro.png",
+            "power": 10,
+            "element": "fogo",
+            "level": 0,
+            "scale": {
+                "level": 5,
+                "strengh": 1,
+                "dexterity": 0.5,
+                "constitution": 0,
+                "intelligence": 0,
+                "charisma": 0,
+                "luck": 0,
+                "size": 5
+            },
+            "requirements": ""
         }
-
     }
 }
