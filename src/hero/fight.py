@@ -1,5 +1,5 @@
 from random import randint
-def fight(hero: Race, target: Race):
+def fight(hero, target):
     """
     O combate ocorre sempre entre dois personagens.
     Será encerrado quando o número máximo de rodadas

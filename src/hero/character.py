@@ -1,79 +1,39 @@
+import json
 from random import randint
-
 
 class Race:
     """
     Um Personagem com: Nome, HP, Armour, Level e Power.
     """
+    __SKILLS = '../assets/skills.json'
+    __ITEMS = '../assets/items.json'
 
-    def __init__(self, race: str, hp: int, power: int = 1, strenght: int = 10, dexterity: int = 10, constitution: int = 10, inteligence: int = 10, charisma: int = 10, luck: int = 10, size: int = 1):#alguns atributos como hp e power serão predefinidos de acordo com a classe, raça e lvl.
+    def __load_skills():
+        with open(__class__.__SKILLS, 'r+', encoding='utf8') as skills_json:
+            skills = json.load(skills_json)
+            skills_json.close
+            return skills
+    
+    def __load_items():
+        with open(__class__.__ITEMS, 'r+', encoding='utf8') as items_json:
+            items = json.load(items_json)
+            return items
+
+    def __init__(self, race: str, hp: int, power: int = 1, strength: int = 10, dexterity: int = 10, constitution: int = 10, inteligence: int = 10, charisma: int = 10, luck: int = 10, size: int = 1):#alguns atributos como hp e power serão predefinidos de acordo com a classe, raça e level.
         self.race = race
         self.power = power
         self.max_hp = hp
         self.hp = hp
-        self.str = strenght
-        self.dex = dexterity
-        self.con = constitution
-        self.int = inteligence
-        self.cha = charisma
-        self.luck = luck
-        self.size = size
-        self.skills = {
-    "warrior": {
-        "porretada": {
-            "descricao": "uma espadada no inimigo que causa um dano de 10 + 5*lvl da skill + 1*str",
-            "nome": "porretada",
-            "imagem": "assets\\imagens\\vampiro.png",
-            "power": 20,
-            "tipo": "fogo",
-            "lvl": 0,
-            "scale lvl": 5,
-            "scale str": 1,
-            "scale dex": 0.5,
-            "scale con": 0,
-            "scale int": 0,
-            "scale cha": 0,
-            "scale luck": 0,
-            "scale size": 5,
-            "req": ""
-
-        },
-        "paulada": {
-            "nome": "paulada",
-            "imagem": "assets\\imagens\\vampiro.png",
-            "power": 40,
-            "tipo": "fogo",
-            "lvl": 0,
-            "scale lvl": 5,
-            "scale str": 1,
-            "scale dex": 0.5,
-            "scale con": 0,
-            "scale int": 0,
-            "scale cha": 0,
-            "scale luck": 0,
-            "scale size": 5,
-            "req": "porretada"
-        },
-        "escudo": {
-            "nome": "paulada",
-            "imagem": "assets\\imagens\\vampiro.png",
-            "power": 30,
-            "tipo": "fogo",
-            "lvl": 0,
-            "scale lvl": 5,
-            "scale str": 1,
-            "scale dex": 0.5,
-            "scale con": 0,
-            "scale int": 0,
-            "scale cha": 0,
-            "scale luck": 0,
-            "scale size": 5,
-            "req": ""
+        self.attributes = {
+            "strength": strength,
+            "dexterity": dexterity,
+            "constitution": constitution,
+            "intelligence": inteligence,
+            "charisma": charisma,
+            "luck": luck,
+            "size": size
         }
-
-    }
-}
-
+        self.skills = __class__.__load_skills()
 
     def __str__(self) -> str:
         return f'{self.race} -  {self.hp} HP - {self.power} Power'
@@ -93,38 +53,44 @@ class Race:
             case _:
                 return 'marcelo'
     
-    def regen (self, flat: int = 0, percent = 0.1):
-        self.hp = self.hp + flat + self.hp*percent
+    def regen (self, flat: int = 0, percent = 1.1):
+        self.hp = flat + self.hp * percent
+
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
     def learn(self, skill: str):
         #puxa da arvore de skill para ser uma skill ativa ou upa, caso ja tenha
         if skill in self.skills:
-            if self.skills[skill]['lvl'] < 5: # 5 seria lvl max aqui
-                if self.skills[skill]['req'] in self.skills and self.skills[self.skills[skill]['req']]['lvl'] <= 0:
-                    print(self.skills[skill]['req'], 'deve ser aprendido antes')
+            if self.skills[skill]['level'] < 5: # 5 seria level max aqui
+                if self.skills[skill]['requirements'] in self.skills and self.skills[self.skills[skill]['requirements']]['level'] <= 0:
+                    print(self.skills[skill]['requirements'], 'deve ser aprendido antes')
                 else:
-                    self.skills[skill]['lvl'] += 1
-                    print ('skill upada para o lvl', self.skills[skill]['lvl'])
+                    self.skills[skill]['level'] += 1
+                    print ('skill upada para o level', self.skills[skill]['level'])
             else:
-                print(f'{skill} esta no lvl maximo')
+                print(f'{skill} esta no level maximo')
         else:
             print(f'você não pode aprender {skill}')
-
-
     
     def cast(self, skill: str):
 
-        if self.skills[skill]['lvl'] > 0:
-            skill = self.skills[f'{skill}']
-
-            damage = skill["power"] + skill["lvl"] * skill["scale lvl"] + self.str * skill["scale str"] + self.dex * skill["scale dex"] + self.con * skill["scale con"] + self.int * skill["scale int"] + self.cha * skill["scale cha"] + self.luck * skill ["scale luck"] + self.size * skill["scale size"]
+        if self.skills[skill]['level'] > 0:
+            damage = self.__skill_damage(skill)   
 
             return damage  
         else:
-            return (f'{skill} não foi aprendida ainda')
+            return (f"{self.skills[skill]['name']} não foi aprendida ainda")
 
+    def __skill_damage(self, skill):
+        skill = self.skills[skill]
+        skill_scale = skill["scale"]
+        damage = skill['power'] + skill["level"] * skill_scale["level"]
+
+        for attribute in self.attributes:
+            damage += self.attributes[attribute] * skill_scale[attribute]
+
+        return damage
 
     def atack(self, critChance = 0, critMult = 1):#crit chance e mult serao buildados junto a classe, sendo dispensado a parametrização.
         power = self.power
@@ -162,25 +128,10 @@ class Warrior(Humano):
     
 
 
-'''A DEFINIR: CURVA DE NIVEL, ESCALONAMENTO DAS HABILIDADES (COM O LVL DA SKILL E COM OS ATRIBUTOS ETC)'''
+'''A DEFINIR: CURVA DE NIVEL, ESCALONAMENTO DAS HABILIDADES (COM O level DA SKILL E COM OS ATRIBUTOS ETC)'''
 
-ganseta = Warrior('ceta')
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.learn('porretada')
-print(ganseta.cast('porretada'))
-ganseta.size += 1
-print(ganseta.cast('porretada'))
-ganseta.str += 20
-print(ganseta.cast('porretada'))
+
+
+
+
 
