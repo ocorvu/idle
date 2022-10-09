@@ -1,3 +1,4 @@
+from ctypes import cast
 import json
 from random import randint
 
@@ -101,6 +102,11 @@ class Race:
             isCrit = 0
         damage = power + power*isCrit*critMult
         return damage
+    
+    def choose_skill(self):
+        skill = input('escolha uma ação: ')
+        self.cast(skill)
+
 
 class Humano(Race):
 
@@ -133,5 +139,4 @@ class Warrior(Humano):
 
 
 
-
-
+ceta = Warrior('ganse')
