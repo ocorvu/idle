@@ -1,32 +1,36 @@
-.menu {
+.settings {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: absolute;
     right: 0;
-    width: 30em;
+    min-width: 50%;
     background-color: #ccc;
-    padding: 2em 1em;
+    padding: 1em;
     border-radius: 0 0 1em 1em;
 }
 
-.menu h2 {
+.settings-title {
     margin: 0;
 }
 
-.menu p {
+.settings p {
     display: flex;
+    margin: 0;
+    padding: 0 0 0.5em;
 }
 
-#volumeID {
+#volume {
     margin: 0 1em 0;
 }
 
-.menu-header {
+.settings-header {
     display: flex;
     justify-content: space-between;
+    padding: 0 0 1em;
 }
 
-.menu-close-button {
+.settings-close-button {
     padding: 0 1em;
     background-color: red;
     border: none;
@@ -35,11 +39,11 @@
     cursor: pointer;
 }
 
-.menu-close-button:hover {
+.settings-close-button:hover {
     transform: scale(1.1);
 }
 
-.menu-music-button {
+.settings-music-button {
     background-color: #000;
     color: #FFF;
     font-weight: bold;

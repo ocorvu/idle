@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle</title>
     <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
-    <!-- Menu CSS -->
-    <link rel="stylesheet" href="css/menu.css">
+    <!-- settings.css -->
+    <link rel="stylesheet" href="css/settings.css">
     <!-- Bootstrap5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- App CSS -->
@@ -19,16 +19,16 @@
 </head>
 <body class="d-flex flex-column">
     <header class="d-flex align-items-center justify-content-between text-bg-success border-bottom border-dark">
-        <h1 class="ps-4"><img src="icons/favicon-32x32.png" alt=""> Idle</h1>
+        <h1 class="m-0 ps-4"><img src="icons/favicon-32x32.png" alt=""> Idle</h1>
         <div id="box" class="fs-1">0</div>
         <nav>
-            <a class="d-md-none me-2 text-decoration-none" 
+            <a class="d-md-none text-decoration-none" 
             data-bs-toggle="offcanvas" 
             data-bs-target="#upgrades" 
             aria-controls="upgrades">
                 <img src="icons/icons8-comprar-atualização-30 (1).png" alt="Config">
             </a>
-            <a href="#" class="me-2 text-decoration-none" data-button="config">
+            <a href="#" class="text-decoration-none" data-button="config">
                 <img src="icons/icons8-gear-30.png" alt="Config">
             </a>
             <a href="#" class="me-2 text-decoration-none" data-button="information">
@@ -39,22 +39,22 @@
     <!-- hidden menu -->
     <aside id="hiddenMenu">
         <!-- info -->
-        <section data-content="information" class="hide menu">
-            <div class="menu-header">
+        <section data-content="information" class="hide settings">
+            <div class="settings-header">
                 <h2>Info</h2>
-                <button class="menu-close-button" onclick="hideItem('information')">X</button>
+                <button class="settings-close-button">X</button>
             </div>
             <p>Points: <span id="clicks">0</span></p>
         </section>
         <!-- config -->
-        <section data-content="config" class="hide menu">
-            <div class="menu-header">
-                <h2>Settings</h2>
-                <button class="menu-close-button" onclick="hideItem('config')">X</button>
-            </div>
-            <p>Music <span>
-                <button class="menu-music-button" data-music="off">OFF</button>
-                <button class="menu-music-button active" data-music="on">ON</button>
+        <section data-content="config" class="hide settings">
+            <header class="settings-header">
+                <h2 class="settings-title">Settings</h2>
+                <button class="settings-close-button">X</button>
+            </header>
+            <p>Music<span>
+                <button class="ms-1 settings-music-button" data-music="off">OFF</button>
+                <button class="settings-music-button active" data-music="on">ON</button>
             </span></p>
             <p>Volume <input type="range" name="volume" id="volume" min="0" max="1" step="0.1" value="0.3"></p>
         </section>
@@ -73,16 +73,14 @@
             <ul class="p-0">
                 <!-- hero1 -->
                 <li 
-                id="powerup" 
+                id="hero1" 
                 class="d-flex flex-column btn btn-primary mb-2" 
                 data-heroes="hero1" 
                 data-bs-container="body" 
                 data-bs-toggle="tooltip" 
                 data-bs-placement="right" 
                 data-bs-html="true"
-                onclick="powerUp('hero1')" 
-                onmouseenter="tooltipList()"
-                onmouseleave="tooltipDestroy()">
+                >
                     <div class="d-flex justify-content-between fs-2">
                         <div>
                             <h3 class="text-start" data-heroes-name="hero1"></h3>
@@ -96,16 +94,14 @@
                 </li>
                 <!-- hero2 -->
                 <li 
-                id="powerup" 
+                id="hero2" 
                 class="d-flex flex-column btn btn-primary mb-2" 
                 data-heroes="hero2" 
                 data-bs-container="body" 
                 data-bs-toggle="tooltip" 
                 data-bs-placement="right" 
                 data-bs-html="true"
-                onclick="powerUp('hero2')" 
-                onmouseenter="tooltipList()" 
-                onmouseleave="tooltipDestroy()">
+                >
                     <div class="d-flex justify-content-between fs-2">
                         <div>
                             <h3 class="text-start" data-heroes-name="hero2"></h3>
@@ -119,16 +115,14 @@
                 </li>
                 <!-- hero3 -->
                 <li 
-                id="powerup" 
+                id="hero3" 
                 class="d-flex flex-column btn btn-primary mb-2" 
                 data-heroes="hero3" 
                 data-bs-container="body" 
                 data-bs-toggle="tooltip" 
                 data-bs-placement="right" 
                 data-bs-html="true"
-                onclick="powerUp('hero3')" 
-                onmouseenter="tooltipList()" 
-                onmouseleave="tooltipDestroy()">
+                >
                     <div class="d-flex justify-content-between fs-2">
                         <div>
                             <h3 class="text-start" data-heroes-name="hero3"></h3>
@@ -142,16 +136,14 @@
                 </li>
                 <!-- hero4 -->
                 <li 
-                id="powerup" 
+                id="hero4" 
                 class="d-flex flex-column btn btn-primary mb-2" 
                 data-heroes="hero4" 
                 data-bs-container="body" 
                 data-bs-toggle="tooltip" 
                 data-bs-placement="right" 
                 data-bs-html="true"
-                onclick="powerUp('hero4')" 
-                onmouseenter="tooltipList()" 
-                onmouseleave="tooltipDestroy()">
+                >
                     <div class="d-flex justify-content-between fs-2">
                         <div>
                             <h3 class="text-start" data-heroes-name="hero4"></h3>
@@ -163,16 +155,36 @@
                         <span class="ms-3 p-3 bg-secondary rounded" data-heroes-level="hero4"></span>
                     </div>
                 </li>
+                <li 
+                id="hero5" 
+                class="d-flex flex-column btn btn-primary mb-2" 
+                data-heroes="hero5" 
+                data-bs-container="body" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                data-bs-html="true"
+                >
+                    <div class="d-flex justify-content-between fs-2">
+                        <div>
+                            <h3 class="text-start" data-heroes-name="hero5"></h3>
+                            <small class="d-flex align-items-center justify-content-between text-nowrap fs-4">
+                                Cost:
+                                <span class="badge bg-secondary" data-heroes-cost="hero5"></span>
+                            </small>
+                        </div>
+                        <span class="ms-3 p-3 bg-secondary rounded" data-heroes-level="hero5"></span>
+                    </div>
+                </li>
             </ul>
         </aside>
         <!-- game -->
         <section id="game" class="align-self-center text-center flex-grow-1">
-            <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="first" onclick="plus(1*power, 'box', 'clicks')">1</button>
-            <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="second" onclick="plus(9999999*power, 'box', 'clicks')">2</button>
+            <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="first" >1</button>
+            <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="second">2</button>
             <div id="liveAlertPlaceholder"></div>
             
         </section>
     </main>
-    <script src="js/main.js" defer></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

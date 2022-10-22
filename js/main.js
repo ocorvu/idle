@@ -1,89 +1,89 @@
-const firstButton = document.getElementById('first');
-const secondButton = document.getElementById('second');
+import { Hero }  from './modules/hero.js'
+import { Achievement } from './modules/achievements.js'
+
+const firstButton = document.getElementById('first')
+const secondButton = document.getElementById('second')
 const menuItems = document.querySelectorAll('[data-button]')
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
 const heroesList = document.querySelectorAll('[data-heroes]')
 
-const heroes = {
-    "hero1":
-    {
-        "name": 'Meuso',
-        "power": 3,
-        "given_power": 0,
-        "level": 0,
-        "base_cost": 10,
-        "cost_increase": 1.2,
-        "achievements" : 0,
-    },
-    "hero2":
-    {
-        "name": 'Rebento',
-        "power": 10,
-        "given_power": 0,
-        "level": 0,
-        "base_cost": 200,
-        "cost_increase": 5,
-        "achievements" : 0,
-    },
-    "hero3":
-    {
-        "name": 'Kaom',
-        "power": 7,
-        "given_power": 0,
-        "level": 0,
-        "base_cost": 150,
-        "cost_increase": 2,
-        "achievements" : 0,
-    },
-    "hero4":
-    {
-        "name": 'Brine King',
-        "power": 6,
-        "given_power": 0,
-        "level": 0,
-        "base_cost": 100,
-        "cost_increase": 2,
-        "achievements" : 0,
-    }
-};
 
-const achievements = {
-    '10': {
-        'name': 'Reachs 10',
-        'message': 'reachs level 10!',
-        'achieved': [],
-    },
-    '20': {
-        'name': 'Reachs 20',
-        'message': 'reachs level 20!',
-        'achieved': [],
-    },
-    '30': {
-        'name': 'Reachs 30',
-        'message': 'reachs level 30!',
-        'achieved': [],
-    },
-};
+firstButton.addEventListener('click', () => {
+    plus(1*power, 'box', 'clicks')
+})
+secondButton.addEventListener('click', () => {
+    plus(99999999*power, 'box', 'clicks')
+})
+const heroes = {}
+
+heroes['hero1'] = new Hero('Meuso', 3, 10, 1.22)
+heroes['hero2'] = new Hero('Rebento', 10, 200, 3)
+heroes['hero3'] = new Hero('Kaom', 7, 150, 1.65)
+heroes['hero4'] = new Hero('Brine King', 6, 100, 1.7)
+heroes['hero5'] = new Hero('Shadow', 10, 500, 1.3)
+
+const achievements = {};
+levelAchievements(10, 100)
+
+function levelAchievements(first, last, step = 10) {
+    for (let i = first; i <= last; i += step) {
+        achievements[`${i}`] = new Achievement(`Reachs ${i}`, `reachs level ${i}`)
+    }
+}
+
+function achievementsLoop() {
+    for (const hero in heroes) {
+        for (const achievement in achievements) {
+            if (heroes[hero].level == achievement && !achievements[achievement].getAchieved(heroes[hero].name)) {
+                
+                heroes[hero].gainAchievement(achievements[achievement].name)
+                achievements[achievement].setAchieved(heroes[hero].name)
+                
+                alert(achievements[achievement].name, heroes[hero].name, achievements[achievement].message, 'success')
+            }
+        }
+    }
+    return new Promise(resolve => {
+        setTimeout(() => {
+          resolve();
+        }, 200);
+    });
+}
+
+async function asyncAchievement() {
+    const result = await achievementsLoop()
+    window.requestAnimationFrame(asyncAchievement)
+}
+window.requestAnimationFrame(asyncAchievement)
 
 let volume = document.getElementById('volume');
 let power = 1;
 let points = 0;
 let time = 1;
 let timestamp = 1000;
-
-
  
 for (const hero in heroesList) {
     if (Object.hasOwnProperty.call(heroesList, hero)) {
+        
         const heroId = heroesList[hero].dataset.heroes;
         const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`)
         const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`)
         const heroLevel = document.querySelector(`[data-heroes-level="${heroId}"]`)
 
         heroName.innerText = heroes[heroId].name
-        heroCost.innerText = heroes[heroId].base_cost
-        heroLevel.innerText = heroes[heroId].level
+
+        heroes[heroId].update(heroLevel, heroCost)
+
+        heroesList[hero].addEventListener('click', () => {
+            powerUp(heroId)
+        })
+        heroesList[hero].addEventListener('mouseenter', () => {
+            tooltipList()
+        })
+        heroesList[hero].addEventListener('mouseleave', () => {
+            tooltipDestroy()
+        })
     }
 }
 
@@ -101,13 +101,10 @@ function powerUp(e) {
         const heroLevel = document.querySelector(`[data-heroes-level="${e}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${e}"]`);
 
-        hero.level += 1;
-        power += hero.power;
-        points -= hero.base_cost;
-        hero.given_power += hero.power;
-        hero.base_cost = Math.floor(hero.base_cost * hero.cost_increase);
-        heroLevel.innerText = hero.level;
-        heroCost.innerText = hero.base_cost;
+        points -= hero.base_cost
+        hero.levelUp(power, points);
+        power += hero.power
+        hero.update(heroLevel, heroCost);
 
     } else {
         notEnoughCash.volume = volume.value;
@@ -116,8 +113,7 @@ function powerUp(e) {
 }
 
 function hideItem(e) {
-    const item = document.querySelector(`[data-content="${e}"]`);
-    item.classList.add('hide')
+    e.classList.add('hide')
 }
 
 function showItem(e) {
@@ -143,6 +139,15 @@ function inactiveButton() {
     volume.value = 0
 }
 
+const closeButtons = document.querySelectorAll('.settings-close-button')
+
+closeButtons.forEach(button => {
+    button.addEventListener('click', () =>{
+        const menu = button.parentElement.parentElement
+        hideItem(menu)
+    })
+})
+
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
         const value = item.dataset.button
@@ -161,7 +166,6 @@ musicButtons.forEach(button => {
         } else {
             enableItem(volume)
         }
-
     })
 })
 
@@ -201,30 +205,6 @@ const tooltipDestroy = () => {
 
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
-function achievementsLoop() {
-    for (const hero in heroes) {
-        for (const achievement in achievements) {
-    
-            if (heroes[hero].level == achievement && !achievements[achievement].achieved.includes(heroes[hero].name)) {
-                achievements[achievement].achieved.push(heroes[hero].name)
-                heroes[hero].achievements += 1;
-                alert(achievements[achievement].name, heroes[hero].name, achievements[achievement].message, 'success')
-            }
-        }
-    }
-    return new Promise(resolve => {
-        setTimeout(() => {
-          resolve();
-        }, 200);
-      });
-}
-
-async function asyncAchievement() {
-    const result = await achievementsLoop()
-    window.requestAnimationFrame(asyncAchievement)
-}
-window.requestAnimationFrame(asyncAchievement)
-
 const alert = (title, hero, message, type) => {
   const wrapper = document.createElement('div')
   wrapper.innerHTML = [
@@ -236,12 +216,4 @@ const alert = (title, hero, message, type) => {
   ].join('')
 
   alertPlaceholder.append(wrapper)
-}
-
-const alertTrigger = document.getElementById('liveAlertBtn')
-
-if (alertTrigger) {
-  alertTrigger.addEventListener('click', () => {
-    alert('Nice, you triggered this alert message!', 'success')
-  })
 }

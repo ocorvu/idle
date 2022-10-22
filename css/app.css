@@ -12,9 +12,8 @@ body {
     display: none;
 }
 
-
 @media (max-width: 768px) {
     #upgrades {
-        width: 50%;
+        width: 75%;
     }
 }
