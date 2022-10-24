@@ -3,6 +3,7 @@
 * {
     vertical-align: top;
     font-family: 'VT323', monospace;
+    list-style-type: none;
 }
 
 body {

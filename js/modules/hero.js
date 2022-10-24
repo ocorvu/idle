@@ -29,7 +29,7 @@ class Hero{
         if (this.level % 10 == 0){
             this.base_cost = Math.floor(this.base_cost * this.cost_increase) * (this.level / 10);
         } else {
-            this.base_cost = Math.floor(this.base_cost * this.cost_increase)
+            this.base_cost = Math.floor(this.base_cost * this.cost_increase);
         }
     }
     update(level, cost) {
@@ -37,7 +37,10 @@ class Hero{
         cost.innerText = this.base_cost
     }
     gainAchievement(achievement) {
-        this.achievements.push(achievement)
+        this.achievements.push(achievement);
+    }
+    getAchievements() {
+        return this.achievements;
     }
 }
 

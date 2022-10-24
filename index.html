@@ -29,6 +29,12 @@
             aria-controls="upgrades">
                 <img src="icons/icons8-comprar-atualização-30 (1).png" alt="Config">
             </a>
+            <a class="d-md-none text-decoration-none" 
+            data-bs-toggle="offcanvas" 
+            data-bs-target="#achievements" 
+            aria-controls="achievements">
+                <img src="icons/icons8-medalha-30.png" alt="Achievements">
+            </a>
             <a href="#" class="text-decoration-none" data-button="config">
                 <img src="icons/icons8-gear-30.png" alt="Config">
             </a>
@@ -156,6 +162,7 @@
                         <span class="hero-level" data-heroes-level="hero4"></span>
                     </div>
                 </li>
+                <!-- hero5 -->
                 <li 
                 id="hero5" 
                 class="hero" 
@@ -183,8 +190,39 @@
             <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="first" >1</button>
             <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="second">2</button>
             <div id="liveAlertPlaceholder"></div>
-            
         </section>
+        <aside id="achievements" class="offcanvas-md offcanvas-end shadow p-3">
+            <header class="d-flex justify-content-between align-items-center">
+                <h2 class="fs-1">Achievements<img src="icons/icons8-medalha-30.png"></h2>
+                <button type="button" 
+                class="btn-close d-md-none" 
+                data-bs-dismiss="offcanvas"
+                data-bs-target="#achievements"
+                aria-label="Close"></button>
+            </header>
+            <ul class="p-0" data-achievement="list">
+                <li data-achievement-hero="hero1">
+                    <h3>Meuso</h3>
+                    <ul class="d-flex p-0"></ul>
+                </li>
+                <li data-achievement-hero="hero2">
+                    <h3>Rebento</h3>
+                    <ul class="d-flex p-0"></ul>
+                </li>
+                <li data-achievement-hero="hero3">
+                    <h3>Kaom</h3>
+                    <ul class="d-flex p-0"></ul>
+                </li>
+                <li data-achievement-hero="hero4">
+                    <h3>Brine King</h3>
+                    <ul class="d-flex p-0"></ul>
+                </li>
+                <li data-achievement-hero="hero5">
+                    <h3>Shadow</h3>
+                    <ul class="d-flex p-0"></ul>
+                </li>
+            </ul>
+        </aside>
     </main>
     <script type="module" src="js/main.js"></script>
 </body>

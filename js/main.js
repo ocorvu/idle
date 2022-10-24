@@ -7,7 +7,21 @@ const menuItems = document.querySelectorAll('[data-button]')
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
 const heroesList = document.querySelectorAll('[data-heroes]')
+const achievementList = document.querySelectorAll("[data-achievement='list']")
 
+
+function addAchiement(heroId, achieved) {
+    achievementList.forEach(item => {
+        const hero = document.querySelector(`[data-achievement-hero='${heroId}'`);
+        const heroAchievements = hero.childNodes[3];
+        const achievement = document.createElement('li')
+        achievement.innerHTML = achieved
+
+        achievement.classList.add('hero-cost-value')
+
+        heroAchievements.appendChild(achievement)
+    })
+}
 
 firstButton.addEventListener('click', () => {
     plus(1*power, 'box', 'clicks')
@@ -39,6 +53,8 @@ function achievementsLoop() {
                 
                 heroes[hero].gainAchievement(achievements[achievement].name)
                 achievements[achievement].setAchieved(heroes[hero].name)
+
+                addAchiement(hero, achievements[achievement].name)
                 
                 alert(achievements[achievement].name, heroes[hero].name, achievements[achievement].message, 'success')
             }
