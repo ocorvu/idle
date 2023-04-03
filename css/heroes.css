@@ -1,6 +1,8 @@
 :root {
     --primary-color: #0d6efd;
     --secondary-color:#6c757d;
+    --level-bg-color:#d00d04;
+    --level-text-color:#ffeab7;
     --bg-color: #0a58ca;
     --text-color: #ffffff;
     --nav-color: #198754;
@@ -53,4 +55,16 @@
     line-height: 1;
     background-color: var(--secondary-color);
     color: var(--text-color);
+}
+
+.hero-achievement-level {
+    display: inline-block;
+    margin-right: 0.25rem;
+    padding: 0.5em 0.5em;
+    border-radius: 50%;
+    font-size: 0.75em;
+    font-weight: bold;
+    line-height: 1;
+    background-color: var(--level-text-color);
+    color: var(--level-bg-color);
 }
