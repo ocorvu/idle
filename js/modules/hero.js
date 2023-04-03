@@ -4,6 +4,7 @@ class Hero{
         this.power = power
         this.given_power = 0
         this.level = 0
+        this.max_level = 100
         this.base_cost = base_cost
         this.cost_increase = cost_increase
         this.achievements = []
@@ -23,8 +24,12 @@ class Hero{
         }
     }
     levelUp(){
-        this.level += 1;
-        this.given_power += this.power;
+        if (this.level < this.max_level){
+            this.level += 1;
+            this.given_power += this.power;
+        } else {
+            window.alert(`${this.name} is at Max Level (${this.max_level})`)
+        }
 
         if (this.level % 10 == 0){
             this.base_cost = Math.floor(this.base_cost * this.cost_increase) * (this.level / 10);
