@@ -12,7 +12,7 @@ const musicButtons = document.querySelectorAll('[data-music]');
 const heroesList = document.querySelectorAll('[data-heroes]');
 const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
-const achievements = {};
+const achievements = {level: {}};
 
 let volume = document.getElementById('volume');
 let power = 1;
@@ -27,7 +27,6 @@ heroes['hero5'] = new Hero('Shadow', 10, 500, 1.3);
 
 levelAchievements(10, 100);
 
-
 function addAchiement(heroId, achieved) {
     achievementList.forEach(item => {
         const hero = document.querySelector(`[data-achievement-hero='${heroId}'`);
@@ -35,7 +34,7 @@ function addAchiement(heroId, achieved) {
         const achievement = document.createElement('li');
         achievement.innerHTML = achieved;
 
-        achievement.classList.add('hero-cost-value');
+        achievement.classList.add('hero-achievement-level');
 
         heroAchievements.appendChild(achievement);
     })
@@ -52,7 +51,7 @@ secondButton.addEventListener('click', () => {
 
 function levelAchievements(first, last, step = 10) {
     for (let i = first; i <= last; i += step) {
-        achievements[`${i}`] = new Achievement(`Reachs ${i}`, `reachs level ${i}`);
+        achievements['level'][`${i}`] = new Achievement(`Reaches ${i}`, `reaches level ${i}`);
     }
 }
 
@@ -70,6 +69,7 @@ for (const hero in heroesList) {
         
         heroesList[hero].addEventListener('click', () => {
             powerUp(heroId, heroes, points, power, notEnoughCash, volume);
+            achievementsLoop();
         })
         heroesList[hero].addEventListener('mouseenter', () => {
             tooltipList();
@@ -151,14 +151,17 @@ const alert = (title, hero, message, type) => {
 function achievementsLoop() {
     for (const hero in heroes) {
         for (const achievement in achievements) {
-            if (heroes[hero].level == achievement && !achievements[achievement].getAchieved(heroes[hero].name)) {
-                
-                heroes[hero].gainAchievement(achievements[achievement].name);
-                achievements[achievement].setAchieved(heroes[hero].name);
 
-                addAchiement(hero, achievements[achievement].name);
-                
-                alert(achievements[achievement].name, heroes[hero].name, achievements[achievement].message, 'success');
+            for (let level in achievements[achievement]) {
+                if (heroes[hero].level >= level && !achievements[achievement][level].getAchieved(heroes[hero].name)) {
+                    
+                    heroes[hero].gainAchievement(achievements[achievement][level].name);
+                    achievements[achievement][level].setAchieved(heroes[hero].name);
+    
+                    addAchiement(hero, level);
+                    
+                    alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, 'success');
+                }
             }
         }
     }
@@ -180,7 +183,6 @@ function pointsLoop() {
 
 async function gameLoop() {
     const game = await pointsLoop();
-    const achievements = await achievementsLoop()
     window.requestAnimationFrame(gameLoop)
 }
 window.requestAnimationFrame(gameLoop);
