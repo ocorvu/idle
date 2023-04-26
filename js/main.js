@@ -19,11 +19,11 @@ let power = 1;
 let points = 1;
 let timestamp = 1000;
 
-heroes['hero1'] = new Hero('Meuso', 3, 10, 1.22);
-heroes['hero2'] = new Hero('Rebento', 10, 200, 3);
-heroes['hero3'] = new Hero('Kaom', 7, 150, 1.65);
-heroes['hero4'] = new Hero('Brine King', 6, 100, 1.7);
-heroes['hero5'] = new Hero('Shadow', 10, 500, 1.3);
+heroes['hero1'] = new Hero('Meuso', 3, 10, 1.22, '');
+heroes['hero2'] = new Hero('Rebento', 10, 200, 3, 'hero1');
+heroes['hero3'] = new Hero('Kaom', 7, 150, 1.65, 'hero2');
+heroes['hero4'] = new Hero('Brine King', 6, 100, 1.7, 'hero3');
+heroes['hero5'] = new Hero('Shadow', 10, 500, 1.3, 'hero4');
 
 levelAchievements(10, 100);
 
@@ -66,10 +66,12 @@ for (const hero in heroesList) {
         heroName.innerText = heroes[heroId].name;
         
         heroes[heroId].update(heroLevel, heroCost);
-        
+
         heroesList[hero].addEventListener('click', () => {
-            powerUp(heroId, heroes, points, power, notEnoughCash, volume);
-            achievementsLoop();
+            if(heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
+                power = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
+                achievementsLoop();
+            }
         })
         heroesList[hero].addEventListener('mouseenter', () => {
             tooltipList();
@@ -115,6 +117,7 @@ musicButtons.forEach(button => {
 });
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+
 const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
     const hero = tooltipTriggerEl.dataset.heroes;
     
@@ -172,7 +175,6 @@ function achievementsLoop() {
     });
 }
 
- 
 function pointsLoop() {
     return new Promise(resolve => {
         setTimeout(() => {
