@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+:root {
+    --activity-bgcolor-even:#6c757d;
+    --activity-bgcolor-odd: #708A88;
+}
+
 * {
     vertical-align: top;
     font-family: 'VT323', monospace;
@@ -13,8 +18,32 @@ body {
     display: none;
 }
 
+#feed {
+    height: 10rem;
+    width: 20rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    border: 1px solid black;
+    border-radius: 0 0.5rem 0.5rem 0;
+    background-color: aliceblue;
+    font-weight: bold;
+}
+
+.activity {
+    background-color: var(--activity-bgcolor-even);
+    margin: 0;
+}
+.activity:nth-child(odd) {
+    background-color: var(--activity-bgcolor-odd);
+}
+
 @media (max-width: 768px) {
     #upgrades {
         width: 75%;
+    }
+
+    #feed {
+        width: 100%;
     }
 }
