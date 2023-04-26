@@ -1,3 +1,5 @@
+import {newActivity} from './feed.js'
+
 
 function showPoints(points, ...params) {
     params.forEach (el => {
@@ -11,12 +13,14 @@ function powerUp(e, heroes, points, power, sound, volume) {
     if (points >= hero.base_cost){
         const heroLevel = document.querySelector(`[data-heroes-level="${e}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${e}"]`);
+        const feed = document.getElementById('feed');
 
         points -= hero.base_cost
-        hero.levelUp(power, points);
+        const activity = hero.levelUp(power, points);
         power += hero.power
         hero.update(heroLevel, heroCost);
-
+        newActivity(feed, activity)
+        return power;
     } else {
         playSound(sound, volume)
     }
