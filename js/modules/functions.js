@@ -24,7 +24,7 @@ function powerUp(e, heroes, points, power, sound, volume) {
         playSound(sound, volume)
         
     }
-    
+
     return power
 }
 
@@ -55,8 +55,9 @@ function activeButton(e) {
     button.classList.add('active');
 }
 
-function inactiveButton(volume) {
-    musicButtons.forEach(button => button.classList.remove('active'));
+function inactiveButton(e, volume) {
+    const button = document.querySelector(`[data-music="${e}"]`);
+    button.classList.remove('active');
     volume.value = 0;
 }
 

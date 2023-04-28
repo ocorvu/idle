@@ -105,12 +105,14 @@ menuItems.forEach(item => {
 musicButtons.forEach(button => {
     button.addEventListener('click', ()=> {
         const value = button.dataset.music;
-        inactiveButton(volume);
+        inactiveButton(value, volume);
         activeButton(value);
         
         if (value == 'off') {
             disableItem(volume);
+            inactiveButton('on', volume)
         } else {
+            inactiveButton('off', volume)
             enableItem(volume);
         }
     });
