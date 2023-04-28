@@ -90,7 +90,7 @@ const closeButtons = document.querySelectorAll('.settings-close-button');
 
 closeButtons.forEach(button => {
     button.addEventListener('click', () =>{
-        const menu = button.parentElement.parentElement
+        const menu = button.parentElement.parentElement.dataset.content
         hideItem(menu);
     });
 });
@@ -98,7 +98,12 @@ closeButtons.forEach(button => {
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
         const value = item.dataset.button;
-        showItem(value);
+        if (value == 'information') {
+            hideItem('config')
+        } else {
+            hideItem('information')
+        }
+        showItem(value)
     });
 });
 

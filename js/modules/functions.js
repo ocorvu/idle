@@ -34,7 +34,8 @@ function playSound(e, volume) {
 }
 
 function hideItem(e) {
-    e.classList.add('hide');
+    const item = document.querySelector(`[data-content="${e}"]`);
+    item.classList.add('hide');
 }
 
 function showItem(e) {
