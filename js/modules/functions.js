@@ -20,10 +20,12 @@ function powerUp(e, heroes, points, power, sound, volume) {
         power += hero.power
         hero.update(heroLevel, heroCost);
         newActivity(feed, activity)
-        return power;
     } else {
         playSound(sound, volume)
+        
     }
+    
+    return power
 }
 
 function playSound(e, volume) {
