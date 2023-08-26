@@ -4,7 +4,7 @@ function newActivity(feed, activity) {
     paragraph.innerText = activity
     paragraph.classList.add('activity')
 
-    feed.appendChild(paragraph)
+    feed.prepend(paragraph)
 
 }
 
