@@ -3,6 +3,7 @@ import { Achievement } from './modules/achievements.js';
 import {inactiveButton, activeButton, enableItem, 
         disableItem, showItem, hideItem, powerUp, 
         showPoints} from './modules/functions.js';
+import { newActivity } from './modules/feed.js';
 
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
@@ -125,23 +126,25 @@ musicButtons.forEach(button => {
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 
-const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
-    const hero = tooltipTriggerEl.dataset.heroes;
+// const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
+//     const hero = tooltipTriggerEl.dataset.heroes;
     
-    new bootstrap.Tooltip(tooltipTriggerEl)
-    tooltipTriggerEl.setAttribute('data-bs-title', 
-    `<h3>${heroes[hero].name}</h3>
-    <p>Increases gain points in: ${heroes[hero].given_power}`
-    );
-    bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
-    new bootstrap.Tooltip(tooltipTriggerEl);
-})
+//     new bootstrap.Tooltip(tooltipTriggerEl)
+//     tooltipTriggerEl.setAttribute('data-bs-title', 
+//     `<h3>${heroes[hero].name}</h3>
+//     <p>Increases gain points in: ${heroes[hero].given_power}`
+//     );
+//     bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
+//     new bootstrap.Tooltip(tooltipTriggerEl);
+// })
 
-const tooltipDestroy = () => {
-    [...tooltipTriggerList].map(tooltipTriggerEl => {
-        const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
-    })
-}
+// const tooltipDestroy = () => {
+//     [...tooltipTriggerList].map(tooltipTriggerEl => {
+//         const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
+//     })
+// }
+
+
 
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
@@ -169,6 +172,7 @@ function achievementsLoop() {
                     achievements[achievement][level].setAchieved(heroes[hero].name);
     
                     addAchiement(hero, level);
+                    newActivity(feed, `${heroes[hero].name} ${achievements[achievement][level].message}`)
                     
                     alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, 'success');
                 }
