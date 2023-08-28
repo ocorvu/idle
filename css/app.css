@@ -50,6 +50,16 @@ body {
     background-color: var(--activity-bgcolor-odd);
 }
 
+#ligth, :root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+#dark, :root:has(#dark:checked) {
+    --bg-color: black;
+    --text-color: white;
+}
+
 @media (max-width: 768px) {
     #upgrades {
         width: 75%;

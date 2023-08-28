@@ -1,0 +1,41 @@
+#heroes{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.carta > p, .carta > h3 {
+    margin: 0;
+}
+
+.carta {
+    display: flex;
+    flex-direction: column;
+    width: 12vw;
+    border: 1px solid red;
+}
+
+.carta > img {
+}
+
+.carta:nth-child(4), .carta:nth-child(5) {
+    margin-top: 0.5rem;
+}
+.carta:nth-child(4) {
+    margin-right: 0.5rem;
+}
+.carta:nth-child(2) {
+    margin: 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .carta {
+        width: 18vw;
+    }
+    .carta:nth-child(5){
+        margin: 0;
+    }
+    .carta:nth-child(4), .carta:nth-child(2) {
+        margin: 0 0.5rem;
+    }
+}
