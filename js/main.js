@@ -5,6 +5,28 @@ import {inactiveButton, activeButton, enableItem,
         showPoints} from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 
+import { fight } from './modules/fight.js'
+// import { heroesLocal } from './modules/localStorage.js';
+
+// import { heroesLocal } from './modules/localStorage.js';
+
+let heroismo = '';
+
+async function load() {
+    let loadCharacters = await import('./modules/localStorage.js');
+}
+
+
+if(!localStorage.getItem('characters')) {
+    load()
+}
+
+let characters = JSON.parse(localStorage.getItem('characters'));
+
+console.log(characters.heroes.meuso.name)
+
+
+
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]');
@@ -19,6 +41,12 @@ let volume = document.getElementById('volume');
 let power = 1;
 let points = 1;
 let timestamp = 1000;
+
+if (localStorage.getItem('points')) {
+    points = Number(localStorage.getItem('points'))
+} else{
+    points = 1
+}
 
 heroes['hero1'] = new Hero('Meuso', 3, 10, 1.22, '');
 heroes['hero2'] = new Hero('Rebento', 10, 200, 3, 'hero1');
@@ -126,31 +154,31 @@ musicButtons.forEach(button => {
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 
-// const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
-//     const hero = tooltipTriggerEl.dataset.heroes;
+const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
+    const hero = tooltipTriggerEl.dataset.heroes;
     
-//     new bootstrap.Tooltip(tooltipTriggerEl)
-//     tooltipTriggerEl.setAttribute('data-bs-title', 
-//     `<h3>${heroes[hero].name}</h3>
-//     <p>Increases gain points in: ${heroes[hero].given_power}`
-//     );
-//     bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
-//     new bootstrap.Tooltip(tooltipTriggerEl);
-// })
+    new bootstrap.Tooltip(tooltipTriggerEl)
+    tooltipTriggerEl.setAttribute('data-bs-title', 
+    `<h3>${heroes[hero].name}</h3>
+    <p>Increases gain points in: ${heroes[hero].given_power}`
+    );
+    bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
+    new bootstrap.Tooltip(tooltipTriggerEl);
+})
 
-// const tooltipDestroy = () => {
-//     [...tooltipTriggerList].map(tooltipTriggerEl => {
-//         const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
-//     })
-// }
+const tooltipDestroy = () => {
+    [...tooltipTriggerList].map(tooltipTriggerEl => {
+        const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
+    })
+}
 
 
 
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
 const alert = (title, hero, message, type) => {
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = [
+    const notification = document.createElement('div');
+    notification.innerHTML = [
         `   <div class="alert alert-${type} alert-dismissible" role="alert">`,
         `   <h4>${title}</h4>`,
         `   <div>${hero} ${message}</div>`,
@@ -158,7 +186,13 @@ const alert = (title, hero, message, type) => {
         '</div>'
     ].join('');
     
-    alertPlaceholder.append(wrapper);
+    alertPlaceholder.append(notification);
+
+    return new Promise(resolve => (
+        setTimeout(() =>{
+            resolve(notification.remove())
+        }, 5000)
+    ))
 }
 
 function achievementsLoop() {
@@ -186,6 +220,10 @@ function achievementsLoop() {
     });
 }
 
+function save() {
+    let localPoints = localStorage.setItem('points', points);
+}
+
 function pointsLoop() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -196,6 +234,8 @@ function pointsLoop() {
 
 async function gameLoop() {
     const game = await pointsLoop();
+    await save();
+    document.title = `Idle - ${points}`
     window.requestAnimationFrame(gameLoop)
 }
 window.requestAnimationFrame(gameLoop);

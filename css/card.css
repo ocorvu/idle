@@ -1,0 +1,59 @@
+#heroes{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    padding: 0.25rem 0;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+}
+
+.carta > p, .carta > h3 {
+    margin: 0;
+}
+
+.carta {
+    display: flex;
+    flex-direction: column;
+    width: 12vw;
+    border: 1px solid gray;
+}
+
+.carta > button {
+    background-color: black;
+    padding: 0.375rem 0.5rem;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 0.250rem;
+    margin: 0.125rem;
+}
+
+.carta > button:hover {
+    background-color: rgb(44, 44, 44);
+}
+
+.carta > img {
+    padding: 0.125rem;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+/* .carta:nth-child(4), .carta:nth-child(5) {
+    margin-top: 0.5rem;
+}
+.carta:nth-child(4) {
+    margin-right: 0.5rem;
+}
+.carta:nth-child(2) {
+    margin: 0 0.5rem;
+} */
+
+@media (max-width: 768px) {
+    .carta {
+        width: 18vw;
+    }
+    /* .carta:nth-child(5){
+        margin: 0;
+    }
+    .carta:nth-child(4), .carta:nth-child(2) {
+        margin: 0 0.5rem;
+    } */
+}

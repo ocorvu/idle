@@ -13,6 +13,7 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/heroes.css">
+    <link rel="stylesheet" href="css/card.css">
     <!-- popperjs -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
@@ -186,7 +187,102 @@
             </ul>
         </aside>
         <!-- game -->
+        <!-- Enemies -->
         <section id="game" class="align-self-center text-center flex-grow-1">
+            <h2>Enemies</h2>
+            <article id="heroes">
+                <section class="carta">
+                    <img src="https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png" alt="Braulio"/>
+                    <h3>
+                       Braulio
+                    </h3>
+                    <p>
+                        HP: 1000
+                        <input type="range" name="hp" id="braulio_hp" value="1000" min="0" max="1000" disabled>
+                        <progress max="1000" value="800">70</progress>
+                    </p>
+                    <p>
+                       ATK: 30
+                    </p>
+                    <p>
+                       DEF: 10
+                    </p>
+                </section>
+            </article>
+
+            <!-- <ul>
+                <input type="radio" name="theme" id="dark"><input type="radio" name="theme" id="light" checked>
+            </ul> -->
+            <!-- Hero cards -->
+            <h2>Heroes</h2>
+            <article id="heroes">
+                <section class="carta">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU" alt="Meuso"/>
+                    <h3>
+                       Meuso
+                    </h3>
+                    <p>
+                       ATK: 30
+                    </p>
+                    <p>
+                       DEF: 10
+                    </p>
+                    <button>Attack</button>
+                </section>
+                <section class="carta">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU" alt="Meuso"/>
+                    <h3>
+                       Meuso
+                    </h3>
+                    <p>
+                       ATK: 30
+                    </p>
+                    <p>
+                       DEF: 10
+                    </p>
+                    <button>Attack</button>
+                </section>
+                <section class="carta">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU" alt="Meuso"/>
+                    <h3>
+                       Meuso
+                    </h3>
+                    <p>
+                       ATK: 30
+                    </p>
+                    <p>
+                       DEF: 10
+                    </p>
+                    <button>Attack</button>
+                </section>
+                <section class="carta">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU" alt="Meuso"/>
+                    <h3>
+                       Meuso
+                    </h3>
+                    <p>
+                       ATK: 30
+                    </p>
+                    <p>
+                       DEF: 10
+                    </p>
+                    <button>Attack</button>
+                </section>
+                <section class="carta">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU" alt="Meuso"/>
+                    <h3>
+                       Meuso
+                    </h3>
+                    <p>
+                       ATK: 30
+                    </p>
+                    <p>
+                       DEF: 10
+                    </p>
+                    <button>Attack</button>
+                </section>
+                </article>
+            
             <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="first" >1</button>
             <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="second">2</button>
             <div id="liveAlertPlaceholder"></div>
@@ -230,5 +326,6 @@
         <p class="activity">Welcome! :D</p>
     </section>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/modules/character.js"></script>
 </body>
 </html>
