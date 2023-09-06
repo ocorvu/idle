@@ -1,0 +1,62 @@
+{
+    "heroes": [
+        {
+            "name": "Meuso",
+            "hp": 100,
+            "atk": 100,
+            "def": 10,
+            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+        },
+        {
+            "name": "Kaom",
+            "hp": 100,
+            "atk": 30,
+            "def": 10,
+            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+        },
+        {
+            "name": "Rebento",
+            "hp": 100,
+            "atk": 30,
+            "def": 10,
+            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+        },
+        {
+            "name": "BrineKing",
+            "hp": 100,
+            "atk": 30,
+            "def": 10,
+            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+        },
+        {
+            "name": "Shadow",
+            "hp": 100,
+            "atk": 30,
+            "def": 10,
+            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+        }
+    ],
+    "enemies": [
+        {
+            "name": "Braulio",
+            "hp": 1000,
+            "atk": 30,
+            "def": 100,
+            "thumbnail": "https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+        },
+        {
+            "name": "Dunha",
+            "hp": 1,
+            "atk": 1000000,
+            "def": 1,
+            "thumbnail": "https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+        },
+        {
+            "name": "ManoBri",
+            "hp": 300,
+            "atk": 100,
+            "def": 20,
+            "thumbnail": "https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+        }
+    ]
+}
