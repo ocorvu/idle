@@ -5,6 +5,28 @@ import {inactiveButton, activeButton, enableItem,
         showPoints} from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 
+import { fight } from './modules/fight.js'
+// import { heroesLocal } from './modules/localStorage.js';
+
+// import { heroesLocal } from './modules/localStorage.js';
+
+let heroismo = '';
+
+async function load() {
+    let loadCharacters = await import('./modules/localStorage.js');
+}
+
+
+if(!localStorage.getItem('characters')) {
+    load()
+}
+
+let characters = JSON.parse(localStorage.getItem('characters'));
+
+console.log(characters.heroes.meuso.name)
+
+
+
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]');
@@ -19,6 +41,12 @@ let volume = document.getElementById('volume');
 let power = 1;
 let points = 1;
 let timestamp = 1000;
+
+if (localStorage.getItem('points')) {
+    points = Number(localStorage.getItem('points'))
+} else{
+    points = 1
+}
 
 heroes['hero1'] = new Hero('Meuso', 3, 10, 1.22, '');
 heroes['hero2'] = new Hero('Rebento', 10, 200, 3, 'hero1');
@@ -192,6 +220,10 @@ function achievementsLoop() {
     });
 }
 
+function save() {
+    let localPoints = localStorage.setItem('points', points);
+}
+
 function pointsLoop() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -202,6 +234,7 @@ function pointsLoop() {
 
 async function gameLoop() {
     const game = await pointsLoop();
+    await save();
     document.title = `Idle - ${points}`
     window.requestAnimationFrame(gameLoop)
 }
