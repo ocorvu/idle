@@ -4,7 +4,7 @@
     justify-content: space-between;
     position: absolute;
     right: 0;
-    min-width: 50%;
+    width: 25%;
     background-color: #ccc;
     padding: 1em;
     border-radius: 0 0 1em 1em;
@@ -14,15 +14,12 @@
     margin: 0;
 }
 
-.settings p {
+.settings > section {
     display: flex;
     margin: 0;
     padding: 0 0 0.5em;
 }
 
-#volume {
-    margin: 0 1em 0;
-}
 
 .settings-header {
     display: flex;
@@ -49,7 +46,26 @@
     font-weight: bold;
 }
 
-.active {
+.settings-music-button:first-child {
+    margin-left: 0.5rem;
+}
+
+.settings-save, .settings-volume > p {
+    display: flex;
+    align-items: center;
+}
+
+.settings-save #saveMessage {
+    margin-left: 0.5rem;
+    color: forestgreen;
+    font-weight: bold;
+}
+
+#volume {
+    margin-left: 0.5rem;
+}
+
+.settings-music-button-active {
     background-color: #FFF;
     color: #000;
     font-weight: bold;
