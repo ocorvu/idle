@@ -53,12 +53,12 @@ function enableItem(e) {
 
 function activeButton(e) {
     const button = document.querySelector(`[data-music="${e}"]`);
-    button.classList.add('active');
+    button.classList.add('settings-music-button-active');
 }
 
 function inactiveButton(e, volume) {
     const button = document.querySelector(`[data-music="${e}"]`);
-    button.classList.remove('active');
+    button.classList.remove('settings-music-button-active');
     volume.value = 0;
 }
 
