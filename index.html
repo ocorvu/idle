@@ -60,11 +60,25 @@
                 <h2 class="settings-title">Settings</h2>
                 <button class="settings-close-button">X</button>
             </header>
-            <p>Music<span>
-                <button class="ms-1 settings-music-button" data-music="off">OFF</button>
-                <button class="settings-music-button active" data-music="on">ON</button>
-            </span></p>
-            <p>Volume <input type="range" name="volume" id="volume" min="0" max="1" step="0.05" value="0.25"></p>
+            <section class="settings-music">
+                <p>Music
+                    <span>
+                        <button class="settings-music-button" data-music="off">OFF</button>
+                        <button class="settings-music-button settings-music-button-active" data-music="on">ON</button>
+                    </span>
+                </p>
+            </section>
+            <section class="settings-volume">
+                <p>Volume
+                    <input type="range" name="volume" id="volume" min="0" max="1" step="0.05" value="0.25">
+                </p>
+            </section>
+            <section class="settings-save">
+                <p>
+                    <button id="save">Save</button>
+                    <span id="saveMessage" class="hide">Salvo com sucesso!</span>
+                </p>
+            </section>
         </section>
     </aside>
     <main class="d-flex flex-grow-1">
