@@ -32,6 +32,7 @@ const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]');
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
+const saveButton = document.getElementById('save');
 const heroesList = document.querySelectorAll('[data-heroes]');
 const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
@@ -224,6 +225,19 @@ function save() {
     let localPoints = localStorage.setItem('points', points);
 }
 
+saveButton.addEventListener('click', () => {
+    const saveMessage = document.getElementById('saveMessage');
+    save();
+    saveMessage.classList.remove('hide');
+
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(saveMessage.classList.add('hide'));
+        }, 3000);
+    });
+    // saveMessage.remove()
+});
+
 function pointsLoop() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -234,7 +248,6 @@ function pointsLoop() {
 
 async function gameLoop() {
     const game = await pointsLoop();
-    await save();
     document.title = `Idle - ${points}`
     window.requestAnimationFrame(gameLoop)
 }
