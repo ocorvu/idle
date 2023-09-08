@@ -1,0 +1,21 @@
+:root {
+    --progress-bar-box-shadow-color: rgba( 0, 0, 0, 0.2 );
+    --progress-bar-background-color: rgba(128, 128, 128, 0.521);
+    --progress-bar-value-background-color: blue;
+    --progress-border-radius: 0.5rem;
+}
+
+/* HP progress Bar */
+progress {
+    border-radius: 0.5rem; 
+    width: 80%;
+    box-shadow: 1px 1px 0.250rem var(--progress-bar-box-shadow-color);
+  }
+progress::-webkit-progress-bar {
+    background-color: var(--progress-bar-background-color);
+    border-radius: var(--progress-border-radius);
+}
+progress::-webkit-progress-value {
+    background-color: var(--progress-bar-value-background-color);
+    border-radius: var(--progress-border-radius);
+}
