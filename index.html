@@ -8,47 +8,41 @@
     <link rel="shortcut icon" href="./icons/favicon.ico" type="image/x-icon">
     <!-- settings.css -->
     <link rel="stylesheet" href="css/settings.css">
-    <!-- Bootstrap5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- App CSS -->
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/upgrades.css">
+    <link rel="stylesheet" href="css/achievements.css">
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/progress.css">
-    <!-- popperjs -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
 </head>
-<body class="d-flex flex-column">
+<body>
     <!-- header -->
-    <header class="d-flex align-items-center justify-content-between text-bg-success border-bottom border-dark">
+    <header id="main-header">
         <!-- logo -->
-        <img class="m-0 ps-4" src="icons/favicon-32x32.png" alt="">
+        <img id="logo" src="icons/favicon-32x32.png" alt="">
+        <!-- <button id="closeclose">Close</button> -->
         <!-- points -->
-        <div id="box" class="fs-1">0</div>
+        <div id="box">0</div>
         <!-- navigation -->
         <nav>
             <!-- upgrades button -->
-            <a class="d-md-none text-decoration-none" 
-            data-bs-toggle="offcanvas" 
-            data-bs-target="#upgrades" 
-            aria-controls="upgrades">
+            <a class="nav-button hide" data-button="upgrades" aria-controls="upgrades">
                 <img src="icons/icons8-comprar-atualização-30 (1).png" alt="Config">
             </a>
             <!-- achievements button -->
-            <a class="d-md-none text-decoration-none" 
-            data-bs-toggle="offcanvas" 
-            data-bs-target="#achievements" 
-            aria-controls="achievements">
+            <a class="nav-button hide" data-button="achievements">
                 <img src="icons/icons8-medalha-30.png" alt="Achievements">
             </a>
             <!-- config button -->
-            <a href="#" class="text-decoration-none" data-button="config">
+            <a class="nav-button" data-button="config">
                 <img src="icons/icons8-gear-30.png" alt="Config">
             </a>
             <!-- info button -->
-            <a href="#" class="me-2 text-decoration-none" data-button="information">
+            <a class="nav-button" data-button="information">
                 <img src="icons/icons8-info-30.png" alt="Info">
             </a>
         </nav>
@@ -94,144 +88,110 @@
             </section>
         </section>
     </aside>
-    <main class="d-flex flex-grow-1">
+    <main>
         <!-- upgrades menu -->
-        <aside id="upgrades" class="offcanvas-md offcanvas-start p-3 shadow">
-            <header class="d-flex justify-content-between align-items-center">
-                <h2 class="fs-1">Heroes<img src="icons/icons8-comprar-atualização-30 (1).png"></h2>
-                <button type="button" 
-                class="btn-close d-md-none" 
-                data-bs-dismiss="offcanvas"
-                data-bs-target="#upgrades"
-                aria-label="Close"></button>
-            </header>
-            <ul class="p-0">
-                <!-- hero1 -->
-                <li 
-                id="hero1" 
-                class="hero" 
-                data-heroes="hero1" 
-                data-bs-container="body" 
-                data-bs-toggle="tooltip" 
-                data-bs-placement="right" 
-                data-bs-html="true"
-                >
-                    <div class="hero-body">
-                        <div>
-                            <h3 data-heroes-name="hero1"></h3>
-                            <small class="hero-cost">
-                                Cost:
-                                <span class="hero-cost-value" data-heroes-cost="hero1"></span>
-                            </small>
+        <aside id="upgrades" class="upgrades-md" data-content="upgrades">
+            <section id="upgrades-content">
+                <header id="upgrades-header">
+                    <h2>Heroes<img src="icons/icons8-comprar-atualização-30 (1).png"></h2>
+                    <button type="button" class="close hide" aria-label="Close">X</button>
+                </header>
+                <ul id="upgrades-body" class="p-0">
+                    <!-- hero1 -->
+                    <li id="hero1" class="hero" data-heroes="hero1" data-bs-container="body" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-html="true">
+                        <div class="hero-body">
+                            <div>
+                                <h3 data-heroes-name="hero1"></h3>
+                                <small class="hero-cost">
+                                    Cost:
+                                    <span class="hero-cost-value" data-heroes-cost="hero1"></span>
+                                </small>
+                            </div>
+                            <span class="hero-level" data-heroes-level="hero1"></span>
                         </div>
-                        <span class="hero-level" data-heroes-level="hero1"></span>
-                    </div>
-                </li>
-                <!-- hero2 -->
-                <li 
-                id="hero2" 
-                class="hero" 
-                data-heroes="hero2" 
-                data-bs-container="body" 
-                data-bs-toggle="tooltip" 
-                data-bs-placement="right" 
-                data-bs-html="true"
-                >
-                    <div class="hero-body">
-                        <div>
-                            <h3 data-heroes-name="hero2"></h3>
-                            <small class="hero-cost">
-                                Cost:
-                                <span class="hero-cost-value" data-heroes-cost="hero2"></span>
-                            </small>
+                    </li>
+                    <!-- hero2 -->
+                    <li id="hero2" class="hero" data-heroes="hero2" data-bs-container="body" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-html="true">
+                        <div class="hero-body">
+                            <div>
+                                <h3 data-heroes-name="hero2"></h3>
+                                <small class="hero-cost">
+                                    Cost:
+                                    <span class="hero-cost-value" data-heroes-cost="hero2"></span>
+                                </small>
+                            </div>
+                            <span class="hero-level" data-heroes-level="hero2"></span>
                         </div>
-                        <span class="hero-level" data-heroes-level="hero2"></span>
-                    </div>
-                </li>
-                <!-- hero3 -->
-                <li 
-                id="hero3" 
-                class="hero" 
-                data-heroes="hero3" 
-                data-bs-container="body" 
-                data-bs-toggle="tooltip" 
-                data-bs-placement="right" 
-                data-bs-html="true"
-                >
-                    <div class="hero-body">
-                        <div>
-                            <h3 data-heroes-name="hero3"></h3>
-                            <small class="hero-cost">
-                                Cost:
-                                <span class="hero-cost-value" data-heroes-cost="hero3"></span>
-                            </small>
+                    </li>
+                    <!-- hero3 -->
+                    <li id="hero3" class="hero" data-heroes="hero3" data-bs-container="body" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-html="true">
+                        <div class="hero-body">
+                            <div>
+                                <h3 data-heroes-name="hero3"></h3>
+                                <small class="hero-cost">
+                                    Cost:
+                                    <span class="hero-cost-value" data-heroes-cost="hero3"></span>
+                                </small>
+                            </div>
+                            <span class="hero-level" data-heroes-level="hero3"></span>
                         </div>
-                        <span class="hero-level" data-heroes-level="hero3"></span>
-                    </div>
-                </li>
-                <!-- hero4 -->
-                <li 
-                id="hero4" 
-                class="hero" 
-                data-heroes="hero4" 
-                data-bs-container="body" 
-                data-bs-toggle="tooltip" 
-                data-bs-placement="right" 
-                data-bs-html="true"
-                >
-                    <div class="hero-body">
-                        <div>
-                            <h3 data-heroes-name="hero4"></h3>
-                            <small class="hero-cost">
-                                Cost:
-                                <span class="hero-cost-value" data-heroes-cost="hero4"></span>
-                            </small>
+                    </li>
+                    <!-- hero4 -->
+                    <li id="hero4" class="hero" data-heroes="hero4" data-bs-container="body" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-html="true">
+                        <div class="hero-body">
+                            <div>
+                                <h3 data-heroes-name="hero4"></h3>
+                                <small class="hero-cost">
+                                    Cost:
+                                    <span class="hero-cost-value" data-heroes-cost="hero4"></span>
+                                </small>
+                            </div>
+                            <span class="hero-level" data-heroes-level="hero4"></span>
                         </div>
-                        <span class="hero-level" data-heroes-level="hero4"></span>
-                    </div>
-                </li>
-                <!-- hero5 -->
-                <li 
-                id="hero5" 
-                class="hero" 
-                data-heroes="hero5" 
-                data-bs-container="body" 
-                data-bs-toggle="tooltip" 
-                data-bs-placement="right" 
-                data-bs-html="true"
-                >
-                    <div class="hero-body">
-                        <div>
-                            <h3 data-heroes-name="hero5"></h3>
-                            <small class="hero-cost">
-                                Cost:
-                                <span class="hero-cost-value" data-heroes-cost="hero5"></span>
-                            </small>
+                    </li>
+                    <!-- hero5 -->
+                    <li id="hero5" class="hero" data-heroes="hero5" data-bs-container="body" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-html="true">
+                        <div class="hero-body">
+                            <div>
+                                <h3 data-heroes-name="hero5"></h3>
+                                <small class="hero-cost">
+                                    Cost:
+                                    <span class="hero-cost-value" data-heroes-cost="hero5"></span>
+                                </small>
+                            </div>
+                            <span class="hero-level" data-heroes-level="hero5"></span>
                         </div>
-                        <span class="hero-level" data-heroes-level="hero5"></span>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </section>
+            <button class="close-bar" class="hide" data-close-button="upgrades"></button>
         </aside>
         <!-- game -->
-        <section id="game" class="">
+        <section id="game">
             <!-- Enemies -->
             <h2>Enemies</h2>
             <section id="enemies">
                 <section class="card enemie-card-border">
-                    <img class="enemie-thumb" src="https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png" alt="Braulio"/>
+                    <img class="enemie-thumb"
+                        src="https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+                        alt="Braulio" />
                     <h3 class="enemie-name">
-                       Braulio
+                        Braulio
                     </h3>
                     <p>
                         HP: <span>Atual</span>/<span>Total</span>
                         <progress class="enemie-hp" max="1000" value="800">70</progress>
                     </p>
                     <p>
-                       ATK: 30
+                        ATK: 30
                     </p>
                     <p>
-                       DEF: 10
+                        DEF: 10
                     </p>
                     <button class="target">Target</button>
                 </section>
@@ -240,60 +200,62 @@
             <h2>Heroes</h2>
             <section id="heroes">
                 <section class="card hero-card-border">
-                    <img class="hero-thumb" src="https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png" alt="Meuso"/>
+                    <img class="hero-thumb"
+                        src="https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+                        alt="Meuso" />
                     <h3>
-                       Meuso
+                        Meuso
                     </h3>
                     <p>
                         HP: <span>Atual</span>/<span>Total</span>
                         <progress class="enemie-hp" max="1000" value="800">70</progress>
                     </p>
                     <p>
-                       ATK: 30
+                        ATK: 30
                     </p>
                     <p>
-                       DEF: 10
+                        DEF: 10
                     </p>
                     <button>Attack</button>
                 </section>
             </section>
-            
-            <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="first" >1</button>
+
+            <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="first">1</button>
             <button class="btn me-2 px-3 py-4 text-bg-dark fw-bold" id="second">2</button>
             <div id="liveAlertPlaceholder"></div>
         </section>
         <!-- achievements -->
-        <aside id="achievements" class="offcanvas-md offcanvas-end shadow p-3">
-            <header class="d-flex justify-content-between align-items-center">
-                <h2 class="fs-1">Achievements<img src="icons/icons8-medalha-30.png"></h2>
-                <button type="button" 
-                class="btn-close d-md-none" 
-                data-bs-dismiss="offcanvas"
-                data-bs-target="#achievements"
-                aria-label="Close"></button>
-            </header>
-            <ul class="p-0" data-achievement="list">
-                <li data-achievement-hero="hero1">
-                    <h3>Meuso</h3>
-                    <ul class="d-flex p-0"></ul>
-                </li>
-                <li data-achievement-hero="hero2">
-                    <h3>Rebento</h3>
-                    <ul class="d-flex p-0"></ul>
-                </li>
-                <li data-achievement-hero="hero3">
-                    <h3>Kaom</h3>
-                    <ul class="d-flex p-0"></ul>
-                </li>
-                <li data-achievement-hero="hero4">
-                    <h3>Brine King</h3>
-                    <ul class="d-flex p-0"></ul>
-                </li>
-                <li data-achievement-hero="hero5">
-                    <h3>Shadow</h3>
-                    <ul class="d-flex p-0"></ul>
-                </li>
-            </ul>
+        <aside id="achievements" class="achievements-md"
+        data-content="achievements">
+        <button class="close-bar" class="hide" data-close-button="achievements"></button>
+            <section id="achievements-content">
+                <header id="achievements-header">
+                    <h2>Achievements<img src="icons/icons8-medalha-30.png"></h2>
+                    <button type="button" class="close hide" aria-label="Close">X</button>
+                </header>
+                <ul class="achievements-heroes-list" data-achievement="list">
+                    <li data-achievement-hero="hero1">
+                        <h3>Meuso</h3>
+                        <ul class="achievements-hero-badges"></ul>
+                    </li>
+                    <li data-achievement-hero="hero2">
+                        <h3>Rebento</h3>
+                        <ul class="achievements-hero-badges"></ul>
+                    </li>
+                    <li data-achievement-hero="hero3">
+                        <h3>Kaom</h3>
+                        <ul class="achievements-hero-badges"></ul>
+                    </li>
+                    <li data-achievement-hero="hero4">
+                        <h3>Brine King</h3>
+                        <ul class="achievements-hero-badges"></ul>
+                    </li>
+                    <li data-achievement-hero="hero5">
+                        <h3>Shadow</h3>
+                        <ul class="achievements-hero-badges"></ul>
+                    </li>
+                </ul>
+            </section>
         </aside>
     </main>
     <!-- feed -->
@@ -303,4 +265,5 @@
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/modules/character.js"></script>
 </body>
+
 </html>
