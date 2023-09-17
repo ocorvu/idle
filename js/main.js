@@ -16,16 +16,11 @@ async function load() {
     let loadCharacters = await import('./modules/localStorage.js');
 }
 
-
 if(!localStorage.getItem('characters')) {
     load()
 }
 
 let characters = JSON.parse(localStorage.getItem('characters'));
-
-console.log(characters.heroes.meuso.name)
-
-
 
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
@@ -125,15 +120,37 @@ closeButtons.forEach(button => {
     });
 });
 
+const closeMenuButtons = document.querySelectorAll('[data-close-button]');
+
+closeMenuButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.dataset.closeButton
+        const menuToClose = document.querySelector(`[data-content="${content}"]`);
+        menuToClose.classList.toggle('show')
+        menuToClose.classList.toggle(`${content}-md`)
+    });
+});
+
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
         const value = item.dataset.button;
-        if (value == 'information') {
-            hideItem('config')
-        } else {
-            hideItem('information')
+        switch (value) {
+            case 'information':
+                hideItem('config');
+                showItem('information');
+                break;
+            case 'config':
+                hideItem('information');
+                showItem('config');
+                break;
+            default:
+                const menu = document.getElementById(value);
+
+                menu.classList.toggle(`${value}-md`);
+                menu.classList.toggle('show');
+                break;
+            
         }
-        showItem(value)
     });
 });
 
@@ -172,8 +189,6 @@ const tooltipDestroy = () => {
         const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
     })
 }
-
-
 
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
@@ -235,7 +250,6 @@ saveButton.addEventListener('click', () => {
             resolve(saveMessage.classList.add('hide'));
         }, 3000);
     });
-    // saveMessage.remove()
 });
 
 function pointsLoop() {
