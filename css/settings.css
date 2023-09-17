@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: absolute;
+    position: fixed;
+    z-index: 10;
     right: 0;
     width: 25%;
     background-color: #ccc;
@@ -70,4 +71,10 @@
     color: #000;
     font-weight: bold;
     border-color: #000;
+}
+
+@media (max-width: 768px) {
+    .settings {
+        width: 75%;
+    }
 }
