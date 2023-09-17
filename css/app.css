@@ -3,6 +3,7 @@
 :root {
     --activity-bgcolor-even: #6c757d;
     --activity-bgcolor-odd: #708A88;
+    --nav-color: #198754;
 }
 
 * {
@@ -13,6 +14,42 @@
 
 body {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+}
+
+.close {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 2.25rem;
+    font-weight: bold;
+}
+
+#main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.25rem 0.5rem;
+    color: #FFFFFF;
+    background-color: var(--nav-color);
+    border-bottom: 1px solid #000000;
+}
+
+#logo {
+    margin: 0;
+    padding-left: 0.5rem;
+}
+
+#box {
+    font-size: 2rem;
 }
 
 p,
@@ -20,6 +57,10 @@ h2,
 h3 {
     margin: 0;
     padding: 0;
+}
+
+.nav-button {
+    text-decoration: none;
 }
 
 .hide {
@@ -82,14 +123,23 @@ h3 {
     background-color: var(--activity-bgcolor-odd);
 }
 
-@media (max-width: 768px) {
+.close-bar {
+    border: none;
+    background-color: black;
+    flex-grow: 1;
+    opacity: 0.5;
+}
 
-    #upgrades,
-    #achievements {
-        width: 75%;
+@media (max-width: 768px) {
+    .nav-button {
+        display: inline-flex;
     }
 
     #feed {
-        width: 100%;
+        width: 99vw;
+    }
+
+    .close-bar {
+        display: block;
     }
 }
