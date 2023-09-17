@@ -1,11 +1,36 @@
 :root {
     --primary-color: #0d6efd;
-    --secondary-color:#6c757d;
-    --level-bg-color:#d00d04;
-    --level-text-color:#ffeab7;
+    --secondary-color: #6c757d;
+    --level-bg-color: #d00d04;
+    --level-text-color: #ffeab7;
     --bg-color: #0a58ca;
     --text-color: #ffffff;
-    --nav-color: #198754;
+}
+
+#upgrades {
+    overflow: hidden;
+    max-width: 25%;
+    transition: max-width 0.5s ease-in-out;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+#upgrades-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+}
+
+h2 > img {
+    vertical-align: middle;
+}
+
+#upgrades-body {
+    padding: 0;
+}
+
+#upgrades-content {
+    padding: 0 0.5rem;
 }
 
 .hero {
@@ -26,7 +51,7 @@
 .hero-body {
     display: flex;
     justify-content: space-between;
-    font-size: calc(1.325rem + .9vw);
+    font-size: calc(1.325rem);
 }
 
 .hero-level {
@@ -45,7 +70,6 @@
 }
 
 .hero-cost-value {
-    
     display: inline-block;
     padding: 0.35em 0.65em;
     border-radius: 0.375rem;
@@ -66,4 +90,29 @@
     line-height: 1;
     background-color: var(--level-text-color);
     color: var(--level-bg-color);
+}
+
+@media (max-width: 768px) {
+
+    #upgrades.upgrades-md {
+        max-width: 0;
+        display: none;
+    }
+
+    #upgrades.show {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        display: flex;
+    }
+
+    #upgrades-content {
+        width: 75%;
+        background-color: white;
+        padding: 0.25rem;
+    }
 }
