@@ -72,22 +72,17 @@ h3 {
     flex-direction: column;
     flex-grow: 1;
     width: 60%;
+    max-height: 100vh;
     text-align: center;
 }
 
 #heroes,
 #enemies {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0.25rem 0;
-}
-
-#heroes {
-    justify-content: center;
-}
-
-#enemies {
-    justify-content: space-around;
+    overflow-y: hidden;
+    justify-content: space-between;
 }
 
 #feed {
