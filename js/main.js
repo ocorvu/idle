@@ -94,8 +94,10 @@ for (const hero in heroesList) {
 
         heroesList[hero].addEventListener('click', () => {
             if(heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
-                power = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
+                let up = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
                 achievementsLoop();
+
+                [power, points] = up
             }
         })
         heroesList[hero].addEventListener('mouseenter', () => {
