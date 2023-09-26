@@ -2,7 +2,7 @@ import { Hero }  from './modules/hero.js';
 import { Achievement } from './modules/achievements.js';
 import {inactiveButton, activeButton, enableItem, 
         disableItem, showItem, hideItem, powerUp, 
-        showPoints} from './modules/functions.js';
+        showPoints, NumberUnitFormat} from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 
 import { fight } from './modules/fight.js'
@@ -255,14 +255,14 @@ saveButton.addEventListener('click', () => {
 function pointsLoop() {
     return new Promise(resolve => {
         setTimeout(() => {
-            resolve(plus(power), showPoints(points, 'box', 'clicks'));
+            resolve(plus(power), showPoints(NumberUnitFormat(points), 'box', 'clicks'));
         }, timestamp);
     });
 }
 
 async function gameLoop() {
     const game = await pointsLoop();
-    document.title = `Idle - ${points}`
+    document.title = `Idle - ${NumberUnitFormat(points)}`
     window.requestAnimationFrame(gameLoop)
 }
 window.requestAnimationFrame(gameLoop);
