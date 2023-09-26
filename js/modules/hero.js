@@ -28,21 +28,19 @@ class Hero{
         if (this.level < this.max_level){
             this.level += 1;
             this.given_power += this.power;
+            this.base_cost = Math.floor(this.base_cost * this.cost_increase);
 
             return `${this.name} is now at level ${this.level}`
         } else {
             window.alert(`${this.name} is at Max Level (${this.max_level})`)
         }
-
-        if (this.level % 10 == 0){
-            this.base_cost = Math.floor(this.base_cost * this.cost_increase) * (this.level / 10);
-        } else {
-            this.base_cost = Math.floor(this.base_cost * this.cost_increase);
-        }
     }
     update(level, cost) {
-        level.innerText = this.level,
-        cost.innerText = this.base_cost
+        level.innerText = this.level;
+        cost.innerText = new Intl.NumberFormat("en-GB", {
+            notation: "compact",
+            compactDisplay: "short",
+        }).format(this.base_cost);        
     }
     canExist(requirement) {
         if (this.name == 'Meuso') {
