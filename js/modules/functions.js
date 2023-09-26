@@ -19,13 +19,15 @@ function powerUp(e, heroes, points, power, sound, volume) {
         const activity = hero.levelUp(power, points);
         power += hero.power
         hero.update(heroLevel, heroCost);
+
+        console.log(points, hero.base_cost)
         newActivity(feed, activity)
     } else {
         playSound(sound, volume)
         
     }
 
-    return power
+    return [power, points]
 }
 
 function playSound(e, volume) {
@@ -62,4 +64,11 @@ function inactiveButton(e, volume) {
     volume.value = 0;
 }
 
-export {inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints}
+function NumberUnitFormat(number) {
+     return new Intl.NumberFormat("en-GB", {
+        notation: "compact",
+        compactDisplay: "short",
+      }).format(number);
+}
+
+export {inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat}
