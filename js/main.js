@@ -87,8 +87,27 @@ for (const hero in heroesList) {
         const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`);
         const heroLevel = document.querySelector(`[data-heroes-level="${heroId}"]`);
+        const heroCardThumb = document.querySelector(`[data-heroes-card-thumb="${heroId}"]`);
+        const heroCardName = document.querySelector(`[data-heroes-card-name="${heroId}"]`);
+        const heroCardHp = document.querySelector(`[data-heroes-card-hp="${heroId}"]`);
+        const heroCardTotalHp = document.querySelector(`[data-heroes-card-total-hp="${heroId}"]`);
+        const heroCardHpBar = document.querySelector(`[data-heroes-card-hp-bar="${heroId}"]`);
+        const heroCardAtk = document.querySelector(`[data-heroes-card-atk="${heroId}"]`);
+        const heroCardDef = document.querySelector(`[data-heroes-card-def="${heroId}"]`);
         
         heroName.innerText = heroes[heroId].name;
+        heroCardName.innerText = heroes[heroId].name;
+        heroCardAtk.innerText = heroes[heroId].atk;
+        heroCardDef.innerText = heroes[heroId].def;
+
+        heroCardHp.innerText = heroes[heroId].hp;
+        heroCardTotalHp.innerText = heroes[heroId].totalHp;
+
+        heroCardHpBar.value = heroes[heroId].hp;
+        heroCardHpBar.max = heroes[heroId].totalHp;
+        heroCardHpBar.innerText = heroes[heroId].hp;
+
+        heroCardThumb.src = heroes[heroId].thumbnail;
         
         heroes[heroId].update(heroLevel, heroCost);
 
