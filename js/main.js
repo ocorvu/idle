@@ -1,16 +1,11 @@
-import { Hero }  from './modules/hero.js';
+import { Hero } from './modules/hero.js';
 import { Achievement } from './modules/achievements.js';
-import {inactiveButton, activeButton, enableItem, 
-        disableItem, showItem, hideItem, powerUp, 
-        showPoints, NumberUnitFormat} from './modules/functions.js';
+import {
+    inactiveButton, activeButton, enableItem,
+    disableItem, showItem, hideItem, powerUp,
+    showPoints, NumberUnitFormat
+} from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
-
-import { fight } from './modules/fight.js'
-// import { heroesLocal } from './modules/localStorage.js';
-
-// import { heroesLocal } from './modules/localStorage.js';
-
-let heroismo = '';
 
 async function load() {
     let loadCharacters = await import('./modules/localStorage.js');
@@ -31,7 +26,7 @@ const saveButton = document.getElementById('save');
 const heroesList = document.querySelectorAll('[data-heroes]');
 const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
-const achievements = {level: {}};
+const achievements = { level: {} };
 
 let volume = document.getElementById('volume');
 let power = 1;
@@ -39,6 +34,11 @@ let points = 1;
 let timestamp = 1000;
 
 if (localStorage.getItem('points')) {
+    points = Number(localStorage.getItem('points'));
+} else {
+    points = 1;
+}
+
 for (let character in characters) {
     if (character == 'heroes') {
         for (let hero in characters[character]) {
@@ -64,12 +64,12 @@ function addAchiement(heroId, achieved) {
 }
 
 firstButton.addEventListener('click', () => {
-    plus(1*power);
-    showPoints(points, 'box')
+    plus(1 * power);
+    showPoints(points, 'box');
 })
 secondButton.addEventListener('click', () => {
-    plus(99999999*power);
-    showPoints(points, 'box')
+    plus(99999999 * power);
+    showPoints(points, 'box');
 })
 
 function levelAchievements(first, last, step = 10) {
@@ -80,7 +80,7 @@ function levelAchievements(first, last, step = 10) {
 
 for (const hero in heroesList) {
     if (Object.hasOwnProperty.call(heroesList, hero)) {
-        
+
         const heroId = heroesList[hero].dataset.heroes;
         const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`);
@@ -92,7 +92,7 @@ for (const hero in heroesList) {
         const heroCardHpBar = document.querySelector(`[data-heroes-card-hp-bar="${heroId}"]`);
         const heroCardAtk = document.querySelector(`[data-heroes-card-atk="${heroId}"]`);
         const heroCardDef = document.querySelector(`[data-heroes-card-def="${heroId}"]`);
-        
+
         heroName.innerText = heroes[heroId].name;
         heroCardName.innerText = heroes[heroId].name;
         heroCardAtk.innerText = heroes[heroId].atk;
@@ -106,13 +106,15 @@ for (const hero in heroesList) {
         heroCardHpBar.innerText = heroes[heroId].hp;
 
         heroCardThumb.src = heroes[heroId].thumbnail;
-        
+
         heroes[heroId].update(heroLevel, heroCost);
 
         heroesList[hero].addEventListener('click', () => {
-            if(heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
+            if (heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
                 let up = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
                 achievementsLoop();
+
+                [power, points] = up;
 
                 saveHeroes(heroId);
                 savePoints();
@@ -134,7 +136,7 @@ function plus(value) {
 const closeButtons = document.querySelectorAll('.settings-close-button');
 
 closeButtons.forEach(button => {
-    button.addEventListener('click', () =>{
+    button.addEventListener('click', () => {
         const menu = button.parentElement.parentElement.dataset.content
         hideItem(menu);
     });
@@ -144,10 +146,10 @@ const closeMenuButtons = document.querySelectorAll('[data-close-button]');
 
 closeMenuButtons.forEach(button => {
     button.addEventListener('click', () => {
-        const content = button.dataset.closeButton
+        const content = button.dataset.closeButton;
         const menuToClose = document.querySelector(`[data-content="${content}"]`);
-        menuToClose.classList.toggle('show')
-        menuToClose.classList.toggle(`${content}-md`)
+        menuToClose.classList.toggle('show');
+        menuToClose.classList.toggle(`${content}-md`);
     });
 });
 
@@ -169,17 +171,16 @@ menuItems.forEach(item => {
                 menu.classList.toggle(`${value}-md`);
                 menu.classList.toggle('show');
                 break;
-            
         }
     });
 });
 
 musicButtons.forEach(button => {
-    button.addEventListener('click', ()=> {
+    button.addEventListener('click', () => {
         const value = button.dataset.music;
         inactiveButton(value, volume);
         activeButton(value);
-        
+
         if (value == 'off') {
             disableItem(volume);
             inactiveButton('on', volume)
@@ -194,10 +195,10 @@ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]
 
 const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
     const hero = tooltipTriggerEl.dataset.heroes;
-    
+
     new bootstrap.Tooltip(tooltipTriggerEl)
-    tooltipTriggerEl.setAttribute('data-bs-title', 
-    `<h3>${heroes[hero].name}</h3>
+    tooltipTriggerEl.setAttribute('data-bs-title',
+        `<h3>${heroes[hero].name}</h3>
     <p>Increases gain points in: ${heroes[hero].given_power}`
     );
     bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
@@ -221,11 +222,11 @@ const alert = (title, hero, message, type) => {
         '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
         '</div>'
     ].join('');
-    
+
     alertPlaceholder.append(notification);
 
     return new Promise(resolve => (
-        setTimeout(() =>{
+        setTimeout(() => {
             resolve(notification.remove())
         }, 5000)
     ))
@@ -237,13 +238,13 @@ function achievementsLoop() {
 
             for (let level in achievements[achievement]) {
                 if (heroes[hero].level >= level && !achievements[achievement][level].getAchieved(heroes[hero].name)) {
-                    
+
                     heroes[hero].gainAchievement(achievements[achievement][level].name);
                     achievements[achievement][level].setAchieved(heroes[hero].name);
-    
+
                     addAchiement(hero, level);
                     newActivity(feed, `${heroes[hero].name} ${achievements[achievement][level].message}`)
-                    
+
                     // alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, 'success');
                 }
             }
@@ -251,7 +252,7 @@ function achievementsLoop() {
     }
     return new Promise(resolve => {
         setTimeout(() => {
-          resolve();
+            resolve();
         }, 200);
     });
 }
@@ -259,6 +260,7 @@ function achievementsLoop() {
 function savePoints() {
     let localPoints = localStorage.setItem('points', points);
 }
+
 function saveHeroes(hero) {
     let localChars = localStorage.getItem("characters");
     let Chars = JSON.parse(localChars);
