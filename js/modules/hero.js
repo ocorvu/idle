@@ -13,7 +13,7 @@ class Hero extends Character {
         this.achievements = [];
     }
     greet() {
-        return `Name: ${this.name} - Power: ${this.power} - Given Power: ${this.given_power} - Level: ${this.level} - Base cost: ${this.base_cost} - Cost increase: ${this.cost_increase} - Achievements: ${this.achievements}`
+        return `Name: ${this.name} - Power: ${this.power} - Given Power: ${this.given_power} - Level: ${this.level} - Base cost: ${this.base_cost} - Cost increase: ${this.cost_increase} - Achievements: ${this.achievements}`;
     }
     self() {
        return {
@@ -24,7 +24,7 @@ class Hero extends Character {
         "base_cost": this.base_cost,
         "cost_increase": this.cost_increase,
         "achievements" : this.achievements,
-        }
+        };
     }
     levelUp(){
         if (this.level < this.max_level){
@@ -32,9 +32,9 @@ class Hero extends Character {
             this.given_power += this.power;
             this.base_cost = Math.floor(this.base_cost * this.cost_increase);
 
-            return `${this.name} is now at level ${this.level}`
+            return `${this.name} is now at level ${this.level}`;
         } else {
-            window.alert(`${this.name} is at Max Level (${this.max_level})`)
+            window.alert(`${this.name} is at Max Level (${this.max_level})`);
         }
     }
     update(level, cost) {
@@ -46,13 +46,12 @@ class Hero extends Character {
     }
     canExist(requirement) {
         if (this.name == 'Meuso') {
-            return true
+            return true;
         }
         if (requirement.level >= 10) {
-            console.log(this.name + ' is ready!')
-            return true
+            return true;
         } else {
-            window.alert(requirement.name + ' isnt level 10.')
+            window.alert(requirement.name + ' isnt level 10.');
         }
     }
     gainAchievement(achievement) {
@@ -62,7 +61,7 @@ class Hero extends Character {
         return this.achievements;
     }
     getRequirement() {
-        return this.require
+        return this.require;
     }
 }
 
