@@ -97,6 +97,7 @@ for (const hero in heroesList) {
                 let up = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
                 achievementsLoop();
 
+                saveHeroes(heroId);
                 savePoints();
             }
         })
@@ -240,6 +241,18 @@ function achievementsLoop() {
 
 function savePoints() {
     let localPoints = localStorage.setItem('points', points);
+}
+function saveHeroes(hero) {
+    let localChars = localStorage.getItem("characters");
+    let Chars = JSON.parse(localChars);
+
+    let obj = '';
+
+    obj = Object.assign(Chars.heroes, {
+        [hero]: heroes[hero]
+    })
+
+    let saveHero = localStorage.setItem('characters', JSON.stringify(Chars));
 }
 
 saveButton.addEventListener('click', () => {
