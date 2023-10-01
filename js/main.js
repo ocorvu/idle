@@ -244,7 +244,7 @@ function achievementsLoop() {
                     addAchiement(hero, level);
                     newActivity(feed, `${heroes[hero].name} ${achievements[achievement][level].message}`)
                     
-                    alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, 'success');
+                    // alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, 'success');
                 }
             }
         }
