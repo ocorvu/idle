@@ -1,14 +1,16 @@
-class Hero{
-    constructor(name, power, base_cost, cost_increase, require) {
-        this.name = name;
+import { Character } from "./character.js";
+
+class Hero extends Character {
+    constructor(name, hp, atk, def, thumbnail, level, power, given_power, base_cost, cost_increase, require) {
+        super(name, hp, atk, def, thumbnail);
         this.require = require;
-        this.power = power
-        this.given_power = 0
-        this.level = 0
-        this.max_level = 100
-        this.base_cost = base_cost
-        this.cost_increase = cost_increase
-        this.achievements = []
+        this.power = power;
+        this.given_power = given_power;
+        this.level = level;
+        this.max_level = 100;
+        this.base_cost = base_cost;
+        this.cost_increase = cost_increase;
+        this.achievements = [];
     }
     greet() {
         return `Name: ${this.name} - Power: ${this.power} - Given Power: ${this.given_power} - Level: ${this.level} - Base cost: ${this.base_cost} - Cost increase: ${this.cost_increase} - Achievements: ${this.achievements}`
