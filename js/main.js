@@ -97,7 +97,7 @@ for (const hero in heroesList) {
                 let up = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
                 achievementsLoop();
 
-                [power, points] = up
+                savePoints();
             }
         })
         heroesList[hero].addEventListener('mouseenter', () => {
@@ -238,13 +238,13 @@ function achievementsLoop() {
     });
 }
 
-function save() {
+function savePoints() {
     let localPoints = localStorage.setItem('points', points);
 }
 
 saveButton.addEventListener('click', () => {
     const saveMessage = document.getElementById('saveMessage');
-    save();
+    savePoints();
     saveMessage.classList.remove('hide');
 
     return new Promise(resolve => {
