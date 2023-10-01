@@ -1,4 +1,5 @@
 import { Character } from './character.js';
+import { Hero } from './hero.js';
 
 import data from '../../data/characters.json' assert { type: 'json' };
 
@@ -6,7 +7,7 @@ const heroesLocal = []
 const enemiesLocal = []
 
 data.heroes.forEach(hero => {
-    heroesLocal[hero.name.toLocaleLowerCase()] = new Character(hero.name, hero.hp, hero.atk, hero.def, hero.thumbnail)
+    heroesLocal[hero.name.toLocaleLowerCase()] = new Hero(hero.name, hero.hp, hero.atk, hero.def, hero.thumbnail, hero.level, hero.power, hero.given_power, hero.base_cost, hero.cost_increase, hero.require);
 });
 
 data.enemies.forEach(enemie => {
