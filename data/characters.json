@@ -5,35 +5,65 @@
             "hp": 100,
             "atk": 100,
             "def": 10,
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE",
+            "power": 3,
+            "given_power": 0,
+            "level": 0,
+            "base_cost": 10,
+            "cost_increase": 1.22,
+            "require": ""
         },
         {
             "name": "Kaom",
             "hp": 100,
             "atk": 30,
             "def": 10,
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE",
+            "power": 10,
+            "given_power": 0,
+            "level": 0,
+            "base_cost": 200,
+            "cost_increase": 3,
+            "require": "meuso"
         },
         {
             "name": "Rebento",
             "hp": 100,
-            "atk": 30,
+            "atk": 99,
             "def": 10,
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE",
+            "power": 7,
+            "given_power": 0,
+            "level": 0,
+            "base_cost": 150,
+            "cost_increase": 1.65,
+            "require": "kaom"
         },
         {
             "name": "BrineKing",
             "hp": 100,
-            "atk": 30,
+            "atk": 88,
             "def": 10,
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE",
+            "power": 6,
+            "given_power": 0,
+            "level": 0,
+            "base_cost": 100,
+            "cost_increase": 1.7,
+            "require": "rebento"
         },
         {
             "name": "Shadow",
             "hp": 100,
-            "atk": 30,
+            "atk": 666,
             "def": 10,
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqgTT0DAYR_n4XWmpK80ZMgbWy35bvcHkNQ&usqp=CAU"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE",
+            "power": 10,
+            "given_power": 0,
+            "level": 0,
+            "base_cost": 500,
+            "cost_increase": 1.3,
+            "require": "brineking"
         }
     ],
     "enemies": [
@@ -42,21 +72,21 @@
             "hp": 1000,
             "atk": 30,
             "def": 100,
-            "thumbnail": "https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
         },
         {
             "name": "Dunha",
             "hp": 1,
             "atk": 1000000,
             "def": 1,
-            "thumbnail": "https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
         },
         {
             "name": "ManoBri",
             "hp": 300,
             "atk": 100,
             "def": 20,
-            "thumbnail": "https://i.pinimg.com/originals/3c/cc/7f/3ccc7f2b3b3e4473a4831c65d5158d22.png"
+            "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
         }
     ]
 }
