@@ -16,8 +16,8 @@ async function load() {
     let loadCharacters = await import('./modules/localStorage.js');
 }
 
-if(!localStorage.getItem('characters')) {
-    load()
+if (localStorage.getItem('characters') == null) {
+    await load();
 }
 
 let characters = JSON.parse(localStorage.getItem('characters'));
