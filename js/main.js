@@ -39,16 +39,14 @@ let points = 1;
 let timestamp = 1000;
 
 if (localStorage.getItem('points')) {
-    points = Number(localStorage.getItem('points'))
-} else{
-    points = 1
+for (let character in characters) {
+    if (character == 'heroes') {
+        for (let hero in characters[character]) {
+            const h = characters[character][hero];
+            heroes[hero] = new Hero(h.name, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
+        }
+    }
 }
-
-heroes['hero1'] = new Hero('Meuso', 3, 10, 1.22, '');
-heroes['hero2'] = new Hero('Rebento', 10, 200, 3, 'hero1');
-heroes['hero3'] = new Hero('Kaom', 7, 150, 1.65, 'hero2');
-heroes['hero4'] = new Hero('Brine King', 6, 100, 1.7, 'hero3');
-heroes['hero5'] = new Hero('Shadow', 10, 500, 1.3, 'hero4');
 
 levelAchievements(10, 100);
 
