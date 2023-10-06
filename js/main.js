@@ -110,14 +110,23 @@ for (const hero in heroesList) {
         heroCardThumb.src = heroes[heroId].thumbnail;
 
         heroes[heroId].update(heroLevel, heroCost);
+        if (heroes[heroId].level > 0) {
+            const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
+            heroCard.classList.remove('hide');
+            heroCard.classList.add('card', 'hero-card-border')
+        }
 
         heroesList[hero].addEventListener('click', () => {
             if (heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
                 let up = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
                 achievementsLoop();
-
+                if (heroes[heroId].level > 0) {
+                    const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
+                    heroCard.classList.remove('hide');
+                    heroCard.classList.add('card', 'hero-card-border')
+                }
                 [power, points] = up;
-
+                
                 saveHeroes(heroId);
                 savePoints();
             }
