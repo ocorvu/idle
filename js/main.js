@@ -24,6 +24,8 @@ const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
 const saveButton = document.getElementById('save');
 const heroesList = document.querySelectorAll('[data-heroes]');
+const enemiesList = document.querySelectorAll('[data-enemies]');
+const targets = document.querySelectorAll('[data-enemie-target]');
 const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
 const achievements = { level: {} };
@@ -152,6 +154,17 @@ closeMenuButtons.forEach(button => {
         menuToClose.classList.toggle(`${content}-md`);
     });
 });
+
+targets.forEach(target => {
+    target.addEventListener('click', () => {
+        target.classList.toggle('target');
+
+        let filteredTargets = [...targets].filter((t) => t.classList.contains('target') && t != target);
+        filteredTargets.forEach(filteredTarget => {
+            filteredTarget.classList.toggle('target');
+        })
+    })
+})
 
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
