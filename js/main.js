@@ -23,6 +23,7 @@ const menuItems = document.querySelectorAll('[data-button]');
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
 const saveButton = document.getElementById('save');
+const clearLocalStorageButton = document.getElementById('limpaCache');
 const heroesList = document.querySelectorAll('[data-heroes]');
 const enemiesList = document.querySelectorAll('[data-enemies]');
 const targets = document.querySelectorAll('[data-enemie-target]');
@@ -307,6 +308,21 @@ saveButton.addEventListener('click', () => {
         }, 3000);
     });
 });
+
+clearLocalStorageButton.addEventListener ('click', () => {
+    const clearLocalStorageMessage = document.getElementById('limpaCacheMessage');
+    localStorage.clear();
+    clearLocalStorageMessage.classList.remove('hide');
+
+    return new Promise(resolve => {
+        setTimeout (() => {
+            resolve(
+                clearLocalStorageMessage.classList.add('hide'), 
+                location.reload()
+            );
+        }, 3000);
+    })
+})
 
 function pointsLoop() {
     return new Promise(resolve => {
