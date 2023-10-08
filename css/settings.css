@@ -51,19 +51,21 @@
     margin-left: 0.5rem;
 }
 
-.settings-save, .settings-volume > p {
+.settings-save {
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
-.settings-save #saveMessage {
+.settings-save > section {
+    display: flex;
+    padding: 0.125rem 0;
+}
+
+#saveMessage, 
+#limpaCacheMessage {
     margin-left: 0.5rem;
     color: forestgreen;
     font-weight: bold;
-}
-
-#volume {
-    margin-left: 0.5rem;
 }
 
 .settings-music-button-active {
