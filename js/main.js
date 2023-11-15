@@ -31,6 +31,34 @@ const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
 const achievements = { level: {} };
 
+
+
+const alert = (title, hero, message, type) => {
+    const alertPlaceholder = document.getElementById('alertPlaceHolder');
+    const notification = document.createElement('article');
+    notification.classList.add('alertBox');
+    
+    notification.innerHTML = [
+        '<section class="alertBody" class="alertTile">',
+        `<h4 class="alertTitle">${title}</h4>`,
+        `<p>${hero} ${message}</p>`,
+        '</section>',
+        '<button type="button" id="closeAlert" class="close">X</button>',
+    ].join('');
+
+    alertPlaceholder.append(notification);
+    const alertCloseButton = document.getElementById('closeAlert');
+
+    alertCloseButton.addEventListener('click',  () => {
+        notification.remove();
+    })
+
+    return new Promise(resolve => (
+        setTimeout(() => {
+            resolve(notification.remove());
+        }, 10000)
+    ))
+}
 let volume = document.getElementById('volume');
 let power = 1;
 let points = 1;
@@ -129,7 +157,7 @@ for (const hero in heroesList) {
                     heroCard.classList.add('card', 'hero-card-border')
                 }
                 [power, points] = up;
-                
+
                 saveHeroes(heroId);
                 savePoints();
             }
@@ -236,26 +264,6 @@ const tooltipDestroy = () => {
     })
 }
 
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
-
-const alert = (title, hero, message, type) => {
-    const notification = document.createElement('div');
-    notification.innerHTML = [
-        `   <div class="alert alert-${type} alert-dismissible" role="alert">`,
-        `   <h4>${title}</h4>`,
-        `   <div>${hero} ${message}</div>`,
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-        '</div>'
-    ].join('');
-
-    alertPlaceholder.append(notification);
-
-    return new Promise(resolve => (
-        setTimeout(() => {
-            resolve(notification.remove())
-        }, 5000)
-    ))
-}
 
 function achievementsLoop() {
     for (const hero in heroes) {
@@ -270,7 +278,7 @@ function achievementsLoop() {
                     addAchiement(hero, level);
                     newActivity(feed, `${heroes[hero].name} ${achievements[achievement][level].message}`)
 
-                    // alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, 'success');
+                    alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, '');
                 }
             }
         }
@@ -291,7 +299,6 @@ function saveHeroes(hero) {
     let Chars = JSON.parse(localChars);
 
     let obj = '';
-
     obj = Object.assign(Chars.heroes, {
         [hero]: heroes[hero]
     })
@@ -319,7 +326,7 @@ clearLocalStorageButton.addEventListener ('click', () => {
     return new Promise(resolve => {
         setTimeout (() => {
             resolve(
-                clearLocalStorageMessage.classList.add('hide'), 
+                clearLocalStorageMessage.classList.add('hide'),
                 location.reload()
             );
         }, 3000);
