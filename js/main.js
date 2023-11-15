@@ -115,7 +115,9 @@ for (const hero in heroesList) {
             const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
             heroCard.classList.remove('hide');
             heroCard.classList.add('card', 'hero-card-border')
+
         }
+        achievementsLoop();
 
         heroesList[hero].addEventListener('click', () => {
             if (heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
