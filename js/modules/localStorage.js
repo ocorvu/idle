@@ -14,7 +14,7 @@ async function requestData(path) {
     return obj
   }
   
-const data = await requestData('../../data/characters.json');
+const data = await requestData("data/characters.json");
 
 data.heroes.forEach(hero => {
     heroesLocal[hero.name.toLocaleLowerCase()] = new Hero(hero.name, hero.hp, hero.atk, hero.def, hero.thumbnail, hero.level, hero.power, hero.given_power, hero.base_cost, hero.cost_increase, hero.require);
