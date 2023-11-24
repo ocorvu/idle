@@ -1,19 +1,15 @@
-function dateMinutesSeconds() {
+function date() {
     const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1
-    const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
+    const day = date.toLocaleDateString();
+    const time = date.toLocaleTimeString();
 
-    return `[${day}/${month}/${year} ${hours}:${minutes}:${seconds}] `;
+    return `[${day} ${time}] `;
 }
 
 function newActivity(feed, activity) {
     const paragraph = document.createElement('p');
 
-    paragraph.innerText = `${dateMinutesSeconds()} ${activity}`;
+    paragraph.innerText = `${date()} ${activity}`;
     paragraph.classList.add('activity');
 
     feed.prepend(paragraph);
