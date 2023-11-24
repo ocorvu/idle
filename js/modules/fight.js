@@ -6,14 +6,18 @@ let miss = [];
 function resetRound() {
     round = 1;
 }
+
+function showHp(attacker, defender) {
+    return `${attacker.name} hp: ${attacker.hp} | ${defender.name} hp: ${defender.hp} `;
 }
 
 function successfulAttack(attacker, defender, damage) {
-    console.log(attacker.name, 'ataca', defender.name, 'e causa', damage, 'de dano.');
+    return `${attacker.name} ataca ${defender.name} e causa ${damage} de dano`;
 }
 
 function missedAttack(attacker, defender) {
-    console.log(attacker.name, ' tenta atacar', defender.name , 'e erra!')
+    return `${attacker.name} tenta atacar ${defender.name} e erra!`;
+}
 }
 
 function fight(attacker, defender) {
