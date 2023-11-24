@@ -1,5 +1,3 @@
-
-
 let round = 1;
 let miss = [];
 
@@ -18,6 +16,7 @@ function successfulAttack(attacker, defender, damage) {
 function missedAttack(attacker, defender) {
     return `${attacker.name} tenta atacar ${defender.name} e erra!`;
 }
+
 function battleLog(message, feed) {
     const log = document.createElement('p');
 
@@ -28,52 +27,56 @@ function battleLog(message, feed) {
     feed.insertBefore(log, footer);
 }
 
-function fight(attacker, defender) {
+function fight(attacker, defender, feed) {
     var probability = function(n) {
         return !!n && Math.random() <= n;
     };
 
-    const damage = attacker.atk * 1.5 - defender.def;
+    let damage = attacker.atk * 1.5 - defender.def;
+
+    if (damage < 0) {
+        damage = 0
+    }
 
     while (defender.hp > 0 && attacker.hp && round < 6) {
         const hit = probability(0.7);
-        console.log(`----Round: ${round}----`);
-
+        battleLog(`----Round: ${round}----`, feed);
+        
         if (hit) {
             if (damage > defender.hp) {
                 defender.hp = 0;
-                round = 1;
-    
-                showHp(attacker, defender);
-    
+                battleLog(successfulAttack(attacker, defender, damage), feed);
+                battleLog(showHp(attacker, defender), feed);
+                battleLog(`${defender.name} morreu!`, feed);
                 break
             }
-            successfulAttack(attacker, defender, damage);
+
+            battleLog(successfulAttack(attacker, defender, damage), feed);
 
             defender.hp -= damage;
             miss = [];
 
-            showHp(attacker, defender);
+            battleLog(showHp(attacker, defender), feed);
             
         } else {
-            missedAttack(attacker, defender);
+            battleLog(missedAttack(attacker, defender), feed);
 
             miss.push(attacker.name);
 
-            console.log("Quem já errou nesse round?", miss);
+            // battleLog(`"Quem já errou nesse round?", ${miss}`, feed);
 
             if (miss.length >= 2) {
-                   console.log(`----Termina o round ${round}----`)
-                   round +=1;
+                   battleLog(`----Termina o round ${round}----`, feed)
+                   round += 1;
                    miss = [];
                    continue;
             }
 
-            fight(defender, attacker)
+            fight(defender, attacker, feed)
         }
         round += 1;
     }
 }
 
 
-export {round, miss, fight}
+export {fight, resetRound}
