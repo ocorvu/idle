@@ -6,6 +6,8 @@ import {
     showPoints, NumberUnitFormat
 } from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
+import { Character } from './modules/character.js';
+import { fight, resetRound } from './modules/fight.js';
 
 async function load() {
     let loadCharacters = await import('./modules/localStorage.js');
@@ -29,8 +31,8 @@ const enemiesList = document.querySelectorAll('[data-enemies]');
 const targets = document.querySelectorAll('[data-enemie-target]');
 const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
+const enemies = {};
 const achievements = { level: {} };
-
 
 
 const alert = (title, hero, message, type) => {
@@ -75,6 +77,13 @@ for (let character in characters) {
         for (let hero in characters[character]) {
             const h = characters[character][hero];
             heroes[hero] = new Hero(h.name, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
+        }
+    }
+    if (character == 'enemies') {
+        for (let enemie in characters[character]) {
+            const e = characters[character][enemie];
+            
+            enemies[enemie] = new Character(e.name, e.hp, e.atk, e.def, e.thumbnail)
         }
     }
 }
@@ -195,9 +204,13 @@ closeMenuButtons.forEach(button => {
     });
 });
 
+let currentTarget = '';
+
 targets.forEach(target => {
     target.addEventListener('click', () => {
         target.classList.toggle('target');
+
+        currentTarget = target.dataset.enemieTarget;
 
         let filteredTargets = [...targets].filter((t) => t.classList.contains('target') && t != target);
         filteredTargets.forEach(filteredTarget => {
@@ -205,6 +218,53 @@ targets.forEach(target => {
         })
     })
 })
+
+
+const battleFeed = document.getElementById('battle-feed');
+const attackButton = document.querySelectorAll("[data-button-attack]");
+
+const battleFeedCloseButton = document.getElementById('battle-feed-close-button');
+battleFeedCloseButton.addEventListener('click', () => {
+    battleFeed.querySelectorAll('p').forEach(n => n.remove());
+    battleFeed.close();
+});
+
+attackButton.forEach(button => {
+    button.addEventListener('click', () => {
+        battleFeed.showModal()
+        let attacker = button.dataset.buttonAttack
+        let defender = currentTarget
+
+        if (heroes[attacker].hp > 0) {
+            fight(heroes[attacker], enemies[defender], battleFeed);
+            resetRound();
+        }
+        
+        const heroName = document.querySelector(`[data-heroes-name="${attacker}"]`);
+        const heroCardThumb = document.querySelector(`[data-heroes-card-thumb="${attacker}"]`);
+        const heroCardName = document.querySelector(`[data-heroes-card-name="${attacker}"]`);
+        const heroCardHp = document.querySelector(`[data-heroes-card-hp="${attacker}"]`);
+        const heroCardTotalHp = document.querySelector(`[data-heroes-card-total-hp="${attacker}"]`);
+        const heroCardHpBar = document.querySelector(`[data-heroes-card-hp-bar="${attacker}"]`);
+        const heroCardAtk = document.querySelector(`[data-heroes-card-atk="${attacker}"]`);
+        const heroCardDef = document.querySelector(`[data-heroes-card-def="${attacker}"]`);
+
+        heroName.innerText = heroes[attacker].name;
+        heroCardName.innerText = heroes[attacker].name;
+        heroCardAtk.innerText = heroes[attacker].atk;
+        heroCardDef.innerText = heroes[attacker].def;
+
+        heroCardHp.innerText = heroes[attacker].hp;
+        heroCardTotalHp.innerText = heroes[attacker].totalHp;
+
+        heroCardHpBar.value = heroes[attacker].hp;
+        heroCardHpBar.max = heroes[attacker].totalHp;
+        heroCardHpBar.innerText = heroes[attacker].hp;
+
+        heroCardThumb.src = heroes[attacker].thumbnail;
+    })
+})
+
 
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
