@@ -18,6 +18,14 @@ function successfulAttack(attacker, defender, damage) {
 function missedAttack(attacker, defender) {
     return `${attacker.name} tenta atacar ${defender.name} e erra!`;
 }
+function battleLog(message, feed) {
+    const log = document.createElement('p');
+
+    const footer = document.getElementById('battle-feed-close-button').parentNode;
+
+    log.innerText= message;
+
+    feed.insertBefore(log, footer);
 }
 
 function fight(attacker, defender) {
