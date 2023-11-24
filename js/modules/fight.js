@@ -3,10 +3,9 @@
 let round = 1;
 let miss = [];
 
-function showHp(...characters) {
-    characters.forEach(character => {
-        console.log(character.name, 'hp:', character.hp)
-    });
+function resetRound() {
+    round = 1;
+}
 }
 
 function successfulAttack(attacker, defender, damage) {
