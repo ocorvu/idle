@@ -367,6 +367,18 @@ function saveHeroes(hero) {
     let saveHero = localStorage.setItem('characters', JSON.stringify(Chars));
 }
 
+function saveEnemies(enemie) {
+    let localChars = localStorage.getItem("characters");
+    let Chars = JSON.parse(localChars);
+
+    let obj = '';
+    obj = Object.assign(Chars.enemies, {
+        [enemie]: enemies[enemie]
+    })
+
+    let saveEnemie = localStorage.setItem('characters', JSON.stringify(Chars));
+}
+
 saveButton.addEventListener('click', () => {
     const saveMessage = document.getElementById('saveMessage');
     savePoints();
