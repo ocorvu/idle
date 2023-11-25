@@ -39,7 +39,7 @@ const alert = (title, hero, message, type) => {
     const alertPlaceholder = document.getElementById('alertPlaceHolder');
     const notification = document.createElement('article');
     notification.classList.add('alertBox');
-    
+
     notification.innerHTML = [
         '<section class="alertBody" class="alertTile">',
         `<h4 class="alertTitle">${title}</h4>`,
@@ -51,7 +51,7 @@ const alert = (title, hero, message, type) => {
     alertPlaceholder.append(notification);
     const alertCloseButton = document.getElementById('closeAlert');
 
-    alertCloseButton.addEventListener('click',  () => {
+    alertCloseButton.addEventListener('click', () => {
         notification.remove();
     })
 
@@ -82,7 +82,8 @@ for (let character in characters) {
     if (character == 'enemies') {
         for (let enemie in characters[character]) {
             const e = characters[character][enemie];
-            
+
+            enemies[enemie] = new Character(e.name, e.totalHp, e.hp, e.atk, e.def, e.thumbnail);
 
             syncEnemieCard(enemie);
         }
@@ -175,35 +176,18 @@ for (const hero in heroesList) {
         const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`);
         const heroLevel = document.querySelector(`[data-heroes-level="${heroId}"]`);
-        const heroCardThumb = document.querySelector(`[data-heroes-card-thumb="${heroId}"]`);
-        const heroCardName = document.querySelector(`[data-heroes-card-name="${heroId}"]`);
-        const heroCardHp = document.querySelector(`[data-heroes-card-hp="${heroId}"]`);
-        const heroCardTotalHp = document.querySelector(`[data-heroes-card-total-hp="${heroId}"]`);
-        const heroCardHpBar = document.querySelector(`[data-heroes-card-hp-bar="${heroId}"]`);
-        const heroCardAtk = document.querySelector(`[data-heroes-card-atk="${heroId}"]`);
-        const heroCardDef = document.querySelector(`[data-heroes-card-def="${heroId}"]`);
 
         heroName.innerText = heroes[heroId].name;
-        heroCardName.innerText = heroes[heroId].name;
-        heroCardAtk.innerText = heroes[heroId].atk;
-        heroCardDef.innerText = heroes[heroId].def;
-
-        heroCardHp.innerText = heroes[heroId].hp;
-        heroCardTotalHp.innerText = heroes[heroId].totalHp;
-
-        heroCardHpBar.value = heroes[heroId].hp;
-        heroCardHpBar.max = heroes[heroId].totalHp;
-        heroCardHpBar.innerText = heroes[heroId].hp;
-
-        heroCardThumb.src = heroes[heroId].thumbnail;
 
         heroes[heroId].update(heroLevel, heroCost);
+
         if (heroes[heroId].level > 0) {
             const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
-            heroCard.classList.remove('hide');
-            heroCard.classList.add('card', 'hero-card-border')
 
+            heroCard.classList.remove('hide');
+            heroCard.classList.add('card', 'hero-card-border');
         }
+
         achievementsLoop();
 
         heroesList[hero].addEventListener('click', () => {
@@ -269,7 +253,6 @@ targets.forEach(target => {
     })
 })
 
-
 const battleFeed = document.getElementById('battle-feed');
 const attackButton = document.querySelectorAll("[data-button-attack]");
 
@@ -281,9 +264,9 @@ battleFeedCloseButton.addEventListener('click', () => {
 
 attackButton.forEach(button => {
     button.addEventListener('click', () => {
-        battleFeed.showModal()
-        let attacker = button.dataset.buttonAttack
-        let defender = currentTarget
+        battleFeed.showModal();
+        let attacker = button.dataset.buttonAttack;
+        let defender = currentTarget;
 
         if (heroes[attacker].hp > 0) {
             fight(heroes[attacker], enemies[defender], battleFeed);
@@ -422,13 +405,13 @@ saveButton.addEventListener('click', () => {
     });
 });
 
-clearLocalStorageButton.addEventListener ('click', () => {
+clearLocalStorageButton.addEventListener('click', () => {
     const clearLocalStorageMessage = document.getElementById('limpaCacheMessage');
     localStorage.clear();
     clearLocalStorageMessage.classList.remove('hide');
 
     return new Promise(resolve => {
-        setTimeout (() => {
+        setTimeout(() => {
             resolve(
                 clearLocalStorageMessage.classList.add('hide'),
                 location.reload()
