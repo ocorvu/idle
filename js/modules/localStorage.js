@@ -44,5 +44,3 @@ for (let enemie in enemiesLocal) {
 }
 
 let items = localStorage.setItem('characters', JSON.stringify(characters));
-
-export { heroesLocal, enemiesLocal }
