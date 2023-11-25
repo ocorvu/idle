@@ -1,8 +1,8 @@
 import { Character } from "./character.js";
 
 class Hero extends Character {
-    constructor(name, hp, atk, def, thumbnail, level, power, given_power, base_cost, cost_increase, require) {
-        super(name, hp, atk, def, thumbnail);
+    constructor(name, totalHp, hp, atk, def, thumbnail, level, power, given_power, base_cost, cost_increase, require) {
+        super(name, totalHp, hp, atk, def, thumbnail);
         this.require = require;
         this.power = power;
         this.given_power = given_power;

@@ -1,7 +1,7 @@
 class Character {
-    constructor(name, hp = 100, atk, def, thumbnail = '') {
+    constructor(name, totalHp, hp, atk, def, thumbnail = '') {
         this.name = name;
-        this.totalHp = hp;
+        this.totalHp = totalHp;
         this.hp = hp;
         this.atk = atk;
         this.def = def;
