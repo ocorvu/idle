@@ -76,14 +76,14 @@ for (let character in characters) {
     if (character == 'heroes') {
         for (let hero in characters[character]) {
             const h = characters[character][hero];
-            heroes[hero] = new Hero(h.name, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
+            heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
         }
     }
     if (character == 'enemies') {
         for (let enemie in characters[character]) {
             const e = characters[character][enemie];
             
-            enemies[enemie] = new Character(e.name, e.hp, e.atk, e.def, e.thumbnail)
+            enemies[enemie] = new Character(e.name, e.totalHp, e.hp, e.atk, e.def, e.thumbnail)
         }
     }
 }
