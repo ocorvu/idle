@@ -83,7 +83,8 @@ for (let character in characters) {
         for (let enemie in characters[character]) {
             const e = characters[character][enemie];
             
-            enemies[enemie] = new Character(e.name, e.totalHp, e.hp, e.atk, e.def, e.thumbnail)
+
+            syncEnemieCard(enemie);
         }
     }
 }
@@ -118,10 +119,59 @@ function levelAchievements(first, last, step = 10) {
     }
 }
 
+function syncHeroCard(hero) {
+    const heroCardThumb = document.querySelector(`[data-hero-card-thumb="${hero}"]`);
+    const heroCardName = document.querySelector(`[data-hero-card-name="${hero}"]`);
+    const heroCardHp = document.querySelector(`[data-hero-card-hp="${hero}"]`);
+    const heroCardTotalHp = document.querySelector(`[data-hero-card-total-hp="${hero}"]`);
+    const heroCardHpBar = document.querySelector(`[data-hero-card-hp-bar="${hero}"]`);
+    const heroCardAtk = document.querySelector(`[data-hero-card-atk="${hero}"]`);
+    const heroCardDef = document.querySelector(`[data-hero-card-def="${hero}"]`);
+
+    heroCardName.innerText = heroes[hero].name;
+    heroCardAtk.innerText = heroes[hero].atk;
+    heroCardDef.innerText = heroes[hero].def;
+
+    heroCardHp.innerText = heroes[hero].hp;
+    heroCardTotalHp.innerText = heroes[hero].totalHp;
+
+    heroCardHpBar.value = heroes[hero].hp;
+    heroCardHpBar.max = heroes[hero].totalHp;
+    heroCardHpBar.innerText = heroes[hero].hp;
+
+    heroCardThumb.src = heroes[hero].thumbnail;
+}
+
+function syncEnemieCard(enemie) {
+    const enemieCardThumb = document.querySelector(`[data-enemie-card-thumb="${enemie}"]`);
+    const enemieCardName = document.querySelector(`[data-enemie-card-name="${enemie}"]`);
+    const enemieCardHp = document.querySelector(`[data-enemie-card-hp="${enemie}"]`);
+    const enemieCardTotalHp = document.querySelector(`[data-enemie-card-total-hp="${enemie}"]`);
+    const enemieCardHpBar = document.querySelector(`[data-enemie-card-hp-bar="${enemie}"]`);
+    const enemieCardAtk = document.querySelector(`[data-enemie-card-atk="${enemie}"]`);
+    const enemieCardDef = document.querySelector(`[data-enemie-card-def="${enemie}"]`);
+
+    enemieCardName.innerText = enemies[enemie].name;
+    enemieCardAtk.innerText = enemies[enemie].atk;
+    enemieCardDef.innerText = enemies[enemie].def;
+
+    enemieCardHp.innerText = enemies[enemie].hp;
+    enemieCardTotalHp.innerText = enemies[enemie].totalHp;
+
+    enemieCardHpBar.value = enemies[enemie].hp;
+    enemieCardHpBar.max = enemies[enemie].totalHp;
+    enemieCardHpBar.innerText = enemies[enemie].hp;
+
+    enemieCardThumb.src = enemies[enemie].thumbnail;
+}
+
 for (const hero in heroesList) {
     if (Object.hasOwnProperty.call(heroesList, hero)) {
 
         const heroId = heroesList[hero].dataset.heroes;
+
+        syncHeroCard(heroId);
+
         const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`);
         const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`);
         const heroLevel = document.querySelector(`[data-heroes-level="${heroId}"]`);
@@ -239,30 +289,11 @@ attackButton.forEach(button => {
             fight(heroes[attacker], enemies[defender], battleFeed);
             resetRound();
             saveHeroes(attacker);
+            saveEnemies(defender);
         }
-        
-        const heroName = document.querySelector(`[data-heroes-name="${attacker}"]`);
-        const heroCardThumb = document.querySelector(`[data-heroes-card-thumb="${attacker}"]`);
-        const heroCardName = document.querySelector(`[data-heroes-card-name="${attacker}"]`);
-        const heroCardHp = document.querySelector(`[data-heroes-card-hp="${attacker}"]`);
-        const heroCardTotalHp = document.querySelector(`[data-heroes-card-total-hp="${attacker}"]`);
-        const heroCardHpBar = document.querySelector(`[data-heroes-card-hp-bar="${attacker}"]`);
-        const heroCardAtk = document.querySelector(`[data-heroes-card-atk="${attacker}"]`);
-        const heroCardDef = document.querySelector(`[data-heroes-card-def="${attacker}"]`);
 
-        heroName.innerText = heroes[attacker].name;
-        heroCardName.innerText = heroes[attacker].name;
-        heroCardAtk.innerText = heroes[attacker].atk;
-        heroCardDef.innerText = heroes[attacker].def;
-
-        heroCardHp.innerText = heroes[attacker].hp;
-        heroCardTotalHp.innerText = heroes[attacker].totalHp;
-
-        heroCardHpBar.value = heroes[attacker].hp;
-        heroCardHpBar.max = heroes[attacker].totalHp;
-        heroCardHpBar.innerText = heroes[attacker].hp;
-
-        heroCardThumb.src = heroes[attacker].thumbnail;
+        syncHeroCard(attacker);
+        syncEnemieCard(defender);
     })
 })
 
