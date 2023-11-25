@@ -238,6 +238,7 @@ attackButton.forEach(button => {
         if (heroes[attacker].hp > 0) {
             fight(heroes[attacker], enemies[defender], battleFeed);
             resetRound();
+            saveHeroes(attacker);
         }
         
         const heroName = document.querySelector(`[data-heroes-name="${attacker}"]`);
