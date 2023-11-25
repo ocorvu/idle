@@ -76,17 +76,14 @@ for (let character in characters) {
     if (character == 'heroes') {
         for (let hero in characters[character]) {
             const h = characters[character][hero];
-            heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
-            console.log(heroes[hero].totalHp, heroes[hero].hp)
+            heroes[hero] = new Hero(h.name, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
         }
     }
     if (character == 'enemies') {
         for (let enemie in characters[character]) {
             const e = characters[character][enemie];
             
-            enemies[enemie] = new Character(e.name, e.totalHp, e.hp, e.atk, e.def, e.thumbnail)
-
-            console.log(enemies[enemie].name, enemies[enemie].totalHp, enemies[enemie].hp)
+            enemies[enemie] = new Character(e.name, e.hp, e.atk, e.def, e.thumbnail)
         }
     }
 }
@@ -223,7 +220,6 @@ targets.forEach(target => {
 })
 
 
-
 const battleFeed = document.getElementById('battle-feed');
 const attackButton = document.querySelectorAll("[data-button-attack]");
 
@@ -242,7 +238,6 @@ attackButton.forEach(button => {
         if (heroes[attacker].hp > 0) {
             fight(heroes[attacker], enemies[defender], battleFeed);
             resetRound();
-            saveHeroes(attacker);
         }
         
         const heroName = document.querySelector(`[data-heroes-name="${attacker}"]`);
@@ -262,7 +257,6 @@ attackButton.forEach(button => {
         heroCardHp.innerText = heroes[attacker].hp;
         heroCardTotalHp.innerText = heroes[attacker].totalHp;
 
-        console.log(heroes[attacker].hp)
         heroCardHpBar.value = heroes[attacker].hp;
         heroCardHpBar.max = heroes[attacker].totalHp;
         heroCardHpBar.innerText = heroes[attacker].hp;
@@ -361,7 +355,6 @@ function savePoints() {
 }
 
 function saveHeroes(hero) {
-    console.log(heroes[hero])
     let localChars = localStorage.getItem("characters");
     let Chars = JSON.parse(localChars);
 
