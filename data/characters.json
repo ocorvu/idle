@@ -2,6 +2,7 @@
     "heroes": [
         {
             "name": "Meuso",
+            "totalHp": 100,
             "hp": 100,
             "atk": 100,
             "def": 10,
@@ -15,6 +16,7 @@
         },
         {
             "name": "Kaom",
+            "totalHp": 100,
             "hp": 100,
             "atk": 30,
             "def": 10,
@@ -28,6 +30,7 @@
         },
         {
             "name": "Rebento",
+            "totalHp": 100,
             "hp": 100,
             "atk": 99,
             "def": 10,
@@ -41,6 +44,7 @@
         },
         {
             "name": "BrineKing",
+            "totalHp": 100,
             "hp": 100,
             "atk": 88,
             "def": 10,
@@ -54,6 +58,7 @@
         },
         {
             "name": "Shadow",
+            "totalHp": 100,
             "hp": 100,
             "atk": 666,
             "def": 10,
@@ -69,6 +74,7 @@
     "enemies": [
         {
             "name": "Braulio",
+            "totalHp": 1000,
             "hp": 1000,
             "atk": 30,
             "def": 100,
@@ -76,6 +82,7 @@
         },
         {
             "name": "Dunha",
+            "totalHp": 1,
             "hp": 1,
             "atk": 1000000,
             "def": 1,
@@ -83,6 +90,7 @@
         },
         {
             "name": "ManoBri",
+            "totalHp": 300,
             "hp": 300,
             "atk": 100,
             "def": 20,
