@@ -1,5 +1,13 @@
 import { newActivity } from './feed.js'
 
+async function requestData(path) {
+
+    const res = await fetch(path);
+  
+    const data = await res.json();
+  
+    return data;
+}
 
 function showPoints(points, ...params) {
     params.forEach(el => {
@@ -69,4 +77,4 @@ function NumberUnitFormat(number) {
     }).format(number);
 }
 
-export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat }
+export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData }
