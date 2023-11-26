@@ -8,13 +8,10 @@ import {
 import { newActivity } from './modules/feed.js';
 import { Character } from './modules/character.js';
 import { fight, resetRound } from './modules/fight.js';
-
-async function load() {
-    let loadCharacters = await import('./modules/localStorage.js');
-}
+import { load } from './modules/localStorage.js';
 
 if (localStorage.getItem('characters') == null) {
-    await load();
+    await load("data/characters.json");
 }
 
 let characters = JSON.parse(localStorage.getItem('characters'));
