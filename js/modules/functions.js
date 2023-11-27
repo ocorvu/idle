@@ -8,6 +8,7 @@ async function requestData(path) {
   
     return data;
 }
+
 function toggleClass(element, cssClass) {
 
     element.forEach(el => {
@@ -21,9 +22,11 @@ function toggleClass(element, cssClass) {
         });
     });
 }
+
 function hasCssClass(elements, cssClass) {
     return [...elements].filter((button) => button.classList.contains(cssClass))[0];
 }
+
 function getDataAttribute(element, attribute) {
     return element.dataset[attribute];
 }
@@ -96,4 +99,4 @@ function NumberUnitFormat(number) {
     }).format(number);
 }
 
-export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData }
+export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleClass}
