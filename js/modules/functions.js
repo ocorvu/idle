@@ -8,6 +8,19 @@ async function requestData(path) {
   
     return data;
 }
+function toggleClass(element, cssClass) {
+
+    element.forEach(el => {
+        el.addEventListener('click', () => {
+            el.classList.add(cssClass);
+
+            let filteredElements = [...element].filter((e) => e.classList.contains(cssClass) && e != el);
+            filteredElements.forEach(filteredElement => {
+                filteredElement.classList.toggle(cssClass);
+            });
+        });
+    });
+}
 
 function showPoints(points, ...params) {
     params.forEach(el => {
