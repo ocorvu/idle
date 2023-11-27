@@ -50,13 +50,13 @@ const alert = (title, hero, message, type) => {
 
     alertCloseButton.addEventListener('click', () => {
         notification.remove();
-    })
+    });
 
     return new Promise(resolve => (
         setTimeout(() => {
             resolve(notification.remove());
         }, 10000)
-    ))
+    ));
 }
 let volume = document.getElementById('volume');
 let power = 1;
@@ -274,8 +274,8 @@ attackButton.forEach(button => {
 
         syncHeroCard(attacker);
         syncEnemieCard(defender);
-    })
-})
+    });
+});
 
 
 menuItems.forEach(item => {
