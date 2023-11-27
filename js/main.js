@@ -235,25 +235,9 @@ closeMenuButtons.forEach(button => {
     });
 });
 
-let currentTarget = '';
+toggleClass(targets, 'target');
+toggleClass(buyButtons, 'active');
 
-targets.forEach(target => {
-    target.addEventListener('click', () => {
-        target.classList.toggle('target');
-
-        currentTarget = target.dataset.enemieTarget;
-
-        let filteredTargets = [...targets].filter((t) => t.classList.contains('target') && t != target);
-        filteredTargets.forEach(filteredTarget => {
-            filteredTarget.classList.toggle('target');
-        })
-    })
-})
-
-const battleFeed = document.getElementById('battle-feed');
-const attackButton = document.querySelectorAll("[data-button-attack]");
-
-const battleFeedCloseButton = document.getElementById('battle-feed-close-button');
 battleFeedCloseButton.addEventListener('click', () => {
     battleFeed.querySelectorAll('p').forEach(n => n.remove());
     battleFeed.close();
