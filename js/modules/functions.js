@@ -21,6 +21,9 @@ function toggleClass(element, cssClass) {
         });
     });
 }
+function hasCssClass(elements, cssClass) {
+    return [...elements].filter((button) => button.classList.contains(cssClass))[0];
+}
 
 function showPoints(points, ...params) {
     params.forEach(el => {
