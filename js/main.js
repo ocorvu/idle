@@ -241,11 +241,11 @@ battleFeedCloseButton.addEventListener('click', () => {
     battleFeed.close();
 });
 
-attackButton.forEach(button => {
+attackButtons.forEach(button => {
     button.addEventListener('click', () => {
         battleFeed.showModal();
         let attacker = button.dataset.buttonAttack;
-        let defender = currentTarget;
+        let defender = getDataAttribute(hasCssClass(targets, 'target'), 'enemieTarget');
 
         if (heroes[attacker].hp > 0) {
             fight(heroes[attacker], enemies[defender], battleFeed);
