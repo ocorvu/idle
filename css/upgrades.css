@@ -11,17 +11,28 @@
     overflow: hidden;
     max-width: 25%;
     transition: max-width 0.5s ease-in-out;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
-#upgrades-header {
+#upgrades-header-title,
+#upgrades-header-buy {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1.25rem;
 }
 
-h2 > img {
+#upgrades-header-buy-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upgrades-header-buy-list-item {
+    margin: 0 0.125rem;
+}
+
+h2>img {
     vertical-align: middle;
 }
 
