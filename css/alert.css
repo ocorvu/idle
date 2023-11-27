@@ -18,6 +18,10 @@
     background-color: #fff;
 }
 
+#closeAlert {
+    color: #000;
+}
+
 .alertTitle {
     margin: 0;
 }
