@@ -89,17 +89,15 @@ for (let character in characters) {
 
 levelAchievements(10, 100);
 
-function addAchiement(heroId, achieved) {
-    achievementList.forEach(item => {
-        const hero = document.querySelector(`[data-achievement-hero='${heroId}'`);
-        const heroAchievements = hero.childNodes[3];
+function addAchiement(heroName, achieved) {
+    const hero = document.querySelector(`[data-achievement-hero-list='${heroName}'`);
         const achievement = document.createElement('li');
+
         achievement.innerHTML = achieved;
 
         achievement.classList.add('hero-achievement-level');
 
-        heroAchievements.appendChild(achievement);
-    })
+    hero.appendChild(achievement);
 }
 
 firstButton.addEventListener('click', () => {
