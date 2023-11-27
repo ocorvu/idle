@@ -3,7 +3,7 @@ import { Achievement } from './modules/achievements.js';
 import {
     inactiveButton, activeButton, enableItem,
     disableItem, showItem, hideItem, powerUp,
-    showPoints, NumberUnitFormat
+    showPoints, NumberUnitFormat, hasCssClass, getDataAttribute, toggleClass
 } from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 import { Character } from './modules/character.js';
