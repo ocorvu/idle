@@ -21,11 +21,17 @@ const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]');
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const musicButtons = document.querySelectorAll('[data-music]');
+const closeButtons = document.querySelectorAll('.settings-close-button');
+const closeMenuButtons = document.querySelectorAll('[data-close-button]');
 const saveButton = document.getElementById('save');
 const clearLocalStorageButton = document.getElementById('limpaCache');
 const heroesList = document.querySelectorAll('[data-heroes]');
 const enemiesList = document.querySelectorAll('[data-enemies]');
 const targets = document.querySelectorAll('[data-enemie-target]');
+const buyButtons = document.querySelectorAll('[data-buy-option]');
+const battleFeed = document.getElementById('battle-feed');
+const attackButtons = document.querySelectorAll("[data-button-attack]");
+const battleFeedCloseButton = document.getElementById('battle-feed-close-button');
 const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
 const enemies = {};
@@ -91,11 +97,11 @@ levelAchievements(10, 100);
 
 function addAchiement(heroName, achieved) {
     const hero = document.querySelector(`[data-achievement-hero-list='${heroName}'`);
-        const achievement = document.createElement('li');
+    const achievement = document.createElement('li');
 
-        achievement.innerHTML = achieved;
+    achievement.innerHTML = achieved;
 
-        achievement.classList.add('hero-achievement-level');
+    achievement.classList.add('hero-achievement-level');
 
     hero.appendChild(achievement);
 }
@@ -213,16 +219,12 @@ function plus(value) {
     points += value;
 }
 
-const closeButtons = document.querySelectorAll('.settings-close-button');
-
 closeButtons.forEach(button => {
     button.addEventListener('click', () => {
         const menu = button.parentElement.parentElement.dataset.content
         hideItem(menu);
     });
 });
-
-const closeMenuButtons = document.querySelectorAll('[data-close-button]');
 
 closeMenuButtons.forEach(button => {
     button.addEventListener('click', () => {
