@@ -30,11 +30,10 @@ class Hero extends Character {
         "achievements" : this.achievements,
         };
     }
-    levelUp(){
-        if (this.level < this.max_level){
-            this.level += 1;
+    levelUp(points, quantity){
+            this._level += Number(quantity);
             this.given_power += this.power;
-            this.base_cost = Math.floor(this.base_cost * this.cost_increase);
+            this.base_cost = Math.floor(this.base_cost * (this.cost_increase ** (quantity)));
 
             return `${this.name} is now at level ${this.level}`;
         } else {
