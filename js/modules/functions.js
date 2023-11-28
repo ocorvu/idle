@@ -38,11 +38,11 @@ function showPoints(points, ...params) {
     })
 }
 
-function powerUp(e, heroes, points, power, sound, volume) {
-    const hero = heroes[e]
-    if (points >= hero.base_cost) {
-        const heroLevel = document.querySelector(`[data-heroes-level="${e}"]`);
-        const heroCost = document.querySelector(`[data-heroes-cost="${e}"]`);
+function canBuy(cost, points) {
+    return points >= cost;
+}
+
+function syncHeroUprades(heroes, hero, option) {
         const feed = document.getElementById('feed');
 
         points -= hero.base_cost;

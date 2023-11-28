@@ -191,9 +191,7 @@ for (const hero in heroesList) {
 
         achievementsLoop();
 
-        heroesList[hero].addEventListener('click', () => {
-            if (heroes[heroId].canExist(heroes[heroes[heroId].getRequirement()])) {
-                let up = powerUp(heroId, heroes, points, power, notEnoughCash, volume);
+            if (canBuy(cost, points)) {
                 achievementsLoop();
                 if (heroes[heroId].level > 0) {
                     const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
