@@ -43,6 +43,10 @@ class Hero extends Character {
     levelUpMessage() {
         return `${this.name} is now at level ${this._level}`;
     }
+    powerUp(power) {
+        return power += this.power;
+    }
+
     update(level, cost, buyCost) {
         level.innerText = this._level;
         cost.innerText = new Intl.NumberFormat("en-GB", {
