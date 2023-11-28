@@ -43,10 +43,12 @@ class Hero extends Character {
     levelUpMessage() {
         return `${this.name} is now at level ${this._level}`;
     }
+    update(level, cost, buyCost) {
+        level.innerText = this._level;
         cost.innerText = new Intl.NumberFormat("en-GB", {
             notation: "compact",
             compactDisplay: "short",
-        }).format(this.base_cost);        
+        }).format(buyCost);        
     }
     canExist(requirement) {
         if (this.name == 'Meuso') {
