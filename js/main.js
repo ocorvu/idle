@@ -182,7 +182,7 @@ for (const hero in heroesList) {
 
         heroes[heroId].update(heroLevel, heroCost);
 
-        if (heroes[heroId].level > 0) {
+    if (heroes[heroId].exists()) {
             const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
 
             heroCard.classList.remove('hide');
