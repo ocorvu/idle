@@ -167,8 +167,9 @@ function syncEnemieCard(enemie) {
     enemieCardThumb.src = enemies[enemie].thumbnail;
 }
 
-for (const hero in heroesList) {
-    if (Object.hasOwnProperty.call(heroesList, hero)) {
+heroesList.forEach((hero) => {
+
+    const heroId = hero.dataset.heroes;
 
         const heroId = heroesList[hero].dataset.heroes;
 
