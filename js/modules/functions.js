@@ -43,6 +43,17 @@ function canBuy(cost, points) {
 }
 
 function syncHeroUprades(heroes, hero, option) {
+    
+    const heroName = document.querySelector(`[data-heroes-name="${hero}"]`);
+    const heroCost = document.querySelector(`[data-heroes-cost="${hero}"]`);
+    const heroLevel = document.querySelector(`[data-heroes-level="${hero}"]`);
+
+    heroName.innerText = heroes[hero].name;
+    let cost = ten(heroes[hero], option);
+
+    heroes[hero].update(heroLevel, heroCost, cost);
+}
+
         const feed = document.getElementById('feed');
 
         points -= hero.base_cost;
