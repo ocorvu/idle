@@ -33,10 +33,14 @@ class Hero extends Character {
     levelUp(points, quantity){
         if (! this.isAtLevelMax()){
             this._level += Number(quantity);
+
             this.given_power += this.power;
+            
+            points -= this.base_cost;
+
             this.base_cost = Math.floor(this.base_cost * (this.cost_increase ** (quantity)));
 
-            return `${this.name} is now at level ${this.level}`;
+            return [points, this.levelUpMessage()];
         }
             window.alert(`${this.name} is at Max Level (${this.max_level})`);
     }
