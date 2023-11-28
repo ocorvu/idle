@@ -31,6 +31,7 @@ class Hero extends Character {
         };
     }
     levelUp(points, quantity){
+        if (! this.isAtLevelMax()){
             this._level += Number(quantity);
             this.given_power += this.power;
             this.base_cost = Math.floor(this.base_cost * (this.cost_increase ** (quantity)));
@@ -56,6 +57,8 @@ class Hero extends Character {
         } else {
             window.alert(requirement.name + ' isnt level 10.');
         }
+    isAtLevelMax() {
+        return this._level >= this.max_level;
     }
     gainAchievement(achievement) {
         this.achievements.push(achievement);
