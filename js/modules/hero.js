@@ -17,14 +17,14 @@ class Hero extends Character {
         return this._level;
     }
     greet() {
-        return `Name: ${this.name} - Power: ${this.power} - Given Power: ${this.given_power} - Level: ${this.level} - Base cost: ${this.base_cost} - Cost increase: ${this.cost_increase} - Achievements: ${this.achievements}`;
+        return `Name: ${this.name} - Power: ${this.power} - Given Power: ${this.given_power} - Level: ${this._level} - Base cost: ${this.base_cost} - Cost increase: ${this.cost_increase} - Achievements: ${this.achievements}`;
     }
     self() {
        return {
         "name": this.name,
         "power": this.power,
         "given_power": this.given_power,
-        "level": this.level,
+        "level": this._level,
         "base_cost": this.base_cost,
         "cost_increase": this.cost_increase,
         "achievements" : this.achievements,
