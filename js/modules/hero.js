@@ -37,8 +37,9 @@ class Hero extends Character {
             this.base_cost = Math.floor(this.base_cost * (this.cost_increase ** (quantity)));
 
             return `${this.name} is now at level ${this.level}`;
-        } else {
+        }
             window.alert(`${this.name} is at Max Level (${this.max_level})`);
+    }
     levelUpMessage() {
         return `${this.name} is now at level ${this._level}`;
     }
