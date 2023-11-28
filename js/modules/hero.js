@@ -39,10 +39,9 @@ class Hero extends Character {
             return `${this.name} is now at level ${this.level}`;
         } else {
             window.alert(`${this.name} is at Max Level (${this.max_level})`);
-        }
+    levelUpMessage() {
+        return `${this.name} is now at level ${this._level}`;
     }
-    update(level, cost) {
-        level.innerText = this.level;
         cost.innerText = new Intl.NumberFormat("en-GB", {
             notation: "compact",
             compactDisplay: "short",
