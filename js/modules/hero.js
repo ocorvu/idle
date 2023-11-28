@@ -54,8 +54,9 @@ class Hero extends Character {
         }
         if (requirement.level >= 10) {
             return true;
-        } else {
+        }
             window.alert(requirement.name + ' isnt level 10.');
+    }
         }
     isAtLevelMax() {
         return this._level >= this.max_level;
