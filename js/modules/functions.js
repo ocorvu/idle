@@ -1,11 +1,12 @@
+import { ten } from './buy.js';
 import { newActivity } from './feed.js'
 
 async function requestData(path) {
 
     const res = await fetch(path);
-  
+
     const data = await res.json();
-  
+
     return data;
 }
 
@@ -43,7 +44,7 @@ function canBuy(cost, points) {
 }
 
 function syncHeroUprades(heroes, hero, option) {
-    
+
     const heroName = document.querySelector(`[data-heroes-name="${hero}"]`);
     const heroCost = document.querySelector(`[data-heroes-cost="${hero}"]`);
     const heroLevel = document.querySelector(`[data-heroes-level="${hero}"]`);
@@ -55,12 +56,12 @@ function syncHeroUprades(heroes, hero, option) {
 }
 
 function powerUp(hero, points, power, buyOption) {
-    
+
     let activity;
-        const feed = document.getElementById('feed');
+    const feed = document.getElementById('feed');
 
     [points, activity] = hero.levelUp(points, buyOption);
-    
+
     power = hero.powerUp(power);
 
     newActivity(feed, activity);
@@ -109,4 +110,4 @@ function NumberUnitFormat(number) {
     }).format(number);
 }
 
-export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleClass}
+export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleClass, syncHeroUprades, canBuy, playSound }
