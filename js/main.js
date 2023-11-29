@@ -15,8 +15,6 @@ if (localStorage.getItem('characters') == null) {
     await load("data/characters.json");
 }
 
-let characters = JSON.parse(localStorage.getItem('characters'));
-
 const firstButton = document.getElementById('first');
 const secondButton = document.getElementById('second');
 const menuItems = document.querySelectorAll('[data-button]');
@@ -27,17 +25,26 @@ const closeMenuButtons = document.querySelectorAll('[data-close-button]');
 const saveButton = document.getElementById('save');
 const clearLocalStorageButton = document.getElementById('limpaCache');
 const heroesList = document.querySelectorAll('[data-heroes]');
-const enemiesList = document.querySelectorAll('[data-enemies]');
 const targets = document.querySelectorAll('[data-enemie-target]');
 const buyButtons = document.querySelectorAll('[data-buy-option]');
 const battleFeed = document.getElementById('battle-feed');
 const attackButtons = document.querySelectorAll("[data-button-attack]");
 const battleFeedCloseButton = document.getElementById('battle-feed-close-button');
-const achievementList = document.querySelectorAll("[data-achievement='list']");
 const heroes = {};
 const enemies = {};
 const achievements = { level: {} };
 
+let characters = JSON.parse(localStorage.getItem('characters'));
+let points;
+let power = 1;
+let timestamp = 1000;
+let volume = document.getElementById('volume');
+
+if (localStorage.getItem('points')) {
+    points = Number(localStorage.getItem('points'));
+} else {
+    points = 1;
+}
 
 const alert = (title, hero, message, type) => {
     const alertPlaceholder = document.getElementById('alertPlaceHolder');
@@ -65,36 +72,6 @@ const alert = (title, hero, message, type) => {
         }, 10000)
     ));
 }
-let volume = document.getElementById('volume');
-let power = 1;
-let points = 1;
-let timestamp = 1000;
-
-if (localStorage.getItem('points')) {
-    points = Number(localStorage.getItem('points'));
-} else {
-    points = 1;
-}
-
-for (let character in characters) {
-    if (character == 'heroes') {
-        for (let hero in characters[character]) {
-            const h = characters[character][hero];
-            heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h._level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
-        }
-    }
-    if (character == 'enemies') {
-        for (let enemie in characters[character]) {
-            const e = characters[character][enemie];
-
-            enemies[enemie] = new Character(e.name, e.totalHp, e.hp, e.atk, e.def, e.thumbnail);
-
-            syncEnemieCard(enemie);
-        }
-    }
-}
-
-levelAchievements(10, 100);
 
 function addAchiement(heroName, achieved) {
     const hero = document.querySelector(`[data-achievement-hero-list='${heroName}'`);
@@ -106,15 +83,6 @@ function addAchiement(heroName, achieved) {
 
     hero.appendChild(achievement);
 }
-
-firstButton.addEventListener('click', () => {
-    plus(1 * power);
-    showPoints(points, 'box');
-})
-secondButton.addEventListener('click', () => {
-    plus(99999999 * power);
-    showPoints(points, 'box');
-})
 
 function levelAchievements(first, last, step = 10) {
     for (let i = first; i <= last; i += step) {
@@ -168,6 +136,100 @@ function syncEnemieCard(enemie) {
     enemieCardThumb.src = enemies[enemie].thumbnail;
 }
 
+function plus(value) {
+    points += value;
+}
+
+function achievementsLoop() {
+    for (const hero in heroes) {
+        for (const achievement in achievements) {
+
+            for (let level in achievements[achievement]) {
+                if (heroes[hero]._level >= level && !achievements[achievement][level].getAchieved(heroes[hero].name)) {
+
+                    heroes[hero].gainAchievement(achievements[achievement][level].name);
+                    achievements[achievement][level].setAchieved(heroes[hero].name);
+
+                    addAchiement(hero, level);
+                    newActivity(feed, `${heroes[hero].name} ${achievements[achievement][level].message}`)
+
+                    alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, '');
+                }
+            }
+        }
+    }
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve();
+        }, 200);
+    });
+}
+
+function savePoints() {
+    let localPoints = localStorage.setItem('points', points);
+}
+
+function saveHeroes(hero) {
+    let localChars = localStorage.getItem("characters");
+    let Chars = JSON.parse(localChars);
+
+    let obj = '';
+    obj = Object.assign(Chars.heroes, {
+        [hero]: heroes[hero]
+    })
+
+    let saveHero = localStorage.setItem('characters', JSON.stringify(Chars));
+}
+
+function saveEnemies(enemie) {
+    let localChars = localStorage.getItem("characters");
+    let Chars = JSON.parse(localChars);
+
+    let obj = '';
+    obj = Object.assign(Chars.enemies, {
+        [enemie]: enemies[enemie]
+    })
+
+    let saveEnemie = localStorage.setItem('characters', JSON.stringify(Chars));
+}
+
+function pointsLoop() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(plus(power), showPoints(NumberUnitFormat(points), 'box', 'clicks'));
+        }, timestamp);
+    });
+}
+
+for (let character in characters) {
+    if (character == 'heroes') {
+        for (let hero in characters[character]) {
+            const h = characters[character][hero];
+            heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h._level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
+        }
+    }
+    if (character == 'enemies') {
+        for (let enemie in characters[character]) {
+            const e = characters[character][enemie];
+
+            enemies[enemie] = new Character(e.name, e.totalHp, e.hp, e.atk, e.def, e.thumbnail);
+
+            syncEnemieCard(enemie);
+        }
+    }
+}
+
+levelAchievements(10, 100);
+
+firstButton.addEventListener('click', () => {
+    plus(1 * power);
+    showPoints(points, 'box');
+})
+secondButton.addEventListener('click', () => {
+    plus(99999999 * power);
+    showPoints(points, 'box');
+})
+
 heroesList.forEach((hero) => {
 
     const heroId = hero.dataset.heroes;
@@ -212,10 +274,6 @@ heroesList.forEach((hero) => {
         }
     })
 })
-
-function plus(value) {
-    points += value;
-}
 
 closeButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -307,59 +365,6 @@ musicButtons.forEach(button => {
     });
 });
 
-function achievementsLoop() {
-    for (const hero in heroes) {
-        for (const achievement in achievements) {
-
-            for (let level in achievements[achievement]) {
-                if (heroes[hero]._level >= level && !achievements[achievement][level].getAchieved(heroes[hero].name)) {
-
-                    heroes[hero].gainAchievement(achievements[achievement][level].name);
-                    achievements[achievement][level].setAchieved(heroes[hero].name);
-
-                    addAchiement(hero, level);
-                    newActivity(feed, `${heroes[hero].name} ${achievements[achievement][level].message}`)
-
-                    alert(achievements[achievement][level].name, heroes[hero].name, achievements[achievement][level].message, '');
-                }
-            }
-        }
-    }
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve();
-        }, 200);
-    });
-}
-
-function savePoints() {
-    let localPoints = localStorage.setItem('points', points);
-}
-
-function saveHeroes(hero) {
-    let localChars = localStorage.getItem("characters");
-    let Chars = JSON.parse(localChars);
-
-    let obj = '';
-    obj = Object.assign(Chars.heroes, {
-        [hero]: heroes[hero]
-    })
-
-    let saveHero = localStorage.setItem('characters', JSON.stringify(Chars));
-}
-
-function saveEnemies(enemie) {
-    let localChars = localStorage.getItem("characters");
-    let Chars = JSON.parse(localChars);
-
-    let obj = '';
-    obj = Object.assign(Chars.enemies, {
-        [enemie]: enemies[enemie]
-    })
-
-    let saveEnemie = localStorage.setItem('characters', JSON.stringify(Chars));
-}
-
 saveButton.addEventListener('click', () => {
     const saveMessage = document.getElementById('saveMessage');
     savePoints();
@@ -386,14 +391,6 @@ clearLocalStorageButton.addEventListener('click', () => {
         }, 3000);
     })
 })
-
-function pointsLoop() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(plus(power), showPoints(NumberUnitFormat(points), 'box', 'clicks'));
-        }, timestamp);
-    });
-}
 
 async function gameLoop() {
     const game = await pointsLoop();
