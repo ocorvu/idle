@@ -61,10 +61,7 @@ function syncHeroUprades(heroes, hero, option) {
         power += hero.power;
         hero.update(heroLevel, heroCost);
 
-        newActivity(feed, activity)
-    } else {
-        playSound(sound, volume);
-    }
+    newActivity(feed, activity);
 
     return [power, points];
 }
