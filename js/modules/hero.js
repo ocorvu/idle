@@ -42,7 +42,7 @@ class Hero extends Character {
 
             return [points, this.levelUpMessage()];
         }
-            window.alert(`${this.name} is at Max Level (${this.max_level})`);
+        window.alert(`${this.name} is at Max Level (${this.max_level})`);
     }
     levelUpMessage() {
         return `${this.name} is now at level ${this._level}`;
@@ -65,11 +65,11 @@ class Hero extends Character {
         if (requirement.level >= 10) {
             return true;
         }
-            window.alert(requirement.name + ' isnt level 10.');
+        window.alert(requirement.name + ' isnt level 10.');
     }
     exists() {
         return this._level > 0;
-        }
+    }
     isAtLevelMax() {
         return this._level >= this.max_level;
     }
