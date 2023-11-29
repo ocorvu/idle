@@ -3,12 +3,13 @@ import { Achievement } from './modules/achievements.js';
 import {
     inactiveButton, activeButton, enableItem,
     disableItem, showItem, hideItem, powerUp,
-    showPoints, NumberUnitFormat, hasCssClass, getDataAttribute, toggleClass
+    showPoints, NumberUnitFormat, hasCssClass, getDataAttribute, toggleClass, syncHeroUprades, playSound, canBuy
 } from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 import { Character } from './modules/character.js';
 import { fight, resetRound } from './modules/fight.js';
 import { load } from './modules/localStorage.js';
+import { ten } from './modules/buy.js';
 
 if (localStorage.getItem('characters') == null) {
     await load("data/characters.json");
@@ -79,7 +80,7 @@ for (let character in characters) {
     if (character == 'heroes') {
         for (let hero in characters[character]) {
             const h = characters[character][hero];
-            heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h.level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
+            heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h._level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
         }
     }
     if (character == 'enemies') {
@@ -171,48 +172,46 @@ heroesList.forEach((hero) => {
 
     const heroId = hero.dataset.heroes;
 
-        const heroId = heroesList[hero].dataset.heroes;
+    let buyOption = () => { return getDataAttribute(hasCssClass(buyButtons, 'active'), 'buyOption') };
 
-        syncHeroCard(heroId);
-
-        const heroName = document.querySelector(`[data-heroes-name="${heroId}"]`);
-        const heroCost = document.querySelector(`[data-heroes-cost="${heroId}"]`);
-        const heroLevel = document.querySelector(`[data-heroes-level="${heroId}"]`);
-
-        heroName.innerText = heroes[heroId].name;
-
-        heroes[heroId].update(heroLevel, heroCost);
+    syncHeroCard(heroId);
+    syncHeroUprades(heroes, heroId, buyOption());
 
     if (heroes[heroId].exists()) {
-            const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
+        const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
 
-            heroCard.classList.remove('hide');
-            heroCard.classList.add('card', 'hero-card-border');
-        }
+        heroCard.classList.remove('hide');
+        heroCard.classList.add('card', 'hero-card-border');
+    }
 
-        achievementsLoop();
+    achievementsLoop();
 
+    hero.addEventListener('click', () => {
+        let requirement = heroes[heroId].getRequirement();
+        requirement = heroes[requirement];
+
+        if (heroes[heroId].canExist(requirement)) {
+
+            let cost = ten(heroes[heroId], buyOption());
             if (canBuy(cost, points)) {
+                let up = powerUp(heroes[heroId], points, power, buyOption());
                 achievementsLoop();
-                if (heroes[heroId].level > 0) {
-                    const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
-                    heroCard.classList.remove('hide');
-                    heroCard.classList.add('card', 'hero-card-border')
-                }
+
                 [power, points] = up;
 
+                const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
+                heroCard.classList.remove('hide');
+                heroCard.classList.add('card', 'hero-card-border')
+
+                syncHeroUprades(heroes, heroId, buyOption())
                 saveHeroes(heroId);
                 savePoints();
+            } else {
+                playSound(notEnoughCash, volume);
             }
-        })
-        heroesList[hero].addEventListener('mouseenter', () => {
-            tooltipList();
-        })
-        heroesList[hero].addEventListener('mouseleave', () => {
-            tooltipDestroy();
-        })
-    }
-}
+        }
+    })
+})
 
 function plus(value) {
     points += value;
@@ -237,6 +236,16 @@ closeMenuButtons.forEach(button => {
 toggleClass(targets, 'target');
 toggleClass(buyButtons, 'active');
 
+buyButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+
+        let heroesCost = [...heroesList].map((hero) => getDataAttribute(hero, 'heroes'))
+
+        heroesCost.forEach((hero) => {
+            syncHeroUprades(heroes, hero, getDataAttribute(button, 'buyOption'))
+        })
+    })
+})
 battleFeedCloseButton.addEventListener('click', () => {
     battleFeed.querySelectorAll('p').forEach(n => n.remove());
     battleFeed.close();
@@ -259,7 +268,6 @@ attackButtons.forEach(button => {
         syncEnemieCard(defender);
     });
 });
-
 
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -299,33 +307,12 @@ musicButtons.forEach(button => {
     });
 });
 
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-
-const tooltipList = () => [...tooltipTriggerList].map(tooltipTriggerEl => {
-    const hero = tooltipTriggerEl.dataset.heroes;
-
-    new bootstrap.Tooltip(tooltipTriggerEl)
-    tooltipTriggerEl.setAttribute('data-bs-title',
-        `<h3>${heroes[hero].name}</h3>
-    <p>Increases gain points in: ${heroes[hero].given_power}`
-    );
-    bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
-    new bootstrap.Tooltip(tooltipTriggerEl);
-})
-
-const tooltipDestroy = () => {
-    [...tooltipTriggerList].map(tooltipTriggerEl => {
-        const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl).dispose();
-    })
-}
-
-
 function achievementsLoop() {
     for (const hero in heroes) {
         for (const achievement in achievements) {
 
             for (let level in achievements[achievement]) {
-                if (heroes[hero].level >= level && !achievements[achievement][level].getAchieved(heroes[hero].name)) {
+                if (heroes[hero]._level >= level && !achievements[achievement][level].getAchieved(heroes[hero].name)) {
 
                     heroes[hero].gainAchievement(achievements[achievement][level].name);
                     achievements[achievement][level].setAchieved(heroes[hero].name);
