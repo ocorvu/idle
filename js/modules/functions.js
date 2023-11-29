@@ -54,12 +54,14 @@ function syncHeroUprades(heroes, hero, option) {
     heroes[hero].update(heroLevel, heroCost, cost);
 }
 
+function powerUp(hero, points, power, buyOption) {
+    
+    let activity;
         const feed = document.getElementById('feed');
 
-        points -= hero.base_cost;
-        const activity = hero.levelUp(power, points);
-        power += hero.power;
-        hero.update(heroLevel, heroCost);
+    [points, activity] = hero.levelUp(points, buyOption);
+    
+    power = hero.powerUp(power);
 
     newActivity(feed, activity);
 
