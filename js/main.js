@@ -7,9 +7,10 @@ import {
 } from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 import { Character } from './modules/character.js';
-import { fight, resetRound } from './modules/fight.js';
+import { deadCharacter, fight, resetRound } from './modules/fight.js';
 import { load } from './modules/localStorage.js';
 import { ten } from './modules/buy.js';
+import { BattleLog } from './modules/battlelog.js';
 
 if (localStorage.getItem('characters') == null) {
     await load("data/characters.json");
@@ -69,7 +70,7 @@ const alert = (title, hero, message, type) => {
     return new Promise(resolve => (
         setTimeout(() => {
             resolve(notification.remove());
-        }, 10000)
+        }, 5000)
     ));
 }
 
@@ -305,13 +306,18 @@ buyButtons.forEach((button) => {
     })
 })
 battleFeedCloseButton.addEventListener('click', () => {
-    battleFeed.querySelectorAll('p').forEach(n => n.remove());
+    try {
+        battleFeed.querySelector('h2').remove();
+        battleFeed.querySelectorAll('p').forEach(n => n.remove());
+    } catch (e) {
+        console.warn(e);
+    }
+
     battleFeed.close();
 });
 
 attackButtons.forEach(button => {
     button.addEventListener('click', () => {
-        battleFeed.showModal();
         let attacker = button.dataset.buttonAttack;
         let defender = getDataAttribute(hasCssClass(targets, 'target'), 'enemieTarget');
         let battleLog = new BattleLog(heroes[attacker], enemies[defender], battleFeed);
