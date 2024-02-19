@@ -1,5 +1,7 @@
 let round = 1;
 let miss = [];
+let deadCharacterName;
+let deadCharacterRespawn;
 
 function resetRound() {
     round = 1;
