@@ -7,26 +7,8 @@ function resetRound() {
     round = 1;
 }
 
-function showHp(attacker, defender) {
-    return `${attacker.name} hp: ${attacker.hp} | ${defender.name} hp: ${defender.hp} `;
-}
-
-function successfulAttack(attacker, defender, damage) {
-    return `${attacker.name} ataca ${defender.name} e causa ${damage} de dano`;
-}
-
-function missedAttack(attacker, defender) {
-    return `${attacker.name} tenta atacar ${defender.name} e erra!`;
-}
-
-function battleLog(message, feed) {
-    const log = document.createElement('p');
-
-    const footer = document.getElementById('battle-feed-close-button').parentNode;
-
-    log.innerText= message;
-
-    feed.insertBefore(log, footer);
+function deadCharacter() {
+    return [deadCharacterName, deadCharacterRespawn];
 }
 
 function fight(attacker, defender, feed) {
@@ -42,7 +24,7 @@ function fight(attacker, defender, feed) {
 
     while (!defender.is_dead() && !attacker.is_dead() && round < 6) {
         const hit = probability(0.7);
-        battleLog(`----Round: ${round}----`, feed);
+        feed.log(`Round: ${round}`, ['round']);
         
         if (hit) {
             if (damage > defender.hp) {
@@ -51,25 +33,27 @@ function fight(attacker, defender, feed) {
 
                 deadCharacterName = defender.name.toLowerCase();
                 deadCharacterRespawn = 3
+
+                feed.successfulAttack(attacker, defender, damage);
+                feed.showHp(attacker, defender);
+                feed.log(`${defender.name} morreu!`);
                 break
             }
 
-            battleLog(successfulAttack(attacker, defender, damage), feed);
+            feed.successfulAttack(attacker, defender, damage);
 
             defender.hp -= damage;
             miss = [];
 
-            battleLog(showHp(attacker, defender), feed);
-            
+            feed.showHp(attacker, defender);
+            feed.log(`Fim do Round ${round}`, ['round'])            
         } else {
-            battleLog(missedAttack(attacker, defender), feed);
+            feed.missedAttack(attacker, defender);
 
             miss.push(attacker.name);
 
-            // battleLog(`"Quem já errou nesse round?", ${miss}`, feed);
-
             if (miss.length >= 2) {
-                   battleLog(`----Termina o round ${round}----`, feed)
+                   feed.log(`Fim do round ${round}`, ['round'])
                    round += 1;
                    miss = [];
                    continue;
@@ -82,4 +66,4 @@ function fight(attacker, defender, feed) {
 }
 
 
-export {fight, resetRound}
+export {fight, resetRound, deadCharacter}
