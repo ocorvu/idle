@@ -40,7 +40,7 @@ function fight(attacker, defender, feed) {
         damage = 0
     }
 
-    while (defender.hp > 0 && attacker.hp && round < 6) {
+    while (!defender.is_dead() && !attacker.is_dead() && round < 6) {
         const hit = probability(0.7);
         battleLog(`----Round: ${round}----`, feed);
         
