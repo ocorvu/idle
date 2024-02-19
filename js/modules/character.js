@@ -6,7 +6,8 @@ class Character {
         this.atk = atk;
         this.def = def;
         this.thumbnail = thumbnail;
-
+        this.dead = false;
+        this.respawnCooldown = 3000;
     }
     self() {
         return {
