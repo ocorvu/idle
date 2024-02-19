@@ -327,6 +327,35 @@ attackButtons.forEach(button => {
     });
 });
 
+function respawnCountdown(deadCharacterName, respawnTime, character) {
+    const respawnTimerSpan = document.querySelector(`[data-hero-card-respawn-timer="${deadCharacterName}"]`);
+
+    respawnTimerSpan.classList.remove('hide');
+    respawnTimerSpan.classList.add('card-respawn');
+
+    setTimeout(() => {
+        if (respawnTime < 0) {
+            const atkButton = hasCssClass(attackButtons, 'hide');
+            respawnTimerSpan.innerText = 'vivo';
+            atkButton.classList.toggle('hide');
+            switch (character) {
+                case 'enemie':
+                    saveEnemies(deadCharacterName)
+                    break;
+                case 'hero':
+                    saveHeroes(deadCharacterName)
+                    break;
+                default:
+                    break;
+            }
+        }
+        respawnTimerSpan.innerText = respawnTime;
+
+        respawnTime--;
+        respawnCountdown(deadCharacterName, respawnTime, character);
+    }, 1000)
+}
+
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
         const value = item.dataset.button;
