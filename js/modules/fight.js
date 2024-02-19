@@ -47,9 +47,10 @@ function fight(attacker, defender, feed) {
         if (hit) {
             if (damage > defender.hp) {
                 defender.hp = 0;
-                battleLog(successfulAttack(attacker, defender, damage), feed);
-                battleLog(showHp(attacker, defender), feed);
-                battleLog(`${defender.name} morreu!`, feed);
+                defender.die();
+
+                deadCharacterName = defender.name.toLowerCase();
+                deadCharacterRespawn = 3
                 break
             }
 
