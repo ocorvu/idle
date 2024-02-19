@@ -314,12 +314,32 @@ attackButtons.forEach(button => {
         battleFeed.showModal();
         let attacker = button.dataset.buttonAttack;
         let defender = getDataAttribute(hasCssClass(targets, 'target'), 'enemieTarget');
+        let battleLog = new BattleLog(heroes[attacker], enemies[defender], battleFeed);
 
-        if (heroes[attacker].hp > 0) {
-            fight(heroes[attacker], enemies[defender], battleFeed);
+        if (!heroes[attacker].is_dead() && !enemies[defender].is_dead()) {
+            battleLog.title();
+
+            battleFeed.showModal();
+
+            fight(heroes[attacker], enemies[defender], battleLog);
             resetRound();
+
+            let [deadCharacterName, deadCharacterRespawn] = deadCharacter();
+
+            if (heroes[attacker].is_dead()) {
+
+                button.classList.toggle('hide');
+                respawnCountdown(deadCharacterName, deadCharacterRespawn, 'hero');
+            }
+            if (enemies[defender].is_dead()) {
+                respawnCountdown(deadCharacterName, deadCharacterRespawn, 'enemie');
+            }
+
             saveHeroes(attacker);
             saveEnemies(defender);
+        } else {
+            battleLog.log(`${heroes[attacker].name} está morto e não pode lutar`);
+            battleFeed.showModal();
         }
 
         syncHeroCard(attacker);
