@@ -10,13 +10,12 @@ async function requestData(path) {
     return data;
 }
 
-function toggleClass(element, cssClass) {
+function toggleElementsClass(elementList, cssClass) {
 
-    element.forEach(el => {
+    elementList.forEach(el => {
         el.addEventListener('click', () => {
             el.classList.add(cssClass);
-
-            let filteredElements = [...element].filter((e) => e.classList.contains(cssClass) && e != el);
+            let filteredElements = [...elementList].filter((e) => e.classList.contains(cssClass) && e != el);
             filteredElements.forEach(filteredElement => {
                 filteredElement.classList.toggle(cssClass);
             });
@@ -110,4 +109,4 @@ function NumberUnitFormat(number) {
     }).format(number);
 }
 
-export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleClass, syncHeroUprades, canBuy, playSound }
+export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleElementsClass, syncHeroUprades, canBuy, playSound }
