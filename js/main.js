@@ -3,7 +3,7 @@ import { Achievement } from './modules/achievements.js';
 import {
     inactiveButton, activeButton, enableItem,
     disableItem, showItem, hideItem, powerUp,
-    showPoints, NumberUnitFormat, hasCssClass, getDataAttribute, toggleClass, syncHeroUprades, playSound, canBuy
+    showPoints, NumberUnitFormat, hasCssClass, getDataAttribute, toggleElementsClass, syncHeroUprades, playSound, canBuy
 } from './modules/functions.js';
 import { newActivity } from './modules/feed.js';
 import { Character } from './modules/character.js';
@@ -291,8 +291,8 @@ closeMenuButtons.forEach(button => {
     });
 });
 
-toggleClass(targets, 'target');
-toggleClass(buyButtons, 'active');
+toggleElementsClass(targets, 'target');
+toggleElementsClass(buyButtons, 'active');
 
 buyButtons.forEach((button) => {
     button.addEventListener('click', () => {
