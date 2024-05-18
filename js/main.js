@@ -37,14 +37,24 @@ const achievements = { level: {} };
 
 let characters = JSON.parse(localStorage.getItem('characters'));
 let points;
-let power = 1;
+let power;
 let timestamp = 1000;
 let volume = document.getElementById('volume');
 
 if (localStorage.getItem('points')) {
     points = Number(localStorage.getItem('points'));
+    console.log('if - points');
 } else {
     points = 1;
+    console.log('else - points');
+}
+
+if (localStorage.getItem('power')) {
+    power = Number(localStorage.getItem('power'));
+    console.log('if - power');
+} else {
+    power = 1;
+    console.log('else - power');
 }
 
 const alert = (title, hero, message, type) => {
@@ -168,6 +178,9 @@ function achievementsLoop() {
 
 function savePoints() {
     let localPoints = localStorage.setItem('points', points);
+    let localPower = localStorage.setItem('power', power);
+
+    console.log(localStorage.getItem('power'), localStorage.getItem('points'));
 }
 
 function saveHeroes(hero) {
