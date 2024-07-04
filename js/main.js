@@ -9,7 +9,7 @@ import { newActivity } from './modules/feed.js';
 import { Character } from './modules/character.js';
 import { deadCharacter, fight, resetRound } from './modules/fight.js';
 import { load } from './modules/localStorage.js';
-import { ten } from './modules/buy.js';
+import { buy } from './modules/buy.js';
 import { BattleLog } from './modules/battlelog.js';
 
 if (localStorage.getItem('characters') == null) {
@@ -179,8 +179,6 @@ function achievementsLoop() {
 function savePoints() {
     let localPoints = localStorage.setItem('points', points);
     let localPower = localStorage.setItem('power', power);
-
-    console.log(localStorage.getItem('power'), localStorage.getItem('points'));
 }
 
 function saveHeroes(hero) {
@@ -251,7 +249,7 @@ heroesList.forEach((hero) => {
     let buyOption = () => { return getDataAttribute(hasCssClass(buyButtons, 'active'), 'buyOption') };
 
     syncHeroCard(heroId);
-    syncHeroUprades(heroes, heroId, buyOption());
+    syncHeroUprades(heroes, heroId, buyOption(), points);
 
     if (heroes[heroId].exists()) {
         const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
@@ -268,9 +266,10 @@ heroesList.forEach((hero) => {
 
         if (heroes[heroId].canExist(requirement)) {
 
-            let cost = ten(heroes[heroId], buyOption());
+            let [cost, level] = buy(heroes[heroId], buyOption(), points);
+
             if (canBuy(cost, points)) {
-                let up = powerUp(heroes[heroId], points, power, buyOption());
+                let up = powerUp(heroes[heroId], points, power, level);
                 achievementsLoop();
 
                 [power, points] = up;
@@ -279,7 +278,7 @@ heroesList.forEach((hero) => {
                 heroCard.classList.remove('hide');
                 heroCard.classList.add('card', 'hero-card-border')
 
-                syncHeroUprades(heroes, heroId, buyOption())
+                syncHeroUprades(heroes, heroId, buyOption(), points)
                 saveHeroes(heroId);
                 savePoints();
             } else {
@@ -314,7 +313,7 @@ buyButtons.forEach((button) => {
         let heroesCost = [...heroesList].map((hero) => getDataAttribute(hero, 'heroes'))
 
         heroesCost.forEach((hero) => {
-            syncHeroUprades(heroes, hero, getDataAttribute(button, 'buyOption'))
+            syncHeroUprades(heroes, hero, getDataAttribute(button, 'buyOption'), points)
         })
     })
 })
@@ -373,7 +372,7 @@ function respawnCountdown(deadCharacterName, respawnTime, character) {
     respawnTimerSpan.classList.add('card-respawn');
 
     setTimeout(() => {
-        if (respawnTime < 0) {
+        if (respawnTime < 1) {
             const atkButton = hasCssClass(attackButtons, 'hide');
             respawnTimerSpan.innerText = 'vivo';
             atkButton.classList.toggle('hide');
