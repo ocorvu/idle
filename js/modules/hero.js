@@ -31,7 +31,7 @@ class Hero extends Character {
         };
     }
     levelUp(points, quantity){
-        if (! this.isAtLevelMax()){
+        if (! this.isAtMaxLevel()){
             this._level += Number(quantity);
 
             this.given_power += this.power;
@@ -70,7 +70,7 @@ class Hero extends Character {
     exists() {
         return this._level > 0;
     }
-    isAtLevelMax() {
+    isAtMaxLevel() {
         return this._level >= this.max_level;
     }
     gainAchievement(achievement) {
