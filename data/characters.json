@@ -25,7 +25,7 @@
             "given_power": 0,
             "level": 0,
             "base_cost": 200,
-            "cost_increase": 3,
+            "cost_increase": 1.5,
             "require": "meuso"
         },
         {
