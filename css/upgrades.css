@@ -52,6 +52,7 @@ h2>img {
     border-radius: 0.375rem;
     background-color: var(--primary-color);
     color: var(--text-color);
+    position: relative;
 }
 
 .hero:hover {
@@ -64,14 +65,21 @@ h2>img {
     justify-content: space-between;
     font-size: calc(1.325rem);
 }
-
 .hero-level {
     margin-left: 1rem;
     padding: 1rem;
     background-color: var(--secondary-color);
     border-radius: 0.375rem;
 }
-
+.hero-level-option {
+    padding: 0.25rem;
+    background-color: var(--level-bg-color);
+    border-radius: 50%;
+    font-size: calc(0.825rem);
+    position: absolute;
+    right: 0;
+    top: 70%;
+}
 .hero-cost {
     display: flex;
     align-items: center;
