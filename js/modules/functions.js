@@ -1,4 +1,4 @@
-import { ten } from './buy.js';
+import { buy } from './buy.js';
 import { newActivity } from './feed.js'
 
 async function requestData(path) {
@@ -11,7 +11,6 @@ async function requestData(path) {
 }
 
 function toggleElementsClass(elementList, cssClass) {
-
     elementList.forEach(el => {
         el.addEventListener('click', () => {
             el.classList.add(cssClass);
@@ -42,14 +41,21 @@ function canBuy(cost, points) {
     return points >= cost;
 }
 
-function syncHeroUprades(heroes, hero, option) {
+function syncHeroUprades(heroes, hero, option, points) {
+
+    let [cost, level] = buy(heroes[hero], option, points);
 
     const heroName = document.querySelector(`[data-heroes-name="${hero}"]`);
     const heroCost = document.querySelector(`[data-heroes-cost="${hero}"]`);
     const heroLevel = document.querySelector(`[data-heroes-level="${hero}"]`);
-
+    const heroLevelOption = document.querySelector(`[data-heroes-level-option="${hero}"]`);
+    
+    heroLevelOption.classList.add('hide')
     heroName.innerText = heroes[hero].name;
-    let cost = ten(heroes[hero], option);
+    if (option == 'max'){
+        heroLevelOption.innerText = level;
+        heroLevelOption.classList.toggle('hide')
+    }
 
     heroes[hero].update(heroLevel, heroCost, cost);
 }
