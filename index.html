@@ -54,7 +54,7 @@
         <section data-content="information" class="hide settings">
             <div class="settings-header">
                 <h2>Info</h2>
-                <button class="settings-close-button">X</button>
+                <button data-menu-close-button="information" class="settings-close-button">X</button>
             </div>
             <p>Points: <span id="clicks">0</span></p>
         </section>
@@ -63,7 +63,7 @@
             <!-- config header -->
             <header class="settings-header">
                 <h2 class="settings-title">Settings</h2>
-                <button class="settings-close-button">X</button>
+                <button data-menu-close-button="config" class="settings-close-button">X</button>
             </header>
             <!-- music -->
             <section class="settings-music">
@@ -127,21 +127,6 @@
                         </div>
                     </li>
                     <!-- hero2 -->
-                    <li class="hero" data-heroes="rebento" data-bs-container="body" data-bs-toggle="tooltip"
-                        data-bs-placement="right" data-bs-html="true">
-                        <div class="hero-body">
-                            <span class="hero-level-option" data-heroes-level-option="rebento"></span>
-                            <div>
-                                <h3 data-heroes-name="rebento"></h3>
-                                <small class="hero-cost">
-                                    Cost:
-                                    <span class="hero-cost-value" data-heroes-cost="rebento"></span>
-                                </small>
-                            </div>
-                            <span class="hero-level" data-heroes-level="rebento"></span>
-                        </div>
-                    </li>
-                    <!-- hero3 -->
                     <li class="hero" data-heroes="kaom" data-bs-container="body" data-bs-toggle="tooltip"
                         data-bs-placement="right" data-bs-html="true">
                         <div class="hero-body">
@@ -154,6 +139,21 @@
                                 </small>
                             </div>
                             <span class="hero-level" data-heroes-level="kaom"></span>
+                        </div>
+                    </li>
+                    <!-- hero3 -->
+                    <li class="hero" data-heroes="rebento" data-bs-container="body" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-html="true">
+                        <div class="hero-body">
+                            <span class="hero-level-option" data-heroes-level-option="rebento"></span>
+                            <div>
+                                <h3 data-heroes-name="rebento"></h3>
+                                <small class="hero-cost">
+                                    Cost:
+                                    <span class="hero-cost-value" data-heroes-cost="rebento"></span>
+                                </small>
+                            </div>
+                            <span class="hero-level" data-heroes-level="rebento"></span>
                         </div>
                     </li>
                     <!-- hero4 -->
@@ -188,7 +188,7 @@
                     </li>
                 </ul>
             </section>
-            <button class="hide close-bar" data-close-button="upgrades"></button>
+            <button class="hide close-bar" data-menu-close-button="upgrades"></button>
         </aside>
         <!-- game -->
         <section id="game">
@@ -372,35 +372,35 @@
         </section>
         <!-- achievements -->
         <aside id="achievements" class="achievements-md" data-content="achievements">
-        <button class="hide close-bar" data-close-button="achievements"></button>
-            <section id="achievements-content">
-                <header id="achievements-header">
-                    <h2>Achievements<img src="icons/icons8-medalha-30.png"></h2>
-                    <button type="button" class="close hide" aria-label="Close">X</button>
-                </header>
-                <ul class="achievements-heroes-list" data-achievement="list">
-                    <li data-achievement-hero="meuso">
-                        <h3>Meuso</h3>
-                        <ul data-achievement-hero-list="meuso" class="achievements-hero-badges"></ul>
-                    </li>
-                    <li data-achievement-hero="rebento">
-                        <h3>Rebento</h3>
-                        <ul data-achievement-hero-list="rebento" class="achievements-hero-badges"></ul>
-                    </li>
-                    <li data-achievement-hero="kaom">
-                        <h3>Kaom</h3>
-                        <ul data-achievement-hero-list="kaom" class="achievements-hero-badges"></ul>
-                    </li>
-                    <li data-achievement-hero="brineking">
-                        <h3>Brine King</h3>
-                        <ul data-achievement-hero-list="brineking" class="achievements-hero-badges"></ul>
-                    </li>
-                    <li data-achievement-hero="shadow">
-                        <h3>Shadow</h3>
-                        <ul data-achievement-hero-list="shadow" class="achievements-hero-badges"></ul>
-                    </li>
-                </ul>
-            </section>
+        <button class="hide close-bar" data-menu-close-button="achievements"></button>
+        <section id="achievements-content">
+            <header id="achievements-header">
+                <h2>Achievements<img src="icons/icons8-medalha-30.png"></h2>
+                <button type="button" class="close hide" aria-label="Close">X</button>
+            </header>
+            <ul class="achievements-heroes-list" data-achievement="list">
+                <li data-achievement-hero="meuso">
+                    <h3>Meuso</h3>
+                    <ul data-achievement-hero-list="meuso" class="achievements-hero-badges"></ul>
+                </li>
+                <li data-achievement-hero="rebento">
+                    <h3>Rebento</h3>
+                    <ul data-achievement-hero-list="rebento" class="achievements-hero-badges"></ul>
+                </li>
+                <li data-achievement-hero="kaom">
+                    <h3>Kaom</h3>
+                    <ul data-achievement-hero-list="kaom" class="achievements-hero-badges"></ul>
+                </li>
+                <li data-achievement-hero="brineking">
+                    <h3>Brine King</h3>
+                    <ul data-achievement-hero-list="brineking" class="achievements-hero-badges"></ul>
+                </li>
+                <li data-achievement-hero="shadow">
+                    <h3>Shadow</h3>
+                    <ul data-achievement-hero-list="shadow" class="achievements-hero-badges"></ul>
+                </li>
+            </ul>
+        </section>
         </aside>
         <!-- alerts -->
         <div id="alertPlaceHolder"></div>
