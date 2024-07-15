@@ -2,12 +2,47 @@ import { buy } from './buy.js';
 import { newActivity } from './feed.js'
 
 async function requestData(path) {
-
     const res = await fetch(path);
-
     const data = await res.json();
-
     return data;
+}
+
+const alert = (title, hero, message, type) => {
+    const alertPlaceholder = document.getElementById('alertPlaceHolder');
+    const notification = document.createElement('article');
+    notification.classList.add('alertBox');
+
+    notification.innerHTML = [
+        '<section class="alertBody" class="alertTile">',
+        `<h4 class="alertTitle">${title}</h4>`,
+        `<p>${hero} ${message}</p>`,
+        '</section>',
+        '<button type="button" id="closeAlert" class="close">X</button>',
+    ].join('');
+
+    alertPlaceholder.append(notification);
+    const alertCloseButton = document.getElementById('closeAlert');
+
+    alertCloseButton.addEventListener('click', () => {
+        notification.remove();
+    });
+
+    return new Promise(resolve => (
+        setTimeout(() => {
+            resolve(notification.remove());
+        }, 5000)
+    ));
+}
+
+function addAchiement(heroName, achieved) {
+    const hero = document.querySelector(`[data-achievement-hero-list='${heroName}'`);
+    const achievement = document.createElement('li');
+
+    achievement.innerHTML = achieved;
+
+    achievement.classList.add('hero-achievement-level');
+
+    hero.appendChild(achievement);
 }
 
 function toggleElementsClass(elementList, cssClass) {
@@ -41,6 +76,33 @@ function canBuy(cost, points) {
     return points >= cost;
 }
 
+function buyOption (options) { 
+    return getDataAttribute(hasCssClass(options, 'active'), 'buyOption');
+}
+
+function syncHeroCard(heroes, hero) {
+    const heroCardThumb = document.querySelector(`[data-hero-card-thumb="${hero}"]`);
+    const heroCardName = document.querySelector(`[data-hero-card-name="${hero}"]`);
+    const heroCardHp = document.querySelector(`[data-hero-card-hp="${hero}"]`);
+    const heroCardTotalHp = document.querySelector(`[data-hero-card-total-hp="${hero}"]`);
+    const heroCardHpBar = document.querySelector(`[data-hero-card-hp-bar="${hero}"]`);
+    const heroCardAtk = document.querySelector(`[data-hero-card-atk="${hero}"]`);
+    const heroCardDef = document.querySelector(`[data-hero-card-def="${hero}"]`);
+
+    heroCardName.innerText = heroes[hero].name;
+    heroCardAtk.innerText = heroes[hero].atk;
+    heroCardDef.innerText = heroes[hero].def;
+
+    heroCardHp.innerText = heroes[hero].hp;
+    heroCardTotalHp.innerText = heroes[hero].totalHp;
+
+    heroCardHpBar.value = heroes[hero].hp;
+    heroCardHpBar.max = heroes[hero].totalHp;
+    heroCardHpBar.innerText = heroes[hero].hp;
+
+    heroCardThumb.src = heroes[hero].thumbnail;
+}
+
 function syncHeroUprades(heroes, hero, option, points) {
 
     let [cost, level] = buy(heroes[hero], option, points);
@@ -60,8 +122,30 @@ function syncHeroUprades(heroes, hero, option, points) {
     heroes[hero].update(heroLevel, heroCost, cost);
 }
 
-function powerUp(hero, points, power, buyOption) {
+function syncEnemieCard(enemies, enemie) {
+    const enemieCardThumb = document.querySelector(`[data-enemie-card-thumb="${enemie}"]`);
+    const enemieCardName = document.querySelector(`[data-enemie-card-name="${enemie}"]`);
+    const enemieCardHp = document.querySelector(`[data-enemie-card-hp="${enemie}"]`);
+    const enemieCardTotalHp = document.querySelector(`[data-enemie-card-total-hp="${enemie}"]`);
+    const enemieCardHpBar = document.querySelector(`[data-enemie-card-hp-bar="${enemie}"]`);
+    const enemieCardAtk = document.querySelector(`[data-enemie-card-atk="${enemie}"]`);
+    const enemieCardDef = document.querySelector(`[data-enemie-card-def="${enemie}"]`);
 
+    enemieCardName.innerText = enemies[enemie].name;
+    enemieCardAtk.innerText = enemies[enemie].atk;
+    enemieCardDef.innerText = enemies[enemie].def;
+
+    enemieCardHp.innerText = enemies[enemie].hp;
+    enemieCardTotalHp.innerText = enemies[enemie].totalHp;
+
+    enemieCardHpBar.value = enemies[enemie].hp;
+    enemieCardHpBar.max = enemies[enemie].totalHp;
+    enemieCardHpBar.innerText = enemies[enemie].hp;
+
+    enemieCardThumb.src = enemies[enemie].thumbnail;
+}
+
+function powerUp(hero, points, power, buyOption) {
     let activity;
     const feed = document.getElementById('feed');
 
@@ -115,4 +199,4 @@ function NumberUnitFormat(number) {
     }).format(number);
 }
 
-export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleElementsClass, syncHeroUprades, canBuy, playSound }
+export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleElementsClass, syncHeroUprades, canBuy, playSound, syncHeroCard, buyOption, syncEnemieCard, alert, addAchiement }
