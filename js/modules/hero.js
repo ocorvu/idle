@@ -65,7 +65,7 @@ class Hero extends Character {
         if (requirement.level >= 10) {
             return true;
         }
-        window.alert(requirement.name + ' isnt level 10.');
+        // window.alert(requirement.name + ' isnt level 10.');
     }
     exists() {
         return this._level > 0;
