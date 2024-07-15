@@ -74,26 +74,26 @@
     "enemies": [
         {
             "name": "Braulio",
-            "totalHp": 1100000,
-            "hp": 1100000,
-            "atk": 11100,
-            "def": 100,
+            "totalHp": 1000,
+            "hp": 1000,
+            "atk": 50,
+            "def": 30,
             "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
         },
         {
             "name": "Dunha",
-            "totalHp": 1000000,
-            "hp": 1000000,
-            "atk": 1000000,
-            "def": 1,
+            "totalHp": 1000,
+            "hp": 1000,
+            "atk": 100,
+            "def": 20,
             "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
         },
         {
             "name": "ManoBri",
-            "totalHp": 1100000,
-            "hp": 1100000,
-            "atk": 1100000,
-            "def": 20,
+            "totalHp": 1000,
+            "hp": 1000,
+            "atk": 100,
+            "def": 10,
             "thumbnail": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
         }
     ]
