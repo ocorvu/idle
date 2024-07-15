@@ -33,21 +33,19 @@ class Character {
         return this.dead;
     }
     respawn() {
-        if (this.is_dead()) {
-            this.dead = false;
-            this.hp = this.totalHp;
+        this.dead = false;
+        this.hp = this.totalHp;
 
-            const heroCardHp = document.querySelector(`[data-hero-card-hp="${this.name.toLowerCase()}"]`);
-            const heroCardTotalHp = document.querySelector(`[data-hero-card-total-hp="${this.name.toLowerCase()}"]`);
-            const heroCardHpBar = document.querySelector(`[data-hero-card-hp-bar="${this.name.toLowerCase()}"]`);
+        const heroCardHp = document.querySelector(`[data-hero-card-hp="${this.name.toLowerCase()}"]`);
+        const heroCardTotalHp = document.querySelector(`[data-hero-card-total-hp="${this.name.toLowerCase()}"]`);
+        const heroCardHpBar = document.querySelector(`[data-hero-card-hp-bar="${this.name.toLowerCase()}"]`);
 
-            heroCardHp.innerText = this.hp;
-            heroCardTotalHp.innerText = this.totalHp;
+        heroCardHp.innerText = this.hp;
+        heroCardTotalHp.innerText = this.totalHp;
 
-            heroCardHpBar.value = this.hp;
-            heroCardHpBar.max = this.totalHp;
-            heroCardHpBar.innerText = this.hp;
-        }
+        heroCardHpBar.value = this.hp;
+        heroCardHpBar.max = this.totalHp;
+        heroCardHpBar.innerText = this.hp;
     }
 }
 
