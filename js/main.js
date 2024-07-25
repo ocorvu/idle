@@ -20,7 +20,7 @@ if (localStorage.getItem('characters') == null) {
     await load("data/characters.json");
 }
 
-const attackButtons = document.querySelectorAll("[data-button-attack]");
+const attackButtons = document.querySelectorAll('[data-button-attack]');
 const battleFeed = document.getElementById('battle-feed');
 const battleFeedCloseButton = document.getElementById('battle-feed-close-button');
 const buyButtons = document.querySelectorAll('[data-buy-option]');
@@ -33,7 +33,7 @@ const musicButtons = document.querySelectorAll('[data-music]');
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
 const secondButton = document.getElementById('second');
 const saveButton = document.getElementById('save');
-const targets = document.querySelectorAll('[data-enemie-target]');
+const targets = document.querySelectorAll('[data-target]');
 const volume = document.getElementById('volume');
 
 const heroes = {};
@@ -91,32 +91,31 @@ function achievementsLoop() {
     });
 }
 
-function respawnCountdown(deadCharacterName, respawnTime, character) {
-    const respawnTimerSpan = document.querySelector(`[data-hero-card-respawn-timer="${deadCharacterName}"]`);
+function respawnCountdown(deadCharacterName, respawnTime, type, button) {
+    const respawnTimerSpan = document.querySelector(`[data-character-card-respawn-timer="${deadCharacterName}"]`);
 
     respawnTimerSpan.classList.remove('hide');
     respawnTimerSpan.classList.add('card-respawn');
 
     setTimeout(() => {
         if (respawnTime < 1) {
-            const atkButton = hasCssClass(attackButtons, 'hide');
             respawnTimerSpan.innerText = 'vivo';
-            atkButton.classList.toggle('hide');
-            switch (character) {
-                case 'enemie':
+            switch (type) {
+                case 'Character':
+                    button.classList.toggle('hide');
                     saveEnemies(deadCharacterName)
-                    break;
-                case 'hero':
+                    return;
+                case 'Hero':
+                    button.classList.toggle('hide') 
                     saveHeroes(deadCharacterName)
-                    break;
+                    return;
                 default:
                     break;
             }
         }
         respawnTimerSpan.innerText = respawnTime;
-
         respawnTime--;
-        respawnCountdown(deadCharacterName, respawnTime, character);
+        respawnCountdown(deadCharacterName, respawnTime, type, button);
     }, 1000)
 }
 
@@ -205,7 +204,7 @@ heroesUpgradesList.forEach((hero) => {
     }
 
     if (heroes[heroId].exists()) {
-        const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
+        const heroCard = document.querySelector(`[data-character-card="${heroId}"]`);
 
         heroCard.classList.remove('hide');
         heroCard.classList.add('card', 'hero-card-border');
@@ -229,7 +228,7 @@ heroesUpgradesList.forEach((hero) => {
 
             [power, points] = up;
 
-            const heroCard = document.querySelector(`[data-hero-card="${heroId}"]`);
+            const heroCard = document.querySelector(`[data-character-card="${heroId}"]`);
             heroCard.classList.remove('hide');
             heroCard.classList.add('card', 'hero-card-border')
 
@@ -287,8 +286,10 @@ battleFeedCloseButton.addEventListener('click', () => {
 attackButtons.forEach(button => {
     button.addEventListener('click', () => {
         let attacker = button.dataset.buttonAttack;
-        let defender = getDataAttribute(hasCssClass(targets, 'target'), 'enemieTarget');
+        let target = hasCssClass(targets, 'target');
+        let defender = getDataAttribute(target, 'target');
         let battleLog = new BattleLog(heroes[attacker], enemies[defender], battleFeed);
+        let character;
 
         if (!heroes[attacker].is_dead() && !enemies[defender].is_dead()) {
             battleLog.title();
@@ -298,21 +299,25 @@ attackButtons.forEach(button => {
             fight(heroes[attacker], enemies[defender], battleLog);
             resetRound();
 
-            let [deadCharacterName, deadCharacterRespawn] = deadCharacter();
+            character = deadCharacter();
 
-            if (heroes[attacker].is_dead()) {
-
-                button.classList.toggle('hide');
-                respawnCountdown(deadCharacterName, deadCharacterRespawn, 'hero');
-            }
-            if (enemies[defender].is_dead()) {
-                respawnCountdown(deadCharacterName, deadCharacterRespawn, 'enemie');
+            switch (character.type()) {
+                case 'Character':
+                    target.classList.toggle('hide');
+                    respawnCountdown(character.name.toLowerCase(), character.respawnCooldown, character.type(), target);
+                    break;
+                case 'Hero':
+                    button.classList.toggle('hide');
+                    respawnCountdown(character.name.toLowerCase(), character.respawnCooldown, character.type(), button);
+                    break;
+                default:
+                    break;
             }
 
             saveHeroes(attacker);
             saveEnemies(defender);
         } else {
-            battleLog.log(`${heroes[attacker].name} está morto e não pode lutar`);
+            battleLog.log(`${character.name} está morto e não pode lutar`);
             battleFeed.showModal();
         }
 

@@ -81,13 +81,13 @@ function buyOption (options) {
 }
 
 function syncHeroCard(heroes, hero) {
-    const heroCardThumb = document.querySelector(`[data-hero-card-thumb="${hero}"]`);
-    const heroCardName = document.querySelector(`[data-hero-card-name="${hero}"]`);
-    const heroCardHp = document.querySelector(`[data-hero-card-hp="${hero}"]`);
-    const heroCardTotalHp = document.querySelector(`[data-hero-card-total-hp="${hero}"]`);
-    const heroCardHpBar = document.querySelector(`[data-hero-card-hp-bar="${hero}"]`);
-    const heroCardAtk = document.querySelector(`[data-hero-card-atk="${hero}"]`);
-    const heroCardDef = document.querySelector(`[data-hero-card-def="${hero}"]`);
+    const heroCardThumb = document.querySelector(`[data-character-card-thumb="${hero}"]`);
+    const heroCardName = document.querySelector(`[data-character-card-name="${hero}"]`);
+    const heroCardHp = document.querySelector(`[data-character-card-hp="${hero}"]`);
+    const heroCardTotalHp = document.querySelector(`[data-character-card-total-hp="${hero}"]`);
+    const heroCardHpBar = document.querySelector(`[data-character-card-hp-bar="${hero}"]`);
+    const heroCardAtk = document.querySelector(`[data-character-card-atk="${hero}"]`);
+    const heroCardDef = document.querySelector(`[data-character-card-def="${hero}"]`);
 
     heroCardName.innerText = heroes[hero].name;
     heroCardAtk.innerText = heroes[hero].atk;
@@ -123,13 +123,13 @@ function syncHeroUprades(heroes, hero, option, points) {
 }
 
 function syncEnemieCard(enemies, enemie) {
-    const enemieCardThumb = document.querySelector(`[data-enemie-card-thumb="${enemie}"]`);
-    const enemieCardName = document.querySelector(`[data-enemie-card-name="${enemie}"]`);
-    const enemieCardHp = document.querySelector(`[data-enemie-card-hp="${enemie}"]`);
-    const enemieCardTotalHp = document.querySelector(`[data-enemie-card-total-hp="${enemie}"]`);
-    const enemieCardHpBar = document.querySelector(`[data-enemie-card-hp-bar="${enemie}"]`);
-    const enemieCardAtk = document.querySelector(`[data-enemie-card-atk="${enemie}"]`);
-    const enemieCardDef = document.querySelector(`[data-enemie-card-def="${enemie}"]`);
+    const enemieCardThumb = document.querySelector(`[data-character-card-thumb="${enemie}"]`);
+    const enemieCardName = document.querySelector(`[data-character-card-name="${enemie}"]`);
+    const enemieCardHp = document.querySelector(`[data-character-card-hp="${enemie}"]`);
+    const enemieCardTotalHp = document.querySelector(`[data-character-card-total-hp="${enemie}"]`);
+    const enemieCardHpBar = document.querySelector(`[data-character-card-hp-bar="${enemie}"]`);
+    const enemieCardAtk = document.querySelector(`[data-character-card-atk="${enemie}"]`);
+    const enemieCardDef = document.querySelector(`[data-character-card-def="${enemie}"]`);
 
     enemieCardName.innerText = enemies[enemie].name;
     enemieCardAtk.innerText = enemies[enemie].atk;

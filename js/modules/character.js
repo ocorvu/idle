@@ -7,7 +7,7 @@ class Character {
         this.def = def;
         this.thumbnail = thumbnail;
         this.dead = false;
-        this.respawnCooldown = 3000;
+        this.respawnCooldown = 3;
     }
     self() {
         return {
@@ -32,13 +32,16 @@ class Character {
     is_dead() {
         return this.dead;
     }
+    type() {
+        return this.constructor.name;
+    }
     respawn() {
         this.dead = false;
         this.hp = this.totalHp;
 
-        const heroCardHp = document.querySelector(`[data-hero-card-hp="${this.name.toLowerCase()}"]`);
-        const heroCardTotalHp = document.querySelector(`[data-hero-card-total-hp="${this.name.toLowerCase()}"]`);
-        const heroCardHpBar = document.querySelector(`[data-hero-card-hp-bar="${this.name.toLowerCase()}"]`);
+        const heroCardHp = document.querySelector(`[data-character-card-hp="${this.name.toLowerCase()}"]`);
+        const heroCardTotalHp = document.querySelector(`[data-character-card-total-hp="${this.name.toLowerCase()}"]`);
+        const heroCardHpBar = document.querySelector(`[data-character-card-hp-bar="${this.name.toLowerCase()}"]`);
 
         heroCardHp.innerText = this.hp;
         heroCardTotalHp.innerText = this.totalHp;

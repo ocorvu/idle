@@ -1,18 +1,17 @@
 let round = 1;
 let miss = [];
-let deadCharacterName;
-let deadCharacterRespawn;
+let character;
 
 function resetRound() {
     round = 1;
 }
 
 function deadCharacter() {
-    return [deadCharacterName, deadCharacterRespawn];
+    return character;
 }
 
 function fight(attacker, defender, feed) {
-    var probability = function(n) {
+    var probability = function (n) {
         return !!n && Math.random() <= n;
     };
 
@@ -25,15 +24,13 @@ function fight(attacker, defender, feed) {
     while (!defender.is_dead() && !attacker.is_dead() && round < 6) {
         const hit = probability(0.7);
         feed.log(`Round: ${round}`, ['round']);
-        
+
         if (hit) {
             if (damage > defender.hp) {
                 defender.hp = 0;
                 defender.die();
 
-                deadCharacterName = defender.name.toLowerCase();
-                deadCharacterRespawn = 3
-
+                character = defender;
                 feed.successfulAttack(attacker, defender, damage);
                 feed.showHp(attacker, defender);
                 feed.log(`${defender.name} morreu!`);
@@ -46,17 +43,17 @@ function fight(attacker, defender, feed) {
             miss = [];
 
             feed.showHp(attacker, defender);
-            feed.log(`Fim do Round ${round}`, ['round'])            
+            feed.log(`Fim do Round ${round}`, ['round'])
         } else {
             feed.missedAttack(attacker, defender);
 
             miss.push(attacker.name);
 
             if (miss.length >= 2) {
-                   feed.log(`Fim do round ${round}`, ['round'])
-                   round += 1;
-                   miss = [];
-                   continue;
+                feed.log(`Fim do round ${round}`, ['round'])
+                round += 1;
+                miss = [];
+                continue;
             }
 
             fight(defender, attacker, feed)
@@ -66,4 +63,4 @@ function fight(attacker, defender, feed) {
 }
 
 
-export {fight, resetRound, deadCharacter}
+export { fight, resetRound, deadCharacter }
