@@ -22,7 +22,7 @@
     padding: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
     #achievements.achievements-md {
         max-width: 0;
         display: none;

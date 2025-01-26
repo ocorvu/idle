@@ -12,6 +12,7 @@
     position: relative;
     flex-direction: column;
     width: 150px;
+    min-width: 150px;
     border: 0.50rem ridge gray;
     margin: 0 1rem;
 }
@@ -95,10 +96,4 @@
 .hero-card-border {
     border-image-slice: 1;
     border-image-source: linear-gradient(#85b85b 10px, #00ff73 20px);
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: 35vw;
-    }
 }

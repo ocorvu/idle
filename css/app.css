@@ -60,7 +60,9 @@ h3 {
     padding: 0;
 }
 
-button {
+.click {
+    display: inline-block;
+    width: 4rem;
     background-color: #000;
     color: #FFF;
     font-weight: bold;
@@ -97,7 +99,7 @@ button {
     flex-wrap: nowrap;
     padding: 0.25rem 0;
     overflow-y: hidden;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 #feed {
@@ -146,7 +148,11 @@ button {
     }
 
     #feed {
-        width: 97vw;
+        width: 100vw;
+    }
+
+    #enemies, #heroes {
+        justify-content: space-between;
     }
 
     .close-bar {

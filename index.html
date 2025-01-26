@@ -26,8 +26,15 @@
     <header id="main-header">
         <!-- logo -->
         <img id="logo" src="icons/favicon-32x32.png" alt="">
+        <div>
+            <!-- train button -->
+            <button id="first" class="click" disabled>train</button>
+            <!-- hack button -->
+            <button id="second" class="click">hack</button>
+        </div>
         <!-- points -->
         <div id="box">0</div>
+
         <!-- navigation -->
         <nav>
             <!-- upgrades button -->
@@ -191,9 +198,6 @@
             <h2>Enemies</h2>
             <section id="enemies">
                 <section data-character-card="braulio" class="card enemie-card-border">
-                    <img class="enemie-thumb" data-character-card-thumb="braulio"
-                        src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                        alt="ManoBri" />
                     <h3 data-character-card-name="braulio" class="enemie-name">
                         Enemie
                     </h3>
@@ -207,13 +211,10 @@
                     <p>
                         DEF: <span data-character-card-def="braulio"></span>
                     </p>
-                    <button data-target="braulio" class="target">Target</button>
+                    <button data-target="braulio">Target</button>
                     <span class="card-respawn" data-character-card-respawn-timer="braulio">vivo</span>
                 </section>
                 <section data-character-card="dunha" class="card enemie-card-border">
-                    <img class="enemie-thumb" data-character-card-thumb="dunha"
-                        src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                        alt="Dunha" />
                     <h3 data-character-card-name="dunha" class="enemie-name">
                         Enemie
                     </h3>
@@ -231,9 +232,6 @@
                     <span class="card-respawn" data-character-card-respawn-timer="dunha">vivo</span>
                 </section>
                 <section data-character-card="manobri" class="card enemie-card-border">
-                    <img class="enemie-thumb" data-character-card-thumb="manobri"
-                        src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                        alt="ManoBri" />
                     <h3 data-character-card-name="manobri" class="enemie-name">
                         Enemie
                     </h3>
@@ -256,9 +254,6 @@
             <section id="heroes">        
                 <section data-character-card="meuso" class="hide">
                     <section class="card-body" data-character-card-body="meuso">
-                        <img class="hero-thumb" data-character-card-thumb="meuso"
-                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                            alt="Meuso" />
                         <h3 data-character-card-name="meuso">
                             Hero
                         </h3>
@@ -278,9 +273,6 @@
                 </section>
                 <section data-character-card="rebento" class="hide">
                     <section class="card-body" data-character-card-body="rebento">
-                        <img class="hero-thumb" data-character-card-thumb="rebento"
-                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                            alt="rebento" />
                         <h3 data-character-card-name="rebento">
                             Hero
                         </h3>
@@ -300,9 +292,6 @@
                 </section>
                 <section data-character-card="kaom" class="hide">
                     <section class="card-body" data-character-card-body="kaom">
-                        <img class="hero-thumb" data-character-card-thumb="kaom"
-                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                            alt="Meuso" />
                         <h3 data-character-card-name="kaom">
                             Hero
                         </h3>
@@ -322,9 +311,6 @@
                 </section>
                 <section data-character-card="brineking" class="hide">
                     <section class="card-body" data-character-card-body="brineking">
-                        <img class="hero-thumb" data-character-card-thumb="brineking"
-                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                            alt="brineking" />
                         <h3 data-character-card-name="brineking">
                             Hero
                         </h3>
@@ -344,9 +330,6 @@
                 </section>
                 <section data-character-card="shadow" class="hide">
                     <section class="card-body" data-character-card-body="shadow">
-                        <img class="hero-thumb" data-character-card-thumb="shadow"
-                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/df7539f3-f060-4fa9-b6ea-b450762fa004/daghxb1-2b2be3e7-21b8-4850-b408-b15da5a88839.png/v1/fill/w_1024,h_1259/pokemon_egg__standard_2k__by_maniraptavia_daghxb1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI1OSIsInBhdGgiOiJcL2ZcL2RmNzUzOWYzLWYwNjAtNGZhOS1iNmVhLWI0NTA3NjJmYTAwNFwvZGFnaHhiMS0yYjJiZTNlNy0yMWI4LTQ4NTAtYjQwOC1iMTVkYTVhODg4MzkucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.qlRlwHUGFLJBJyFb93DgTcApEHMwni3HBlT9k_lEGCE"
-                            alt="Meuso" />
                         <h3 data-character-card-name="shadow">
                             Hero
                         </h3>
@@ -365,8 +348,6 @@
                     </section>
                 </section>
             </section>
-            <button id="first">1</button>
-            <button id="second">2</button>
         </section>
         <!-- achievements -->
         <aside id="achievements" class="achievements-md" data-content="achievements">

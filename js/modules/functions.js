@@ -100,7 +100,7 @@ function syncHeroCard(heroes, hero) {
     heroCardHpBar.max = heroes[hero].totalHp;
     heroCardHpBar.innerText = heroes[hero].hp;
 
-    heroCardThumb.src = heroes[hero].thumbnail;
+    // heroCardThumb.src = heroes[hero].thumbnail;
 }
 
 function syncHeroUprades(heroes, hero, option, points) {
@@ -142,7 +142,7 @@ function syncEnemieCard(enemies, enemie) {
     enemieCardHpBar.max = enemies[enemie].totalHp;
     enemieCardHpBar.innerText = enemies[enemie].hp;
 
-    enemieCardThumb.src = enemies[enemie].thumbnail;
+    // enemieCardThumb.src = enemies[enemie].thumbnail;
 }
 
 function powerUp(hero, points, power, buyOption) {

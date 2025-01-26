@@ -26,12 +26,12 @@ const battleFeedCloseButton = document.getElementById('battle-feed-close-button'
 const buyButtons = document.querySelectorAll('[data-buy-option]');
 const clearLocalStorageButton = document.getElementById('limpaCache');
 const closeMenuButtons = document.querySelectorAll('[data-menu-close-button]');
-const firstButton = document.getElementById('first');
+const trainButton = document.getElementById('first');
+const hackButton = document.getElementById('second');
 const heroesUpgradesList = document.querySelectorAll('[data-heroes]');
 const navItems = document.querySelectorAll('[data-button]');
 const musicButtons = document.querySelectorAll('[data-music]');
 const notEnoughCash = new Audio('sounds/not-enough-cash.mp3');
-const secondButton = document.getElementById('second');
 const saveButton = document.getElementById('save');
 const targets = document.querySelectorAll('[data-target]');
 const volume = document.getElementById('volume');
@@ -186,8 +186,8 @@ createCharacters(characters, heroes, enemies);
 
 levelAchievements(10, 100);
 
-clickPoints(firstButton, 1);
-clickPoints(secondButton, 99999999);
+clickPoints(trainButton, 1);
+clickPoints(hackButton, 99999999);
 
 toggleElementsClass(targets, 'target');
 toggleElementsClass(buyButtons, 'active');
@@ -235,6 +235,7 @@ heroesUpgradesList.forEach((hero) => {
             syncHeroUprades(heroes, heroId, buyOption(buyButtons), points)
             saveHeroes(heroId);
             savePoints();
+            trainButton.disable = false;
         } else {
             playSound(notEnoughCash, volume);
         }
@@ -286,8 +287,13 @@ battleFeedCloseButton.addEventListener('click', () => {
 attackButtons.forEach(button => {
     button.addEventListener('click', () => {
         let attacker = button.dataset.buttonAttack;
-        let target = hasCssClass(targets, 'target');
+        let target = hasCssClass(targets, 'target') || false;
+        if (!target) {
+            newActivity(feed, 'oie');
+            return;
+        }
         let defender = getDataAttribute(target, 'target');
+
         let battleLog = new BattleLog(heroes[attacker], enemies[defender], battleFeed);
         let character;
 
@@ -304,6 +310,7 @@ attackButtons.forEach(button => {
             switch (character.type()) {
                 case 'Character':
                     target.classList.toggle('hide');
+                    target.classList.remove('target');
                     respawnCountdown(character.name.toLowerCase(), character.respawnCooldown, character.type(), target);
                     break;
                 case 'Hero':

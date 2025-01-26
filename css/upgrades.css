@@ -111,7 +111,7 @@ h2>img {
     color: var(--level-bg-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
 
     #upgrades.upgrades-md {
         max-width: 0;
