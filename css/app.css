@@ -142,7 +142,7 @@ h3 {
     opacity: 0.5;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
     .nav-button {
         display: inline-flex;
     }
