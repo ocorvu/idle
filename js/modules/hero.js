@@ -2,9 +2,10 @@ import { Character } from "./character.js";
 
 class Hero extends Character {
     _level;
-    constructor(name, totalHp, hp, atk, def, thumbnail, level, power, given_power, base_cost, cost_increase, require) {
+    constructor(name, totalHp, hp, atk, def, thumbnail, level, power, given_power, base_cost, cost_increase, require, dependant) {
         super(name, totalHp, hp, atk, def, thumbnail);
         this.require = require;
+        this.dependant = dependant;
         this.power = power;
         this.given_power = given_power;
         this._level = level;
@@ -62,7 +63,7 @@ class Hero extends Character {
         if (this.name == 'Meuso') {
             return true;
         }
-        if (requirement.level >= 10) {
+        if (requirement.level >= 10 && requirement.exists()) {
             return true;
         }
         // window.alert(requirement.name + ' isnt level 10.');
@@ -81,6 +82,9 @@ class Hero extends Character {
     }
     getRequirement() {
         return this.require;
+    }
+    getDependant() {
+        return this.dependant;
     }
 }
 

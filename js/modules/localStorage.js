@@ -12,7 +12,7 @@ async function createCharacters(path) {
 
     data.heroes.forEach(hero => {
         Object.assign(characters.heroes, {
-            [hero.name.toLowerCase()]: new Hero(hero.name, hero.totalHp, hero.hp, hero.atk, hero.def, hero.thumbnail, hero.level, hero.power, hero.given_power, hero.base_cost, hero.cost_increase, hero.require)
+            [hero.name.toLowerCase()]: new Hero(hero.name, hero.totalHp, hero.hp, hero.atk, hero.def, hero.thumbnail, hero.level, hero.power, hero.given_power, hero.base_cost, hero.cost_increase, hero.require, hero.dependant)
         })
     });
 

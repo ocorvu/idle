@@ -4,7 +4,7 @@ import {
     inactiveButton, activeButton, enableItem,
     disableItem, showItem, hideItem, powerUp,
     showPoints, NumberUnitFormat, hasCssClass, 
-    getDataAttribute, toggleElementsClass, syncHeroUprades, 
+    getDataAttribute, toggleElementsClass, syncHeroUpgrades, 
     playSound, canBuy, syncHeroCard,
     syncEnemieCard, buyOption, alert,
     addAchiement
@@ -161,7 +161,7 @@ function createCharacters(characters, heroes, enemies) {
         if (character == 'heroes') {
             for (let hero in characters[character]) {
                 const h = characters[character][hero];
-                heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h._level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require);
+                heroes[hero] = new Hero(h.name, h.totalHp, h.hp, h.atk, h.def, h.thumbnail, h._level, h.power, h.given_power, h.base_cost, h.cost_increase, h.require, h.dependant);
             }
         }
         if (character == 'enemies') {
@@ -200,7 +200,7 @@ heroesUpgradesList.forEach((hero) => {
     requirement = heroes[requirement];
     
     if (heroes[heroId].canExist(requirement)) {
-        syncHeroUprades(heroes, heroId, buyOption(buyButtons), points);
+        syncHeroUpgrades(heroes, heroId, buyOption(buyButtons), points);
     }
 
     if (heroes[heroId].exists()) {
@@ -216,7 +216,9 @@ heroesUpgradesList.forEach((hero) => {
     const heroId = hero.dataset.heroes;
 
     let requirement = heroes[heroId].getRequirement();
+    let dependant = heroes[heroId].getDependant();
     requirement = heroes[requirement];
+    dependant = heroes[dependant];
     hero.addEventListener('click', () => {
     if (heroes[heroId].canExist(requirement)) {
 
@@ -227,12 +229,14 @@ heroesUpgradesList.forEach((hero) => {
             achievementsLoop();
 
             [power, points] = up;
-
+            if ( heroId != 'shadow' && dependant.canExist(heroes[dependant.getRequirement()])) {
+                syncHeroUpgrades(heroes, dependant.name.toLowerCase(), buyOption(buyButtons), points);
+            }
             const heroCard = document.querySelector(`[data-character-card="${heroId}"]`);
             heroCard.classList.remove('hide');
             heroCard.classList.add('card', 'hero-card-border')
 
-            syncHeroUprades(heroes, heroId, buyOption(buyButtons), points)
+            syncHeroUpgrades(heroes, heroId, buyOption(buyButtons), points)
             saveHeroes(heroId);
             savePoints();
             trainButton.disable = false;
@@ -266,10 +270,14 @@ closeMenuButtons.forEach(button => {
 buyButtons.forEach((button) => {
     button.addEventListener('click', () => {
 
-        let heroesCost = [...heroesUpgradesList].map((hero) => getDataAttribute(hero, 'heroes'))
+        let heroesCost = [...heroesUpgradesList].map((heroId) => getDataAttribute(heroId, 'heroes'))
 
-        heroesCost.forEach((hero) => {
-            syncHeroUprades(heroes, hero, getDataAttribute(button, 'buyOption'), points)
+        heroesCost.forEach((heroId) => {
+                let requirement = heroes[heroId].getRequirement();
+                requirement = heroes[requirement];
+            if (heroes[heroId].canExist(requirement)) {
+                syncHeroUpgrades(heroes, heroId, buyOption(buyButtons), points);
+            }
         })
     })
 })

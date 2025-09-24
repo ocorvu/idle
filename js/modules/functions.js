@@ -103,15 +103,18 @@ function syncHeroCard(heroes, hero) {
     // heroCardThumb.src = heroes[hero].thumbnail;
 }
 
-function syncHeroUprades(heroes, hero, option, points) {
+function syncHeroUpgrades(heroes, hero, option, points) {
 
     let [cost, level] = buy(heroes[hero], option, points);
-
+    
+    const heroOption = document.querySelector(`[data-heroes="${hero}"]`);
     const heroName = document.querySelector(`[data-heroes-name="${hero}"]`);
     const heroCost = document.querySelector(`[data-heroes-cost="${hero}"]`);
     const heroLevel = document.querySelector(`[data-heroes-level="${hero}"]`);
     const heroLevelOption = document.querySelector(`[data-heroes-level-option="${hero}"]`);
     
+    heroOption.classList.remove('hide')
+    heroOption.classList.add('hero')
     heroLevelOption.classList.add('hide')
     heroName.innerText = heroes[hero].name;
     if (option == 'max'){
@@ -199,4 +202,4 @@ function NumberUnitFormat(number) {
     }).format(number);
 }
 
-export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleElementsClass, syncHeroUprades, canBuy, playSound, syncHeroCard, buyOption, syncEnemieCard, alert, addAchiement }
+export { inactiveButton, activeButton, enableItem, disableItem, showItem, hideItem, powerUp, showPoints, NumberUnitFormat, requestData, getDataAttribute, hasCssClass, toggleElementsClass, syncHeroUpgrades, canBuy, playSound, syncHeroCard, buyOption, syncEnemieCard, alert, addAchiement }
