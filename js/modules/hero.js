@@ -17,7 +17,7 @@ class Hero extends Character {
     get level() {
         return this._level;
     }
-    greet() {
+    stats() {
         return `Name: ${this.name} - Power: ${this.power} - Given Power: ${this.given_power} - Level: ${this._level} - Base cost: ${this.base_cost} - Cost increase: ${this.cost_increase} - Achievements: ${this.achievements}`;
     }
     self() {
@@ -85,6 +85,27 @@ class Hero extends Character {
     }
     getDependant() {
         return this.dependant;
+    }
+
+    getDialogue(context) {
+        switch (context) {
+            case "unlocked":
+                return `${this.name} diz: Eu fui libertado!`;
+            case "greet":
+                return `${this.name} diz: Estou pronto para a batalha!`;
+            case "no_target":
+                return `${this.name} diz: Não tenho um alvo para atacar.`;
+            case "battle_start":
+                return `${this.name} diz: A batalha começou!`;
+            case "get_a_kill":
+                return `${this.name} diz: Inimigo derrotado!`;
+            case "died":
+                return `${this.name} diz: Fui derrotado...`;
+            case "revived":
+                return `${this.name} diz: Pronto para lutar novamente!`;
+            default:
+                break;
+        }
     }
 }
 
