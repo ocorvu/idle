@@ -108,6 +108,7 @@ function respawnCountdown(deadCharacterName, respawnTime, type, button) {
                 case 'Hero':
                     button.classList.toggle('hide') 
                     saveHeroes(deadCharacterName)
+                    newActivity(feed, heroes[deadCharacterName].getDialogue('revived'));
                     return;
                 default:
                     break;
@@ -231,11 +232,15 @@ heroesUpgradesList.forEach((hero) => {
             [power, points] = up;
             if ( heroId != 'shadow' && dependant.canExist(heroes[dependant.getRequirement()])) {
                 syncHeroUpgrades(heroes, dependant.name.toLowerCase(), buyOption(buyButtons), points);
+                newActivity(feed, dependant.getDialogue('unlocked'));
             }
             const heroCard = document.querySelector(`[data-character-card="${heroId}"]`);
             heroCard.classList.remove('hide');
             heroCard.classList.add('card', 'hero-card-border')
-
+            
+            if (heroes[heroId]._level == 1) {
+                newActivity(feed, heroes[heroId].getDialogue('greet'));
+            }
             syncHeroUpgrades(heroes, heroId, buyOption(buyButtons), points)
             saveHeroes(heroId);
             savePoints();
@@ -297,7 +302,7 @@ attackButtons.forEach(button => {
         let attacker = button.dataset.buttonAttack;
         let target = hasCssClass(targets, 'target') || false;
         if (!target) {
-            newActivity(feed, 'oie');
+            newActivity(feed, heroes[attacker].getDialogue('no_target'));
             return;
         }
         let defender = getDataAttribute(target, 'target');
@@ -306,6 +311,7 @@ attackButtons.forEach(button => {
         let character;
 
         if (!heroes[attacker].is_dead() && !enemies[defender].is_dead()) {
+            newActivity(feed, heroes[attacker].getDialogue('battle_start'));
             battleLog.title();
 
             battleFeed.showModal();
@@ -319,10 +325,12 @@ attackButtons.forEach(button => {
                 case 'Character':
                     target.classList.toggle('hide');
                     target.classList.remove('target');
+                    newActivity(feed, heroes[attacker].getDialogue('get_a_kill'));
                     respawnCountdown(character.name.toLowerCase(), character.respawnCooldown, character.type(), target);
                     break;
                 case 'Hero':
                     button.classList.toggle('hide');
+                    newActivity(feed, character.getDialogue('died'));
                     respawnCountdown(character.name.toLowerCase(), character.respawnCooldown, character.type(), button);
                     break;
                 default:
