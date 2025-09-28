@@ -311,7 +311,7 @@ attackButtons.forEach(button => {
         let character;
 
         if (!heroes[attacker].is_dead() && !enemies[defender].is_dead()) {
-            newActivity(feed, heroes[attacker].getDialogue('battle_start'));
+            newActivity(feed, `${heroes[attacker].name} challenges ${enemies[defender].name}!`);
             battleLog.title();
 
             battleFeed.showModal();
