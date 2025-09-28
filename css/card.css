@@ -40,9 +40,9 @@
     border-radius: 5px;
 }
 
-.card-def, .card-atk, .card-dodge {
-    width: 1.25rem;
-    height: 1.25rem;
+.card-def, .card-atk, .card-dodge, .card-hp {
+    width: 1rem;
+    height: 1rem;
     vertical-align: middle;
     padding: 0.125rem;
 }
