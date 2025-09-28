@@ -1,7 +1,8 @@
 :root {
     --progress-bar-box-shadow-color: rgba( 0, 0, 0, 0.2 );
     --progress-bar-background-color: rgba(128, 128, 128, 0.521);
-    --progress-bar-value-background-color: blue;
+    --progress-bar-heroe-value-background-color: #00008B;
+    --progress-bar-enemie-value-background-color: #800000;
     --progress-border-radius: 0.5rem;
 }
 
@@ -16,6 +17,11 @@ progress::-webkit-progress-bar {
     border-radius: var(--progress-border-radius);
 }
 progress::-webkit-progress-value {
-    background-color: var(--progress-bar-value-background-color);
+    background-color: var(--progress-bar-heroe-value-background-color);
+    border-radius: var(--progress-border-radius);
+}
+
+progress.enemie-hp::-webkit-progress-value {
+    background-color: var(--progress-bar-enemie-value-background-color);
     border-radius: var(--progress-border-radius);
 }

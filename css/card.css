@@ -13,8 +13,7 @@
     flex-direction: column;
     width: 150px;
     min-width: 150px;
-    border: 0.50rem ridge gray;
-    margin: 0 1rem;
+    margin: 0 1rem;    
 }
 
 .card-body {
@@ -22,8 +21,31 @@
     display: flex;
     position: relative;
     flex-direction: column;
+    background-image: linear-gradient(45deg, #fbf1c5, #f9e378);
+    box-shadow: 1px 1px 5px black;
+    padding: 0.5rem 0.5rem 0rem;
+    border: solid 1px transparent;
+    border-radius: 5px;
 }
 
+.card-body-enemie {
+    flex-grow: 1;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-image: linear-gradient(45deg, #fbc6c5, #f97878);
+    box-shadow: 1px 1px 5px black;
+    padding: 0.5rem 0.5rem 0rem;
+    border: solid 1px transparent;
+    border-radius: 5px;
+}
+
+.card-def, .card-atk, .card-dodge {
+    width: 1.25rem;
+    height: 1.25rem;
+    vertical-align: middle;
+    padding: 0.125rem;
+}
 .card-respawn {
     flex-grow: 2;
     display: flex;
@@ -39,6 +61,7 @@
     border: 1px solid gray;
     border-radius: 0.250rem;
     margin: 0.125rem;
+    padding: 0.3rem 0;
 }
 
 .card button:hover {
@@ -47,15 +70,6 @@
 
 .card button.target {
     border: 0.25rem ridge #28af28;
-}
-
-.card img {
-    height: 50%;
-    padding: 0.125rem;
-}
-
-#respawn-timer {
-    background-color: red;
 }
 
 .dead {
@@ -91,9 +105,4 @@
             var(--background-first-stripe-2),
             var(--hero-background-second-stripe-1),
             var(--hero-background-second-stripe-2));
-}
-
-.hero-card-border {
-    border-image-slice: 1;
-    border-image-source: linear-gradient(#85b85b 10px, #00ff73 20px);
 }
